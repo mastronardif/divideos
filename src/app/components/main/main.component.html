@@ -1,0 +1,77 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <div class="mdl-layout-title">
+          <img src="assets/logo.png">
+        </div>
+        <nav class="mdl-navigation">
+          <videos-search (videosUpdated)="handleSearchVideo($event)" [loadingInProgress]="loadingInProgress">
+          </videos-search>
+  
+      <!-- <input id="checkBox1" type="checkbox">b1
+      <input id="checkBox2" type="checkbox">b2	
+      <input id="checkBox3" type="checkbox">b3 
+  
+      <label><input type="checkbox" [checked]="checkbox2" /> F2: </label>
+      -->
+      
+<!--       <div class="form-group">
+        <span *ngFor="let option of options; index as i">
+            <div *ngIf="i%3 == 0">
+                
+            </div>
+           <label>
+              <input type="checkbox"
+                    name="options"
+                    [checked]="option.checked != 0"
+  
+                    value="{{option.value}}"
+                    (change)="updateCheckedOptions(option,i, $event.target.checked)"/>
+              {{option.value}}
+          </label>
+        </span>  
+  
+    </div> -->
+  
+    <button id="lpl_tip" (click)="lpl()">lpl</button>
+    <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_tip">
+      Load Play List
+    </div>
+<!--       <button (click)="sort()">sort</button>
+      
+      <button (click)="decorate()">decorate</button> -->
+        </nav>
+  
+        <div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button toggle-playlist-icon" (click)="togglePlaylist()">
+          <i class="material-icons"></i>
+        </div>
+      </div>
+    </header>
+  
+     <videos-playlist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist">
+    </videos-playlist>
+  
+    <main class="mdl-layout__content" LazyScroll (OnScrollMethod)="searchMore()" ScrollDistance="3">
+      <div class="page-content" [ngClass]="{'blur-main-playlist-opened': playlistToggle}">
+        <videos-list *ngIf="videoList.length" class="mdl-grid" (videoPlaylist)="checkAddToPlaylist($event)" [videoList]="videoList" [loadingInProgress]="loadingInProgress">
+        </videos-list>
+        
+        <div class="loader" *ngIf="!videoList.length">
+          <div class="loading"></div>
+        </div>
+  
+  
+      </div>
+    </main>
+  
+  </div>
+  
+  <video-player (closePlaylist)="closePlaylist()" (importPlaylist)="importPlaylist($event)" (exportPlaylist)="exportPlaylist()" (clearPlaylist)="clearPlaylist()" (playFirstInPlaylist)="playFirstInPlaylist()" (repeatActive)="repeatActive($event)" (shuffleActive)="shuffleActive($event)"
+    (nextVideoEvent)="nextVideo()" (prevVideoEvent)="prevVideo()">
+  </video-player>
+  
+  <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+  </div>

@@ -6,9 +6,9 @@ import { YoutubePlayerService } from '../../shared/services/youtube-player.servi
 import { PlaylistStoreService } from '../../shared/services/playlist-store.service';
 import { NotificationService } from '../../shared/services/notification.service';
 import {  PlaylistSortbyService } from '../../shared/services/playlist-sortby.service';
+import {Observable} from "rxjs";
 
-
-import { Observable } from 'rxjs';
+//import { Observable, observable } from 'rxjs';
 
 @Component({
   selector: 'main-list',
@@ -27,6 +27,7 @@ export class MainComponent implements AfterViewInit{ //OnInit {
   private pageLoadingFinished = false;
 
   protected videos$: Observable<any[]>;
+  protected videos22$: Observable<any[]>;
   protected videos: any;
 
   checkbox2 = false; 
@@ -55,29 +56,41 @@ export class MainComponent implements AfterViewInit{ //OnInit {
 
   ngAfterViewInit() {//ngOnInit() {
     this.playlistElement = document.getElementById('playlist');
-    this.videos$ = this.youtubeService.searchVideos('The Doors'); 
-    console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col') );
+    //this.videos$ = this.youtubeService.searchVideos('The Doors'); 
+    //console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col') );
 
           
       // wtf 8/4/18
       // this.youtubeService.getVideos('ass')
       //   .subscribe(response => this.videos = response);
 
-      // wtf 8/4/18 
-      
-    this.videos$.subscribe(val => {
-      console.log(`\n videos= ${val}`);
-      console.log(val);
+      // wtf 8/4/18
+      this.videos22$ = this.youtubeService.searchVideos22('The Who'); 
+      this.youtubeService.searchVideos22('The Who')      
+        .subscribe(response => {
 
-      this.videos= val.subscribe(res => {        
-        this.videos=res;
-        console.log('res.items=', res.items);
-        this.videoList= res.items;
-        //console.log('wtf=', this.wtf)     
-      });
-      // this.showVideos=true;
-      
-  });
+          response.subscribe(res => {        
+            this.videos=res;
+            console.log('res.items=', res.items);
+            this.videoList= res.items;
+            console.log(response)
+          });
+    });
+      //return;
+
+    // this.videos$.subscribe(val => {
+    //   console.log(`\n videos= ${val}`);
+    //   console.log(val);
+
+    //   //let bobo:Observable=val;
+    //   this.videos= val.subscribe(res => {        
+    //     this.videos=res;
+    //     console.log('res.items=', res.items);
+    //     this.videoList= res.items;
+    //     //console.log('wtf=', this.wtf)     
+    //   });
+      // this.showVideos=true;      
+    //});
   }
 
   playFirstInPlaylist(): void {

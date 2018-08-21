@@ -38,14 +38,25 @@ export class VideosSearchComponent {
 
     this.videosUpdated.emit([]);
     this.last_search = this.searchForm.value.query;
-	//alert('this.last_search= ' +  this.last_search);
+  //alert('this.last_search= ' +  this.last_search);
 
-    // this.youtubeService.searchVideos(this.last_search)
-    //   .then(data => {
-    //     if (data.length < 1) {
-    //       this.notificationService.showNotification('No matches found.');
-    //     }
-    //     this.videosUpdated.emit(data);
-    //   })
+  this.youtubeService.searchVideos22(this.last_search)     
+  .subscribe(response => {
+    response.subscribe(res => {        
+      //this.videos=res;
+      console.log('res.items=', res.items);
+      //this.videoList= res.items;
+      console.log(response)
+      this.videosUpdated.emit(res.items);
+    });
+});
+
+/*   this.youtubeService.searchVideos(this.last_search)
+      .then(data => {
+        if (data.length < 1) {
+          this.notificationService.showNotification('No matches found.');
+        }
+        this.videosUpdated.emit(data);
+      }) */
   }
 }

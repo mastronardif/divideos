@@ -144,10 +144,13 @@ export class MainComponent implements AfterViewInit{ //OnInit {
     }
 //alert('searchMore')
     this.loadingInProgress = true;
-    this.youtubeService.searchNext()
-      .then(data => {
+
+    this.youtubeService.searchNext()      
+    .subscribe(response => {
+
+      response.subscribe(data => {  
         this.loadingInProgress = false;
-        if (data.length < 1 || data.status === 400) {
+        if (data.items.length < 1 || data.status === 400) {
           setTimeout(() => {
             this.pageLoadingFinished = true;
             setTimeout(() => {
@@ -156,12 +159,15 @@ export class MainComponent implements AfterViewInit{ //OnInit {
           })
           return;
         }
-        data.forEach((val) => {
+        data.items.forEach((val) => {
           this.videoList.push(val);
         });
-      }).catch(error => {
-        this.loadingInProgress = false;
-      })
+        // this.videos=res;
+        // console.log('res.items=', res.items);
+        // this.videoList= res.items;
+        // console.log(response)
+      });
+    });    
   }
 
   nextVideo(): void {

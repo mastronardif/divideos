@@ -52,6 +52,7 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
     VideoViewsPipe,
     VideoDurationPipe,
     NowPlayingNamePipe,
+    
     LazyScrollDirective
   ],
   imports: [

@@ -135,9 +135,33 @@ import { map, finalize } from 'rxjs/operators';
 //       .catch(this.handleError)
 //   }
 
-searchNext(): Promise<any> {
-  return null;
-}
+searchNext(): Observable<any> { 
+  const url = this.base_url + 'search?q=' + this.lastQuery + '&pageToken=' + this.nextToken +
+      '&maxResults=' + this.max_results + '&type=video&part=snippet,id&key=' + YOUTUBE_API_KEY + '&videoEmbeddable=true';
+
+      console.log(`searchVideos: url=${url}`);
+              return this.http
+              .get(url)
+              .pipe(
+                map(response => {
+                  let jsonRes = response;
+                  //console.log(jsonRes);  
+                  let res = jsonRes['items'];
+                  //this.lastQuery = query;
+                  this.nextToken = jsonRes['nextPageToken'] ? jsonRes['nextPageToken'] : undefined;
+                  
+                  let ids = [];
+                  res.forEach((item) => {
+                    ids.push(item.id.videoId);
+                    });
+
+                    console.log(ids);
+                    console.log(`ids= ${ids}`);                    
+                    return this.getVideos(ids);
+                })                
+            );
+    }
+    
 
 getVideos(ids): Observable<any> {
   const url = this.base_url + 'videos?id=' + ids.join(',') + '&maxResults=' + this.max_results +

@@ -5,17 +5,16 @@ import { YoutubeApiService } from '../../shared/services/youtube-api.service';
 import { YoutubePlayerService } from '../../shared/services/youtube-player.service';
 import { PlaylistStoreService } from '../../shared/services/playlist-store.service';
 import { NotificationService } from '../../shared/services/notification.service';
-import {  PlaylistSortbyService } from '../../shared/services/playlist-sortby.service';
-import {Observable} from "rxjs";
+import { PlaylistSortbyService } from '../../shared/services/playlist-sortby.service';
+import { Observable } from 'rxjs';
 
-//import { Observable, observable } from 'rxjs';
 
 @Component({
   selector: 'main-list',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements AfterViewInit{ //OnInit {
+export class MainComponent implements AfterViewInit { //OnInit {
   public videoList = [];
   public videoPlaylist = [];
   public loadingInProgress = false;
@@ -30,15 +29,15 @@ export class MainComponent implements AfterViewInit{ //OnInit {
   protected videos22$: Observable<any[]>;
   protected videos: any;
 
-  checkbox2 = false; 
+  checkbox2 = false;
   options = [
-    {name:'DIAttribute', value:'AAA', checked:true},
-    {name:'DIAttribute', value:'BBB', checked:false},
-    {name:'DIAttribute', value:'CCC', checked:true},
+    { name: 'DIAttribute', value: 'AAA', checked: true },
+    { name: 'DIAttribute', value: 'BBB', checked: false },
+    { name: 'DIAttribute', value: 'CCC', checked: true },
 
-    {name:'DIAttribute', value:'DDD', checked:true},
-    {name:'DIAttribute', value:'EEE', checked:false},
-    {name:'DIAttribute', value:'FFF', checked:true}
+    { name: 'DIAttribute', value: 'DDD', checked: true },
+    { name: 'DIAttribute', value: 'EEE', checked: false },
+    { name: 'DIAttribute', value: 'FFF', checked: true }
 
   ];
 
@@ -49,48 +48,33 @@ export class MainComponent implements AfterViewInit{ //OnInit {
     private playlistService: PlaylistStoreService,
     private playlistSortbyService: PlaylistSortbyService,
 
-    private notificationService: NotificationService    
+    private notificationService: NotificationService
   ) {
     this.videoPlaylist = this.playlistService.retrieveStorage().playlists;
-   }
+  }
 
   ngAfterViewInit() {//ngOnInit() {
     this.playlistElement = document.getElementById('playlist');
     //this.videos$ = this.youtubeService.searchVideos('The Doors'); 
     //console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col') );
 
-          
-      // wtf 8/4/18
-      // this.youtubeService.getVideos('ass')
-      //   .subscribe(response => this.videos = response);
 
-      // wtf 8/4/18
-      this.videos22$ = this.youtubeService.searchVideos22('The Who'); 
-      this.youtubeService.searchVideos22('The Who')      
-        .subscribe(response => {
+    // wtf 8/4/18
+    // this.youtubeService.getVideos('ass')
+    //   .subscribe(response => this.videos = response);
 
-          response.subscribe(res => {        
-            this.videos=res;
-            console.log('res.items=', res.items);
-            this.videoList= res.items;
-            console.log(response)
-          });
-    });
-      //return;
+    // wtf 8/4/18
+    this.videos22$ = this.youtubeService.searchVideos22('The Who');
+    this.youtubeService.searchVideos22('The Who')
+      .subscribe(response => {
 
-    // this.videos$.subscribe(val => {
-    //   console.log(`\n videos= ${val}`);
-    //   console.log(val);
-
-    //   //let bobo:Observable=val;
-    //   this.videos= val.subscribe(res => {        
-    //     this.videos=res;
-    //     console.log('res.items=', res.items);
-    //     this.videoList= res.items;
-    //     //console.log('wtf=', this.wtf)     
-    //   });
-      // this.showVideos=true;      
-    //});
+        response.subscribe(res => {
+          this.videos = res;
+          //console.log('res.items=', res.items);
+          this.videoList = res.items;
+          //console.log(response)
+        });
+      });
   }
 
   playFirstInPlaylist(): void {
@@ -101,7 +85,7 @@ export class MainComponent implements AfterViewInit{ //OnInit {
   }
 
   handleSearchVideo(videos: Array<any>): void {
-	  //alert('handleSearchVideo');
+    //alert('handleSearchVideo');
     this.videoList = videos;
   }
 
@@ -137,37 +121,32 @@ export class MainComponent implements AfterViewInit{ //OnInit {
   }
 
   searchMore(): void {
-	  //alert('searchMore loadingInProgress ');
-	  console.log("this = ", this);
+    console.log("searchMore 11 this = ", this);
     if (this.loadingInProgress || this.pageLoadingFinished || this.videoList.length < 1) {
       return;
     }
-//alert('searchMore')
+    console.log("searchMore 22 this = ", this);
     this.loadingInProgress = true;
 
-    this.youtubeService.searchNext()      
-    .subscribe(response => {
-
-      response.subscribe(data => {  
-        this.loadingInProgress = false;
-        if (data.items.length < 1 || data.status === 400) {
-          setTimeout(() => {
-            this.pageLoadingFinished = true;
+    this.youtubeService.searchNext()
+      .subscribe(response => {
+console.log('******************* ' + response);
+        response.subscribe(data => {
+          this.loadingInProgress = false;
+          if (data.items.length < 1 || data.status === 400) {
             setTimeout(() => {
-              this.pageLoadingFinished = false;
-            }, 10000);
-          })
-          return;
-        }
-        data.items.forEach((val) => {
-          this.videoList.push(val);
+              this.pageLoadingFinished = true;
+              setTimeout(() => {
+                this.pageLoadingFinished = false;
+              }, 10000);
+            })
+            return;
+          }
+          data.items.forEach((val) => {
+            this.videoList.push(val);
+          });
         });
-        // this.videos=res;
-        // console.log('res.items=', res.items);
-        // this.videoList= res.items;
-        // console.log(response)
       });
-    });    
   }
 
   nextVideo(): void {
@@ -249,31 +228,31 @@ export class MainComponent implements AfterViewInit{ //OnInit {
     this.videoPlaylist = playlist;
     this.playlistService.importPlaylist(this.videoPlaylist);
   }
-  
-   lpl() : void {
-	  if (this.videoPlaylist.length > 0) {
-		  this.videoList = this.videoPlaylist;
-    }	  
+
+  lpl(): void {
+    if (this.videoPlaylist.length > 0) {
+      this.videoList = this.videoPlaylist;
+    }
   }
-    
-  decorate() : void {
-    console.log('decorate() : void {');    
+
+  decorate(): void {
+    console.log('decorate() : void {');
     var list = document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col');
     console.log(list[0].innerHTML);
-    var decorators = 
-    '<td>'+    
-'<br/>  <label><input id="checkBox" type="checkbox">AAA </label>'+
-'<br/> <input id="checkBox" type="checkbox">BBB'+
-'<br/> <input id="checkBox" type="checkbox">CCC'+
-'<br/> <input id="checkBox" type="checkbox">DDD'+
-'<br/> <input id="checkBox" type="checkbox">EEE'+
-'<br/> <input id="checkBox" type="checkbox">FFF'+
-'</td>'
+    var decorators =
+      '<td>' +
+      '<br/>  <label><input id="checkBox" type="checkbox">AAA </label>' +
+      '<br/> <input id="checkBox" type="checkbox">BBB' +
+      '<br/> <input id="checkBox" type="checkbox">CCC' +
+      '<br/> <input id="checkBox" type="checkbox">DDD' +
+      '<br/> <input id="checkBox" type="checkbox">EEE' +
+      '<br/> <input id="checkBox" type="checkbox">FFF' +
+      '</td>'
 
-for (var idx = 0; idx < list.length; idx++) {
-  //console.log(list[i].id); //second console output
-  list[idx].innerHTML = list[idx].innerHTML.replace('</td>', decorators);
-}
+    for (var idx = 0; idx < list.length; idx++) {
+      //console.log(list[i].id); //second console output
+      list[idx].innerHTML = list[idx].innerHTML.replace('</td>', decorators);
+    }
 
     //list[0].innerHTML = list[0].innerHTML.replace('Fuck ','Fuck XXXXXXX');
 
@@ -281,44 +260,44 @@ for (var idx = 0; idx < list.length; idx++) {
 
     //list[0].innerHTML = list[0].innerHTML.replace('</td>', decorators);
 
-    console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col') );
-   
+    console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col'));
+
     if (this.videoPlaylist.length > 0) {
-       //this.videoList = this.videoPlaylist;
-       //this. .document.body.classList.add('test');
-    }	    
+      //this.videoList = this.videoPlaylist;
+      //this. .document.body.classList.add('test');
+    }
   }
-  
-  updateCheckedOptions(option, idx, ischecked) : void {
-    console.log(option,idx, ischecked);
+
+  updateCheckedOptions(option, idx, ischecked): void {
+    console.log(option, idx, ischecked);
     this.options[idx].checked = ischecked;
   }
-  wtf() : void {
-	  
-	  if (this.videoList.length > 2) {
-		  //swap
-		  //alert('wtf this.videoList.length= '  this.videoList.length);
-		  var temp = this.videoList[1];
-		  this.videoList[1] = this.videoList[0];
-		  this.videoList[0] = temp;
-		  //this.videoList = this.videoPlaylist;
-		  //this.videoList =[];
+  wtf(): void {
+
+    if (this.videoList.length > 2) {
+      //swap
+      //alert('wtf this.videoList.length= '  this.videoList.length);
+      var temp = this.videoList[1];
+      this.videoList[1] = this.videoList[0];
+      this.videoList[0] = temp;
+      //this.videoList = this.videoPlaylist;
+      //this.videoList =[];
       //this.videosUpdated.emit([]);
       //console.log(this. input.nativeElement.value);
       var val = this.options[0].value;
       var check = this.options[1].checked;
       this.options.forEach(element => {
         console.log('di  option val = ', element); //, val, check );  
-        
+
       });
-      
+
 
       //let bbb = this.playlistSortbyService.test(this.videoList);
 
       //let current = this.youtubePlayer.getCurrentVideo();
       //alert(bbb);
-	  }
-	  
+    }
+
   }
 }
 

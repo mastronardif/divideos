@@ -51,95 +51,19 @@ import { map, finalize } from 'rxjs/operators';
                     ids.push(item.id.videoId);
                     });
 
-                    console.log(ids);
-                    console.log(`ids= ${ids}`);                    
+                    console.log(ids.length);
+                    //console.log(`ids= ${ids}`);                    
                     return this.getVideos(ids);
                 })                
             );
     }
     
 
-    searchVideos(query: string): Observable<any> {  
-      const url = this.base_url + 'search?q=' + query + '&maxResults=' + this.max_results +
-                  '&type=video&part=snippet,id&key=' + YOUTUBE_API_KEY + '&videoEmbeddable=true';
-    
-      console.log(`searchVideos: url=${url}`);
-      return this
-              .http
-              .get(url)
-              .pipe(
-                map(response => {
-                  let jsonRes = response;
-                  //console.log(jsonRes);  
-                  let res = jsonRes['items'];
-                  this.lastQuery = query;
-                  this.nextToken = jsonRes['nextPageToken'] ? jsonRes['nextPageToken'] : undefined;
-                  
-                  let ids = [];
-                  res.forEach((item) => {
-                    ids.push(item.id.videoId);
-                    });
-
-                    console.log(ids);
-                    console.log(`ids= ${ids}`);
-                     this.getVideos(ids);
-                })                
-            );
-    }
-//   searchVideos(query: string): Promise<any> {
-//     const url = this.base_url + 'search?q=' + query + '&maxResults=' + this.max_results +
-//       '&type=video&part=snippet,id&key=' + YOUTUBE_API_KEY + '&videoEmbeddable=true';
-	  
-// 	  //url= "https://www.youtube.com/user/mastronardif/videos";
-// 	  //alert ('url='+ url);
-
-//     return this.http.get(url)
-//       .map(response => {
-//         let jsonRes = response.json();
-// 		//console.log(jsonRes);
-		
-//         let res = jsonRes['items'];
-//         this.lastQuery = query;
-//         this.nextToken = jsonRes['nextPageToken'] ? jsonRes['nextPageToken'] : undefined;
-
-//         let ids = [];
-
-//         res.forEach((item) => {
-//           ids.push(item.id.videoId);
-//         });
-
-//         return this.getVideos(ids);
-//       })
-//       .toPromise()
-//       .catch(this.handleError)
-//   }
-
-//   searchNext(): Promise<any> {
-//     const url = this.base_url + 'search?q=' + this.lastQuery + '&pageToken=' + this.nextToken +
-//       '&maxResults=' + this.max_results + '&type=video&part=snippet,id&key=' + YOUTUBE_API_KEY + '&videoEmbeddable=true';
-
-//     return this.http.get(url)
-//       .map(response => {
-//         let jsonRes = response.json();
-//         let res = jsonRes['items'];
-//         this.nextToken = jsonRes['nextPageToken'] ? jsonRes['nextPageToken'] : undefined;
-//         let ids = [];
-
-//         res.forEach((item) => {
-//           ids.push(item.id.videoId);
-//         });
-
-//         return this.getVideos(ids);
-//       })
-//       .toPromise()
-//       .catch(this.handleError)
-//   }
-
 searchNext(): Observable<any> { 
   const url = this.base_url + 'search?q=' + this.lastQuery + '&pageToken=' + this.nextToken +
       '&maxResults=' + this.max_results + '&type=video&part=snippet,id&key=' + YOUTUBE_API_KEY + '&videoEmbeddable=true';
 
-      console.log(`searchVideos: url=${url}`);
+      console.log(`searchNext: url=${url}`);
               return this.http
               .get(url)
               .pipe(

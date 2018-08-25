@@ -24,27 +24,21 @@ export class MainListComponent implements OnInit {
   }
 
   ngOnInit() {   
-    this.users$  = this.youtubeService.getUsers(); 
-    this.videos$ = this.youtubeService.searchVideos('The Doors'); 
+    //this.users$  = this.youtubeService.getUsers(); 
+    this.videos$ = this.youtubeService.searchVideos22('The Doors');
 
     this.videos$.subscribe(val => {
       console.log(`\n videos= ${val}`);
       console.log(val);
-      
-      // this.videos= val.subscribe(res => {        
-      //   this.videos=res;
-      //   console.log('res.items=', res.items);
-      //   //console.log('wtf=', this.wtf)      
-      // });
-      // this.showVideos=true;
-      
-  });
 
-    this.users$.subscribe(val => {
-      console.log(`\n FFFFF= ${val}`);
-      console.log(val);
-      this.users= val;
-      this.show=true;
-  });
+      // this.showVideos=true;      
+    });
+
+  //   this.users$.subscribe(val => {
+  //     console.log(`\n FFFFF= ${val}`);
+  //     console.log(val);
+  //     this.users= val;
+  //     this.show=true;
+  // });
   }
 }

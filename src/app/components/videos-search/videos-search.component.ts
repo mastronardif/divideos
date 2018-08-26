@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import {  YoutubeApiService }   from '../../shared/services/youtube-api.service';
+import { YoutubeApiService } from '../../shared/services/youtube-api.service';
 import { YoutubePlayerService } from '../../shared/services/youtube-player.service';
-import { NotificationService }  from '../../shared/services/notification.service';
+import { NotificationService } from '../../shared/services/notification.service';
 
 @Component({
   selector: 'videos-search',
@@ -38,17 +38,15 @@ export class VideosSearchComponent {
 
     this.videosUpdated.emit([]);
     this.last_search = this.searchForm.value.query;
-  //alert('this.last_search= ' +  this.last_search);
+    //alert('this.last_search= ' +  this.last_search);
 
-  this.youtubeService.searchVideos22(this.last_search)     
-  .subscribe(response => {
-    response.subscribe(res => {        
-      //this.videos=res;
-      console.log('res.items=', res.items);
-      //this.videoList= res.items;
-      console.log(response)
-      this.videosUpdated.emit(res.items);
-    });
-  });
+    this.youtubeService.searchVideos22(this.last_search)
+      .subscribe(response => {
+        response.subscribe(res => {
+          console.log('res.items=', res.items);
+          console.log(response)
+          this.videosUpdated.emit(res.items);
+        });
+      });
   }
 }

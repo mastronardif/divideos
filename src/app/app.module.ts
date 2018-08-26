@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClient, HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 // Components
 import { AppComponent } from './app.component';
-import { MainListComponent } from './main-list/main-list.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 import { TestComponent } from './components/test/test.component';
 import { MainComponent } from './components/main/main.component';
@@ -18,10 +17,10 @@ import { VideosPlaylistComponent } from './components/videos-playlist/videos-pla
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 
 // pipes
-import {VideoLikesPipe} from './shared/pipes/video-likes.pipe';
-import {VideoViewsPipe} from './shared/pipes/video-views.pipe';
-import {VideoDurationPipe} from './shared/pipes/video-duration.pipe';
-import {PlaylistItemNamePipe} from './shared/pipes/playlist-item-name.pipe';
+import { VideoLikesPipe } from './shared/pipes/video-likes.pipe';
+import { VideoViewsPipe } from './shared/pipes/video-views.pipe';
+import { VideoDurationPipe } from './shared/pipes/video-duration.pipe';
+import { PlaylistItemNamePipe } from './shared/pipes/playlist-item-name.pipe';
 import { NowPlayingNamePipe } from './shared/pipes/now-playing-name.pipe';
 import { LazyScrollDirective } from './shared/directives/lazy-scroll/lazy-scroll.directive';
 
@@ -34,16 +33,15 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
 
 
 @NgModule({
-  declarations: [    
+  declarations: [
 
     //ReactiveFormsModule,
-    AppComponent, 
-    MainComponent,    
+    AppComponent,
+    MainComponent,
 
-      TestComponent,
-    MainListComponent,
+    TestComponent,
     VideosListComponent,
-    VideosSearchComponent,    
+    VideosSearchComponent,
     VideoPlayerComponent,
     VideosPlaylistComponent,
     // pipes
@@ -52,7 +50,7 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
     VideoViewsPipe,
     VideoDurationPipe,
     NowPlayingNamePipe,
-    
+
     LazyScrollDirective
   ],
   imports: [
@@ -62,7 +60,7 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    MatCardModule   
+    MatCardModule
   ],
   providers: [HttpClientModule,
     PlaylistSortbyService,

@@ -1,6 +1,4 @@
 import { Component, ElementRef, AfterViewInit } from '@angular/core';
-//import { YoutubeApiService } from '../shared/services/youtube-api.service';
-//'./ services/youtube-api.service';
 import { YoutubeApiService } from '../../shared/services/youtube-api.service';
 import { YoutubePlayerService } from '../../shared/services/youtube-player.service';
 import { PlaylistStoreService } from '../../shared/services/playlist-store.service';
@@ -14,7 +12,7 @@ import { Observable } from 'rxjs';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements AfterViewInit { //OnInit {
+export class MainComponent implements AfterViewInit {
   public videoList = [];
   public videoPlaylist = [];
   public loadingInProgress = false;
@@ -53,21 +51,15 @@ export class MainComponent implements AfterViewInit { //OnInit {
     this.videoPlaylist = this.playlistService.retrieveStorage().playlists;
   }
 
-  ngAfterViewInit() {//ngOnInit() {
+  ngAfterViewInit() {
     this.playlistElement = document.getElementById('playlist');
     //this.videos$ = this.youtubeService.searchVideos('The Doors'); 
     //console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col') );
 
-
     // wtf 8/4/18
-    // this.youtubeService.getVideos('ass')
-    //   .subscribe(response => this.videos = response);
-
-    // wtf 8/4/18
-    this.videos22$ = this.youtubeService.searchVideos22('The Who');
+    //this.videos22$ = this.youtubeService.searchVideos22('The Who');
     this.youtubeService.searchVideos22('The Who')
       .subscribe(response => {
-
         response.subscribe(res => {
           this.videos = res;
           //console.log('res.items=', res.items);
@@ -94,10 +86,10 @@ export class MainComponent implements AfterViewInit { //OnInit {
       this.videoPlaylist.push(video);
       this.playlistService.addToPlaylist(video);
 
-      let inPlaylist = this.videoPlaylist.length - 1;
+      const inPlaylist = this.videoPlaylist.length - 1;
 
       setTimeout(() => {
-        let topPos = document.getElementById(this.videoPlaylist[inPlaylist].id).offsetTop;
+        const topPos = document.getElementById(this.videoPlaylist[inPlaylist].id).offsetTop;
         this.playlistElement.scrollTop = topPos - 100;
       });
     }
@@ -121,16 +113,28 @@ export class MainComponent implements AfterViewInit { //OnInit {
   }
 
   searchMore(): void {
-    console.log("searchMore 11 this = ", this);
+    console.log('searchMore 11 this = ', this);
     if (this.loadingInProgress || this.pageLoadingFinished || this.videoList.length < 1) {
       return;
     }
-    console.log("searchMore 22 this = ", this);
+    console.log('searchMore 22 this = ', this);
     this.loadingInProgress = true;
 
+
+    // begin
+    // this.youtubeService.searchNext()
+    //   .subscribe(response => {
+    //     response.subscribe(res => {
+    //       this.videos = res;
+    //       console.log('\t ******* search more res.items=', res.items);
+    //       this.videoList = res.items;
+    //     });
+    //   });
+    // end
     this.youtubeService.searchNext()
       .subscribe(response => {
-console.log('******************* ' + response);
+        console.log('******************* ', response);
+        this.loadingInProgress = false;
         response.subscribe(data => {
           this.loadingInProgress = false;
           if (data.items.length < 1 || data.status === 400) {

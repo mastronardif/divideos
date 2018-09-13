@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
+//import {MatTreeFlattener } from '@angular/material/tree';
 
 // Components
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { MainComponent } from './components/main/main.component';
 import { VideosListComponent } from './components/videos-list/videos-list.component';
 import { VideosSearchComponent } from './components/videos-search/videos-search.component';
 import { VideosPlaylistComponent } from './components/videos-playlist/videos-playlist.component';
+import { VideosdoclistComponent} from './components/videos-doclist/videos-doclist.component';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 
 // pipes
@@ -29,6 +31,7 @@ import { YoutubePlayerService } from './shared/services/youtube-player.service';
 import { PlaylistStoreService } from './shared/services/playlist-store.service';
 import { PlaylistSortbyService } from './shared/services/playlist-sortby.service';
 import { NotificationService } from './shared/services/notification.service';
+import { DataService } from './shared/services/data.service';
 import { BrowserNotificationService } from './shared/services/browser-notification.service';
 
 
@@ -44,6 +47,8 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
     VideosSearchComponent,
     VideoPlayerComponent,
     VideosPlaylistComponent,
+    VideosdoclistComponent,
+
     // pipes
     PlaylistItemNamePipe,
     VideoLikesPipe,
@@ -63,6 +68,7 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
     MatCardModule
   ],
   providers: [HttpClientModule,
+    DataService,
     PlaylistSortbyService,
     PlaylistStoreService,
     YoutubePlayerService,

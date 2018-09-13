@@ -110,6 +110,11 @@ export class VideoPlayerComponent implements AfterContentInit {
     import_button.click();
   }
 
+  importVideolistAction(): void {
+    let import_button = document.getElementById('import_button');
+    import_button.click();
+  }
+
   handleInputChange(e: any): void {
     let file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
 
@@ -134,6 +139,11 @@ export class VideoPlayerComponent implements AfterContentInit {
         return;
       }
 
+      //
+      console.log('\n\t**** * * * * ******** handleInputChange()');
+      console.log('list= ', list);
+      console.log('\n\t**** * * * * ******** handleInputChange()');
+      //
       me.importPlaylist.emit(list);
       me.notificationService.showNotification('Playlist imported.');
       document.getElementById('import_button')['value'] = '';

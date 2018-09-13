@@ -1,0 +1,2 @@
+https://developers.google.com/youtube/v3/code_samples/code_snippets
+GET https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=20&playlistId=PLaaxGO6E_rXecrc6icFvcV7JRMs_gI6OZ&key={YOUR_API_KEY}

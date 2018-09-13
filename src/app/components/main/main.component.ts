@@ -1,11 +1,11 @@
-import { Component, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { YoutubeApiService } from '../../shared/services/youtube-api.service';
 import { YoutubePlayerService } from '../../shared/services/youtube-player.service';
 import { PlaylistStoreService } from '../../shared/services/playlist-store.service';
 import { NotificationService } from '../../shared/services/notification.service';
 import { PlaylistSortbyService } from '../../shared/services/playlist-sortby.service';
+import { DataService } from '../../shared/services/data.service';
 import { Observable } from 'rxjs';
-
 
 @Component({
   selector: 'main-list',
@@ -17,6 +17,7 @@ export class MainComponent implements AfterViewInit {
   public videoPlaylist = [];
   public loadingInProgress = false;
   public playlistToggle = false;
+  public doclistToggle = false;
   public playlistNames = false;
   public repeat = false;
   public shuffle = false;
@@ -27,31 +28,24 @@ export class MainComponent implements AfterViewInit {
   protected videos22$: Observable<any[]>;
   protected videos: any;
 
-  checkbox2 = false;
-  options = [
-    { name: 'DIAttribute', value: 'AAA', checked: true },
-    { name: 'DIAttribute', value: 'BBB', checked: false },
-    { name: 'DIAttribute', value: 'CCC', checked: true },
-
-    { name: 'DIAttribute', value: 'DDD', checked: true },
-    { name: 'DIAttribute', value: 'EEE', checked: false },
-    { name: 'DIAttribute', value: 'FFF', checked: true }
-
-  ];
+  //message:string;
 
   constructor(
-    private checkBox1: ElementRef,
+    private data: DataService,
     public youtubeService: YoutubeApiService,
     private youtubePlayer: YoutubePlayerService,
     private playlistService: PlaylistStoreService,
     private playlistSortbyService: PlaylistSortbyService,
-
-    private notificationService: NotificationService
-  ) {
+    private notificationService: NotificationService) {
     this.videoPlaylist = this.playlistService.retrieveStorage().playlists;
   }
 
   ngAfterViewInit() {
+    this.data.currentMessage.subscribe(message => {
+      console.log(message, message);
+      this.videoList = message;
+    });
+
     this.playlistElement = document.getElementById('playlist');
     //this.videos$ = this.youtubeService.searchVideos('The Doors'); 
     //console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col') );
@@ -112,7 +106,16 @@ export class MainComponent implements AfterViewInit {
     }, 200);
   }
 
+  toggleDoclist(): void {
+    this.playlistToggle = !this.playlistToggle;
+    setTimeout(() => {
+      this.playlistNames = !this.playlistNames;
+    }, 200);
+  }
+
   searchMore(): void {
+    if (1 === 1) { return; } // FM for testing
+
     console.log('searchMore 11 this = ', this);
     if (this.loadingInProgress || this.pageLoadingFinished || this.videoList.length < 1) {
       return;
@@ -208,6 +211,12 @@ export class MainComponent implements AfterViewInit {
     this.playlistNames = false;
   }
 
+  closeDoclist(): void {
+    this.playlistToggle = false;
+    this.playlistNames = false;
+  }
+
+
   clearPlaylist(): void {
     this.videoPlaylist = [];
     this.playlistService.clearPlaylist();
@@ -239,69 +248,5 @@ export class MainComponent implements AfterViewInit {
     }
   }
 
-  decorate(): void {
-    console.log('decorate() : void {');
-    var list = document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col');
-    console.log(list[0].innerHTML);
-    var decorators =
-      '<td>' +
-      '<br/>  <label><input id="checkBox" type="checkbox">AAA </label>' +
-      '<br/> <input id="checkBox" type="checkbox">BBB' +
-      '<br/> <input id="checkBox" type="checkbox">CCC' +
-      '<br/> <input id="checkBox" type="checkbox">DDD' +
-      '<br/> <input id="checkBox" type="checkbox">EEE' +
-      '<br/> <input id="checkBox" type="checkbox">FFF' +
-      '</td>'
-
-    for (var idx = 0; idx < list.length; idx++) {
-      //console.log(list[i].id); //second console output
-      list[idx].innerHTML = list[idx].innerHTML.replace('</td>', decorators);
-    }
-
-    //list[0].innerHTML = list[0].innerHTML.replace('Fuck ','Fuck XXXXXXX');
-
-
-
-    //list[0].innerHTML = list[0].innerHTML.replace('</td>', decorators);
-
-    console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col'));
-
-    if (this.videoPlaylist.length > 0) {
-      //this.videoList = this.videoPlaylist;
-      //this. .document.body.classList.add('test');
-    }
-  }
-
-  updateCheckedOptions(option, idx, ischecked): void {
-    console.log(option, idx, ischecked);
-    this.options[idx].checked = ischecked;
-  }
-  wtf(): void {
-
-    if (this.videoList.length > 2) {
-      //swap
-      //alert('wtf this.videoList.length= '  this.videoList.length);
-      var temp = this.videoList[1];
-      this.videoList[1] = this.videoList[0];
-      this.videoList[0] = temp;
-      //this.videoList = this.videoPlaylist;
-      //this.videoList =[];
-      //this.videosUpdated.emit([]);
-      //console.log(this. input.nativeElement.value);
-      var val = this.options[0].value;
-      var check = this.options[1].checked;
-      this.options.forEach(element => {
-        console.log('di  option val = ', element); //, val, check );  
-
-      });
-
-
-      //let bbb = this.playlistSortbyService.test(this.videoList);
-
-      //let current = this.youtubePlayer.getCurrentVideo();
-      //alert(bbb);
-    }
-
-  }
 }
 

@@ -1,19 +1,104 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Observable } from 'rxjs';
+import { map, finalize } from 'rxjs/operators';
 import { NotificationService } from '../services/notification.service';
-
+import { jakegoals } from '../../model/jake_goals';
+import { jakegoals1 } from '../../model/jake_goals1';
+import { jakegoals2 } from '../../model/jake_goals2';
+import { jakegoals3 } from '../../model/jake_goals3';
+import { jakegoals4 } from '../../model/jake_goals4';
+import { YOUTUBE_API_KEY } from '../constants';
 
 @Injectable()
 export class PlaylistSortbyService {
+  base_url = 'https://www.googleapis.com/youtube/v3/';
   private ngxYTPlayer = 'ngx_yt_player';
   private playlists_template: Object = {
     'playlists': []
   };
 
-  constructor(private notificationService: NotificationService) {  }
+  constructor(private http: HttpClient, private notificationService: NotificationService) {  }
 
   private init(): void {
     localStorage.setItem(this.ngxYTPlayer, JSON.stringify(this.playlists_template));
   }
+
+// helper
+  fixPlaylist(items) {
+    // make id = .....videoId.
+    items.forEach(function(a) {
+      a.id = a.snippet.resourceId.videoId;
+    });
+  }
+
+  getPlaylistFor(user: string, id: string): Observable<any> {
+    const maxResults = 20;
+
+    const url = this.base_url + 'playlistItems?playlistId=' + id + '&maxResults=' + maxResults +
+    '&part=snippet%2CcontentDetails&key=' + YOUTUBE_API_KEY;
+
+    console.log(`url= ${url}`);
+    return this
+      .http
+      //.get(`${this.path}/api/courses`)
+      .get(url)
+      // .pipe(
+      //   map(response => {
+      //     let jsonRes = response;
+      //     //console.log(jsonRes);  
+      //     let res = jsonRes['items'];
+      //     let ids = [];
+      //     res.forEach((item) => {
+      //       ids.push(item.id.videoId);
+      //     });
+
+      //     console.log(ids.length);
+      //     //console.log(`ids= ${ids}`);                    
+      //     //return this.getVideos(ids);
+      //   })
+      // )
+      
+      ;
+      /***         
+      .pipe(
+        map(results =>             
+          {
+          let jsonRes = results;
+          let res = jsonRes['items'];
+          console.log(`jsonRes['items']= ${jsonRes['items']}`);
+          return res;
+        }
+      )) ****/
+      ;
+  }
+
+  public getPlayListFor_test(user: string, id: string) : object {
+    
+    switch (id) {
+      case 'id1': {
+        return jakegoals1;
+        //break;
+      }
+      case 'id2': {
+        return jakegoals2;
+        //break;
+      }
+      case 'id3': {
+        return jakegoals3;
+        //break;
+      }
+      case 'id4': {
+        return jakegoals4;
+        //break;
+      }
+      default: {
+        return ;
+      }
+    }
+
+    //return jakegoals; //[{fuck: 'you'}];
+    }
 
     public test(videoList: any) : string {
       //alert(videoList[0]);
@@ -72,7 +157,8 @@ export class PlaylistSortbyService {
   }
 
   public clearPlaylist() {
-    this.init();
+    alert('public clearPlaylist() {');
+    //this.init();
   }
 
   public importPlaylist(videos: any): void {

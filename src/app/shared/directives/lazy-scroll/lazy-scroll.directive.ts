@@ -8,7 +8,7 @@ import { Directive, ElementRef, Input, Output, EventEmitter } from '@angular/cor
 })
 export class LazyScrollDirective {
   public _element: any;
-  public _count: number=0;
+  public _count: number; //=0;
 
   @Input('ScrollDistance') scrollTrigger: number;
   @Output() OnScrollMethod = new EventEmitter<any>();

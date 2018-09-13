@@ -1,4 +1,6 @@
 {
+"resolveJsonModule": true,
+"esModuleInterop": true,
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",

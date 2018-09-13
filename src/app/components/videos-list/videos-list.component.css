@@ -1,3 +1,13 @@
+#grad1 {
+    height: 30px;
+    background-image: linear-gradient(red, yellow, blue);
+}
+.span-grad1 {
+  height: 40px;
+  background-image: linear-gradient(red, yellow,green );
+}
+
+
 .loader-progress {
     position: relative;
     width: 100%;

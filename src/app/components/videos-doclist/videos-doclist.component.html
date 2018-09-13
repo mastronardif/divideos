@@ -1,0 +1,30 @@
+<div id="playlist" class="playlist" [ngClass]="{'opened': playlistToggle}">
+<div style="background-color: white">
+  <h4>______ Outline:</h4>
+  <li>Mom and I are a Team</li>
+  <ul>
+  <li><button id="lpl_tip" (click)="lpl('PLaaxGO6E_rXcmPB9nBYeJnhwTDqpFNxaX')">We are an exploring and experimenting team</button></li>
+  <li><button id="lpl_tip" (click)="lpl('PLaaxGO6E_rXdciscI2lEzlQPKjEebUnnK')">We can do hard things</button></li>
+  <li><button id="lpl_tip" (click)="lpl('PLaaxGO6E_rXecrc6icFvcV7JRMs_gI6OZ')">We can be silly</button></li>
+  <li><button id="lpl_tip" (click)="lpl('PLaaxGO6E_rXf3Lf3SxRgVInMlc0F3jE4m')">I am a good partner</button></li>  
+</ul>
+  <li>Dad and I are a Team</li>
+  <ul>      
+  <li><button id="lpl_tip" (click)="lpl('PLaaxGO6E_rXcejHAW3Rg2u6EWLv6GjZ9K')">We are an exploring and experimenting team</button></li>  
+  <li>We can do hard things</li>
+  <li>We can be silly</li>
+  <li>I am a good partner</li>
+</ul>
+</div>
+
+
+  <div class="playist-item-empty" *ngIf="!videoPlaylist.length">
+    <div class="playlist-thumbnail" [ngStyle]="{'background': '#000'}">
+      <i class="material-icons">block</i>
+    </div>
+    <div class="opened-item-info" [ngClass]="{'closed': !playlistToggle}" *ngIf="playlistNames">
+      Playlist is empty
+    </div>
+  </div>
+
+</div>

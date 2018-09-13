@@ -106,8 +106,7 @@ export class YoutubeApiService {
         }
       )) ****/
       ;
-    //)
-
+    // )
   }
   //   getVideos(ids): Promise<any> {
   //     const url = this.base_url + 'videos?id=' + ids.join(',') + '&maxResults=' + this.max_results +

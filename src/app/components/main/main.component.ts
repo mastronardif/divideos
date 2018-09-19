@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
+
+
 export class MainComponent implements AfterViewInit {
   public videoList = [];
   public videoPlaylist = [];
@@ -28,6 +30,7 @@ export class MainComponent implements AfterViewInit {
   protected videos22$: Observable<any[]>;
   protected videos: any;
 
+  
   //message:string;
 
   constructor(

@@ -16,6 +16,7 @@ import { VideosListComponent } from './components/videos-list/videos-list.compon
 import { VideosSearchComponent } from './components/videos-search/videos-search.component';
 import { VideosPlaylistComponent } from './components/videos-playlist/videos-playlist.component';
 import { VideosdoclistComponent} from './components/videos-doclist/videos-doclist.component';
+import { VideosdoclistComponent22 } from './components/videos-doclist22/videos-doclist22.component';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 
 // pipes
@@ -48,6 +49,7 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
     VideoPlayerComponent,
     VideosPlaylistComponent,
     VideosdoclistComponent,
+    VideosdoclistComponent22,
 
     // pipes
     PlaylistItemNamePipe,

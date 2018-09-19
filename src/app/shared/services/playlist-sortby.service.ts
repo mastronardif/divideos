@@ -92,6 +92,12 @@ export class PlaylistSortbyService {
         return jakegoals4;
         //break;
       }
+      // case 'idoutlinefromuser': {
+      //   return `
+      //   <h2>My outline22</h2>
+      //   <button id="lpl_tip" (click)="lpl('PLaaxGO6E_rXecrc6icFvcV7JRMs_gI6OZ')">ZZZZZZ</button>
+      //   `;
+      // }
       default: {
         return ;
       }

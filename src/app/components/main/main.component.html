@@ -10,13 +10,19 @@
           </videos-search>
   
     <button id="lpl_tip" (click)="lpl()">lpl</button>
-    <button id="lpl_outline" (click)="togglePlaylist()">*Outline For _____</button>
+    <button id="lpl_outline" (click)="togglePlaylist()">*Outline For Jake</button>
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_tip">
       Load Play List
     </div>
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_outline">
         Load Outline
       </div>
+      <div id="videocount_tip">({{videoList.length}})</div>
+      <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="videocount_tip">
+          Number of videos
+        </div>
+
+
 <!--       <button (click)="sort()">sort</button>      
       <button (click)="decorate()">decorate</button> -->
         </nav>
@@ -26,14 +32,14 @@
         </div>
       </div>
     </header>
-      <!--
     <videos-doclist22 [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist">
       </videos-doclist22>
-    -->
 
+<!--
+      
       <videos-doclist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist">
     </videos-doclist>
-
+-->
 
      <videos-playlist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist">
     </videos-playlist>

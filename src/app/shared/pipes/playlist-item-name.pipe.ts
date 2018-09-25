@@ -8,7 +8,7 @@ export class PlaylistItemNamePipe implements PipeTransform {
   transform(value: any, args?: any[]): any {
     const dots = '...';
 
-    if (value.length > 65) {
+    if (value && value.length > 65) {
       value = value.substring(0, 62) + dots;
     }
 

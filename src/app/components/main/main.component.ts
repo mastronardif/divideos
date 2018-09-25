@@ -33,37 +33,45 @@ export class MainComponent implements AfterViewInit {
   
   //message:string;
 
-  constructor(
-    private data: DataService,
-    public youtubeService: YoutubeApiService,
-    private youtubePlayer: YoutubePlayerService,
-    private playlistService: PlaylistStoreService,
-    private playlistSortbyService: PlaylistSortbyService,
-    private notificationService: NotificationService) {
-    this.videoPlaylist = this.playlistService.retrieveStorage().playlists;
+  constructor(private data: DataService,
+              public youtubeService: YoutubeApiService,
+              private youtubePlayer: YoutubePlayerService,
+              private playlistService: PlaylistStoreService,
+              private playlistSortbyService: PlaylistSortbyService,
+              private notificationService: NotificationService) {
+      this.videoPlaylist = this.playlistService.retrieveStorage().playlists;
+
+//setTimeout(() => {
+      this.data.currentMessage.subscribe(message => {
+        console.log("message", message);
+        this.videoList = message;
+       });
+//});
   }
 
   ngAfterViewInit() {
-    this.data.currentMessage.subscribe(message => {
-      console.log(message, message);
-      this.videoList = message;
-    });
+
+    // setTimeout(() => {
+    //  this.data.currentMessage.subscribe(message => {
+    //    console.log("message", message);
+    //    this.videoList = message;
+    //   });
+    // });
 
     this.playlistElement = document.getElementById('playlist');
     //this.videos$ = this.youtubeService.searchVideos('The Doors'); 
-    //console.log("xxx= ", document.getElementsByClassName('mdl-cell custom-cell mdl-cell--2-col') );
 
-    // wtf 8/4/18
-    //this.videos22$ = this.youtubeService.searchVideos22('The Who');
-    this.youtubeService.searchVideos22('The Who')
+  //setTimeout(() => {
+
+    this.youtubeService.searchVideos22('The Doors')
       .subscribe(response => {
         response.subscribe(res => {
           this.videos = res;
-          //console.log('res.items=', res.items);
           this.videoList = res.items;
-          //console.log(response)
         });
       });
+  //}
+
   }
 
   playFirstInPlaylist(): void {

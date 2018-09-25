@@ -103,7 +103,6 @@ export class PlaylistSortbyService {
       }
     }
 
-    //return jakegoals; //[{fuck: 'you'}];
     }
 
     public test(videoList: any) : string {

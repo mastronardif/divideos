@@ -9,6 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 // Components
 import { AppComponent } from './app.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material';
 
 import { TestComponent } from './components/test/test.component';
 import { MainComponent } from './components/main/main.component';
@@ -18,6 +19,8 @@ import { VideosPlaylistComponent } from './components/videos-playlist/videos-pla
 import { VideosdoclistComponent} from './components/videos-doclist/videos-doclist.component';
 import { VideosdoclistComponent22 } from './components/videos-doclist22/videos-doclist22.component';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
+import { VideosTagsComponent } from './components/videos-tags/videos-tags.component';
+import { DialogContentExampleDialog } from './components/videos-tags/videos-tags.component';
 
 // pipes
 import { VideoLikesPipe } from './shared/pipes/video-likes.pipe';
@@ -34,12 +37,12 @@ import { PlaylistSortbyService } from './shared/services/playlist-sortby.service
 import { NotificationService } from './shared/services/notification.service';
 import { DataService } from './shared/services/data.service';
 import { BrowserNotificationService } from './shared/services/browser-notification.service';
+//import { MatDialog, MatDialogModule } from '@angular/material';
 
 
 @NgModule({
   declarations: [
 
-    //ReactiveFormsModule,
     AppComponent,
     MainComponent,
 
@@ -50,6 +53,8 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
     VideosPlaylistComponent,
     VideosdoclistComponent,
     VideosdoclistComponent22,
+    DialogContentExampleDialog,
+    VideosTagsComponent,
 
     // pipes
     PlaylistItemNamePipe,
@@ -67,6 +72,7 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
     MatCardModule
   ],
   providers: [HttpClientModule,

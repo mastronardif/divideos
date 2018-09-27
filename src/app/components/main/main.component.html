@@ -8,6 +8,9 @@
         <nav class="mdl-navigation">
           <videos-search (videosUpdated)="handleSearchVideo($event)" [loadingInProgress]="loadingInProgress">
           </videos-search>
+
+                        
+          
   
     <button id="lpl_tip" (click)="lpl()">lpl</button>
     <button id="lpl_outline" (click)="togglePlaylist()">*Outline For Jake</button>
@@ -21,12 +24,16 @@
       <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="videocount_tip">
           Number of videos
         </div>
+        
+        <app-videos-tags></app-videos-tags>
 
 
 <!--       <button (click)="sort()">sort</button>      
       <button (click)="decorate()">decorate</button> -->
         </nav>
-  
+
+        
+
         <div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button toggle-playlist-icon" (click)="togglePlaylist()">
           <i class="material-icons"></i>
         </div>
@@ -43,7 +50,7 @@
 
      <videos-playlist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist">
     </videos-playlist>
-  
+
     <main class="mdl-layout__content" LazyScroll (OnScrollMethod)="searchMore()" ScrollDistance="3">
       <div class="page-content" [ngClass]="{'blur-main-playlist-opened': playlistToggle}">
         <videos-list *ngIf="videoList.length" class="mdl-grid" (videoPlaylist)="checkAddToPlaylist($event)" [videoList]="videoList" [loadingInProgress]="loadingInProgress">
@@ -52,11 +59,8 @@
         <div class="loader" *ngIf="!videoList.length">
           <div class="loading"></div>
         </div>
-  
-  
       </div>
     </main>
-  
   </div>
   
   <video-player (closePlaylist)="closePlaylist()" (importPlaylist)="importPlaylist($event)" (exportPlaylist)="exportPlaylist()" (clearPlaylist)="clearPlaylist()" (playFirstInPlaylist)="playFirstInPlaylist()" (repeatActive)="repeatActive($event)" (shuffleActive)="shuffleActive($event)"
@@ -67,3 +71,4 @@
     <div class="mdl-snackbar__text"></div>
     <button class="mdl-snackbar__action" type="button"></button>
   </div>
+  

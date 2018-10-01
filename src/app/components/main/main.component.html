@@ -47,6 +47,10 @@
       <videos-doclist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist">
     </videos-doclist>
 -->
+<!-- Custom modal setup begin -->
+<div id="modal-container" class="hidden"></div>
+<div id="overlay" (click)="removeModal()" class="hidden"></div>
+<!-- Custom modal setup end -->
 
      <videos-playlist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist">
     </videos-playlist>

@@ -1,10 +1,13 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { YoutubeApiService } from '../../shared/services/youtube-api.service';
 import { YoutubePlayerService } from '../../shared/services/youtube-player.service';
 import { PlaylistStoreService } from '../../shared/services/playlist-store.service';
 import { NotificationService } from '../../shared/services/notification.service';
 import { PlaylistSortbyService } from '../../shared/services/playlist-sortby.service';
 import { DataService } from '../../shared/services/data.service';
+import { ModalService } from '../../shared/services/modal.service';
+//import {SampleComponent} from '../sample/sample.component';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,6 +16,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./main.component.css']
 })
 
+@NgModule({
+  providers: [ModalService],
+})
 
 export class MainComponent implements AfterViewInit {
   public videoList = [];
@@ -34,6 +40,7 @@ export class MainComponent implements AfterViewInit {
   //message:string;
 
   constructor(private data: DataService,
+              //private modal: ModalService,
               public youtubeService: YoutubeApiService,
               private youtubePlayer: YoutubePlayerService,
               private playlistService: PlaylistStoreService,
@@ -50,6 +57,12 @@ export class MainComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
+
+    //let inputs = {
+    //  isMobile: false
+    //};
+    //this.modal.init(SampleComponent, inputs, {});
+
 
     // setTimeout(() => {
     //  this.data.currentMessage.subscribe(message => {

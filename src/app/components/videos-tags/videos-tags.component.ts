@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
+import { ModalService } from '../../shared/services/modal.service';
+import {SampleComponent} from '../sample/sample.component';
 
 @Component({
   selector: 'app-videos-tags',
@@ -8,7 +10,7 @@ import {MatDialog} from '@angular/material';
 })
 export class VideosTagsComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private modal: ModalService, public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -22,8 +24,13 @@ export class VideosTagsComponent implements OnInit {
   }
 
 
-  alert(msg) {
-    alert(msg);
+  popupVideoTags(msg) {
+   // alert(msg);
+
+    let inputs = {
+      isMobile: false
+    };
+    this.modal.init(SampleComponent, inputs, {});
 }
 }
 

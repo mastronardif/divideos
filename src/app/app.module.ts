@@ -21,7 +21,7 @@ import { VideosdoclistComponent22 } from './components/videos-doclist22/videos-d
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { VideosTagsComponent } from './components/videos-tags/videos-tags.component';
 import { DialogContentExampleDialog } from './components/videos-tags/videos-tags.component';
-
+import { SampleComponent}             from './components/sample/sample.component';
 // pipes
 import { VideoLikesPipe } from './shared/pipes/video-likes.pipe';
 import { VideoViewsPipe } from './shared/pipes/video-views.pipe';
@@ -36,6 +36,9 @@ import { PlaylistStoreService } from './shared/services/playlist-store.service';
 import { PlaylistSortbyService } from './shared/services/playlist-sortby.service';
 import { NotificationService } from './shared/services/notification.service';
 import { DataService } from './shared/services/data.service';
+import { ModalService } from './shared/services/modal.service';
+import { DomService } from './shared/services/dom.service';
+
 import { BrowserNotificationService } from './shared/services/browser-notification.service';
 //import { MatDialog, MatDialogModule } from '@angular/material';
 
@@ -53,6 +56,7 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
     VideosPlaylistComponent,
     VideosdoclistComponent,
     VideosdoclistComponent22,
+    SampleComponent,
     DialogContentExampleDialog,
     VideosTagsComponent,
 
@@ -76,12 +80,17 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
     MatCardModule
   ],
   providers: [HttpClientModule,
+    ModalService,
+    DomService,
     DataService,
     PlaylistSortbyService,
     PlaylistStoreService,
     YoutubePlayerService,
     NotificationService,
     BrowserNotificationService
+  ],
+  entryComponents: [
+    SampleComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -25,11 +25,13 @@ export class VideosTagsComponent implements OnInit {
 
 
   popupVideoTags(msg) {
-   // alert(msg);
+    const tags = ['Angry', 'Funny', 'Planning'];
 
     let inputs = {
-      isMobile: false
+      videoId: 0,
+      tags: tags // video.snippet.tags //['Angry', 'Funny', 'Planning']
     };
+
     this.modal.init(SampleComponent, inputs, {});
 }
 }

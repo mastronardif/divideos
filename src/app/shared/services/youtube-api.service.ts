@@ -30,6 +30,40 @@ export class YoutubeApiService {
       );
   }
 
+
+  // begin 0//1/18
+  getPlaylistFor(user: string, id: string): Observable<any> {
+    const maxResults = 20;
+
+    const url = this.base_url + 'playlistItems?playlistId=' + id + '&maxResults=' + maxResults +
+    '&part=snippet%2CcontentDetails&key=' + YOUTUBE_API_KEY;
+
+    return this.http
+    .get(url)
+    .pipe(
+      map(response => {
+        let jsonRes = response;
+        //console.log(jsonRes);  
+        let res = jsonRes['items'];
+        // this.lastQuery = query;
+        this.nextToken = jsonRes['nextPageToken'] ? jsonRes['nextPageToken'] : undefined;
+
+        let ids = [];
+        res.forEach((item) => {
+          //ids.push(item.id.videoId);
+          ids.push(item.snippet.resourceId.videoId);
+        });
+
+        console.log(ids.length);
+        //console.log(`ids= ${ids}`);                    
+        return this.getVideos(ids);
+      })
+    );
+
+
+  }
+  // end 10/1/18
+
   // search22
   searchVideos22(query: string): Observable<any> {
     const url = this.base_url + 'search?q=' + query + '&maxResults=' + this.max_results +

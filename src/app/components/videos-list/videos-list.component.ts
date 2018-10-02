@@ -31,9 +31,15 @@ export class VideosListComponent {
 
   addTagsToVideo(video: any): void {
     //alert(`ID: ${video.id} \n ${JSON.stringify(video)}` );
+    let tags = video.snippet.tags;
+    if (!tags) {
+      tags = ['Angry', 'Funny', 'Planning'];
+    }
+
+
     let inputs = {
       videoId: video.id,
-      tags: ['Angry', 'Funny', 'Planning']
+      tags: tags // video.snippet.tags //['Angry', 'Funny', 'Planning']
     };
     this.modal.init(SampleComponent, inputs, {});
   }

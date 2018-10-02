@@ -1,13 +1,30 @@
+
 <div class="sample-container">
-    <div class="sample-text">
-        The Tags for {{videoId}} <br/>
-        {{tags}} 
+    <div class="sample-close">
+        <button (click)="close()">
+          Close Modal
+        </button>
       </div>
-  <div class="sample-close">
-    <button (click)="close()">
-      Close Modal
-    </button>
-  </div>
 
+    <div class="sample-text">
+       
+        <!-- <label class="container"> 
+            <input type="checkbox" [(ngModel)]="theCheckbox"  data-md-icheck (change)="toggleVisibility($event)"/>              
+            <span class="checkmark"></span>
+        </label>  -->
 
+         
+        <span *ngFor="let item of tags; let i = index">      
+
+            <label class="container"> 
+                <input id ="{{i}}" type="checkbox" [(ngModel)]="theCheckbox" />              
+                <span class="checkmark">{{item}}</span>
+            </label> 
+
+            <!-- <br *ngIf="((i+1)%2) == 0" /> -->
+        </span>       
+
+      </div>
+      <i>id: {{videoId}}</i>
+    
 </div>

@@ -9,7 +9,9 @@ import { ModalService } from '../../shared/services/modal.service';
   styleUrls: ['./sample.component.css']
 })
 export class SampleComponent  {
-  public inputs = [];
+  //public inputs = [];
+  tags: any[];
+  videoId: any[];
 
   constructor(private modal: ModalService) { 
   //console.log(`sample._.ts: modal= ${JSON.stringify(modal)}`);

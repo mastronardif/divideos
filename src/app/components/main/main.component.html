@@ -26,6 +26,12 @@
         </div>
         
         <app-videos-tags></app-videos-tags>
+        <button *ngIf='!isLoggedIn' (click)="signIn()">sign in</button>
+        <div *ngIf="isLoggedIn"> {{user}}
+          <button (click)="signOut()">sign out</button>
+        </div>
+      
+
 
 
 <!--       <button (click)="sort()">sort</button>      

@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
 //import {MatTreeFlattener } from '@angular/material/tree';
+import {GoogleApiModule, GoogleApiService, GoogleAuthService, 
+  NgGapiClientConfig, NG_GAPI_CONFIG, GoogleApiConfig} from 'ng-gapi';
 
 // Components
 import { AppComponent } from './app.component';
@@ -38,10 +40,32 @@ import { NotificationService } from './shared/services/notification.service';
 import { DataService } from './shared/services/data.service';
 import { ModalService } from './shared/services/modal.service';
 import { DomService } from './shared/services/dom.service';
+import { UserService } from './shared/services/UserService';
 
 import { BrowserNotificationService } from './shared/services/browser-notification.service';
 //import { MatDialog, MatDialogModule } from '@angular/material';
 
+var OAUTH2_CLIENT_ID = '838458623675-29k9sdcckggqc5p1b07uh7r4ap0rmec7.apps.googleusercontent.com';
+var OAUTH2_SCOPES = [
+  "https://www.googleapis.com/auth/youtube email"
+ // "https://www.googleapis.com/auth/contacts.readonly"
+];
+var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/people/v1/rest"];
+var apiKey = 'AIzaSyBGbbhHE02G2YC1Uvopww3JNa_6PKVIn8w';
+
+let gapiClientConfig: NgGapiClientConfig = {
+  client_id: OAUTH2_CLIENT_ID,
+  discoveryDocs: ["https://analyticsreporting.googleapis.com/$discovery/rest?version=v4",
+                  "https://www.googleapis.com/discovery/v1/apis/people/v1/rest",
+                  "https://www.googleapis.com/discovery/v1/apis/people/v1/rest"
+],
+  scope: [
+      "https://www.googleapis.com/auth/youtube",
+      "https://www.googleapis.com/auth/youtube email",
+      "https://www.googleapis.com/auth/analytics.readonly",
+      "https://www.googleapis.com/auth/analytics"
+  ].join(" ")
+};
 
 @NgModule({
   declarations: [
@@ -70,6 +94,10 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
     LazyScrollDirective
   ],
   imports: [
+    GoogleApiModule.forRoot({
+      provide: NG_GAPI_CONFIG,
+      useValue: gapiClientConfig
+    }),
     BrowserAnimationsModule,
     MatTooltipModule,
     HttpClientModule,
@@ -87,6 +115,7 @@ import { BrowserNotificationService } from './shared/services/browser-notificati
     PlaylistStoreService,
     YoutubePlayerService,
     NotificationService,
+    UserService,
     BrowserNotificationService
   ],
   entryComponents: [

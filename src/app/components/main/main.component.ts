@@ -7,8 +7,12 @@ import { NotificationService } from '../../shared/services/notification.service'
 import { PlaylistSortbyService } from '../../shared/services/playlist-sortby.service';
 import { DataService } from '../../shared/services/data.service';
 import { ModalService } from '../../shared/services/modal.service';
+import { UserService } from '../../shared/services/UserService';
+import { GoogleAuthService } from 'ng-gapi';
+import { GoogleApiService } from 'ng-gapi';
 //import {SampleComponent} from '../sample/sample.component';
 import { Observable } from 'rxjs';
+//https://stackblitz.com/edit/ng-gapi-example?file=app%2Fapp.component.html
 
 @Component({
   selector: 'main-list',
@@ -35,7 +39,8 @@ export class MainComponent implements AfterViewInit {
   protected videos$: Observable<any[]>;
   protected videos22$: Observable<any[]>;
   protected videos: any;
-
+  isLoggedIn:boolean = false;
+  public user = "wtf";
   
   //message:string;
 
@@ -45,7 +50,14 @@ export class MainComponent implements AfterViewInit {
               private youtubePlayer: YoutubePlayerService,
               private playlistService: PlaylistStoreService,
               private playlistSortbyService: PlaylistSortbyService,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private userService: UserService,
+              private authService: GoogleAuthService,
+              private gapiService: GoogleApiService) {
+
+      // First make sure gapi is loaded can be in AppInitilizer
+      this.gapiService.onLoad().subscribe();
+
       this.videoPlaylist = this.playlistService.retrieveStorage().playlists;
 
 //setTimeout(() => {
@@ -56,8 +68,50 @@ export class MainComponent implements AfterViewInit {
 //});
   }
 
-  ngAfterViewInit() {
+  public isLoggedin(): boolean {
+    //console.log("\t this.userService.getCurrentUser()= ", this.userService.getCurrentUser());
+    //this.user = (this.userService.isUserSignedIn()) ? this.userService.getCurrentUser() : 'fuck';
+    //this.getUserInfo();
+    return this.userService.isUserSignedIn();
+  }
 
+  public setUserInfo() {
+    //this.userService.getCurrentUser().getBasicProfile().getEmail()
+    this.user = this.userService.getCurrentUserEmail(); //this.userService.getCurrentUser().getBasicProfile().getEmail();
+    console.log(this.userService.getCurrentUser());
+  }
+
+  public signOut() {
+    this.userService.signOut();
+    this.isLoggedIn = false;
+  }
+
+  public signIn() {
+    // this.userService.signIn(this.setTheFuckers);
+    this.userService.signIn(() => {
+      this.setUserInfo(); //      this.user = this.userService.getCurrentUserEmail(); 
+      this.isLoggedIn = true;
+    });
+    //   this.authService.getAuth().subscribe((auth) => {
+    //     if (auth.isSignedIn.get()) {
+    //       console.log(auth.currentUser.get().getBasicProfile());
+    //       this.isLoggedIn = true;
+    //       this.getUserInfo();
+    //     } else {
+    //       auth.signIn().then((response) => {
+    //         console.log("signIn user profile");
+    //         console.log(response.getBasicProfile());
+    //         this.isLoggedIn = true;
+    //         this.getUserInfo();
+    //       });
+    //     }
+    //  });
+
+  }
+
+  ngAfterViewInit() {
+    this.isLoggedIn = this.isLoggedin();
+    if (this.isLoggedIn) { this.setUserInfo(); }
     //let inputs = {
     //  isMobile: false
     //};

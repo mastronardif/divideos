@@ -8,10 +8,7 @@
         <nav class="mdl-navigation">
           <videos-search (videosUpdated)="handleSearchVideo($event)" [loadingInProgress]="loadingInProgress">
           </videos-search>
-
                         
-          
-  
     <button id="lpl_tip" (click)="lpl()">lpl</button>
     <button id="lpl_outline" (click)="togglePlaylist()">*Outline For Jake</button>
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_tip">
@@ -26,11 +23,22 @@
         </div>
         
         <app-videos-tags></app-videos-tags>
-        <button *ngIf='!isLoggedIn' (click)="signIn()">sign in</button>
-        <div *ngIf="isLoggedIn"> {{user}}
-          <button (click)="signOut()">sign out</button>
+
+        <div id="signin_tip" *ngIf='!isLoggedIn'>
+          <button *ngIf='!isLoggedIn' (click)="signIn()">sign in</button>
+          <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="signin_tip">
+           Sign In to youtube
+          </div>
         </div>
-      
+       
+        <div *ngIf="isLoggedIn"> {{user}}
+          <button id="signout_tip" (click)="signOut()">sign out</button>
+          <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="signout_tip"> Sign Out of youtube</div>
+        </div>
+
+        <button *ngIf='isLoggedIn' id="lmypl_tip" (click)="lmypl()">mypl</button>
+        <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lmypl_tip"> Load My Play List </div>
+          
 
 
 

@@ -8,10 +8,15 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "noImplicitAny": true,
     "allowJs": true,
     "target": "es5",
+    "module": "es6",
     "typeRoots": [
       "node_modules/@types"
+    ],
+    "types" : [
+      "core-js"
     ],
     "lib": [
       "es2017",

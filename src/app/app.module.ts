@@ -23,7 +23,7 @@ import { VideosdoclistComponent22 } from './components/videos-doclist22/videos-d
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
 import { VideosTagsComponent } from './components/videos-tags/videos-tags.component';
 import { DialogContentExampleDialog } from './components/videos-tags/videos-tags.component';
-import { SampleComponent}             from './components/sample/sample.component';
+import { SampleComponent }             from './components/sample/sample.component';
 // pipes
 import { VideoLikesPipe } from './shared/pipes/video-likes.pipe';
 import { VideoViewsPipe } from './shared/pipes/video-views.pipe';
@@ -98,6 +98,7 @@ let gapiClientConfig: NgGapiClientConfig = {
       provide: NG_GAPI_CONFIG,
       useValue: gapiClientConfig
     }),
+
     BrowserAnimationsModule,
     MatTooltipModule,
     HttpClientModule,

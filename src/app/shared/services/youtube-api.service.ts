@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpResponse, HttpErrorResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { map, finalize } from 'rxjs/operators';
+import { map,  finalize  } from 'rxjs/operators';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/of';
 // import { Http, Response } from '@angular/http';
 // import 'rxjs/add/operator/toPromise';
 // import 'rxjs/add/operator/map';
@@ -58,7 +60,15 @@ export class YoutubeApiService {
         //console.log(`ids= ${ids}`);                    
         return this.getVideos(ids);
       })
-    );
+    )
+    .catch((err: HttpErrorResponse) => {
+      // simple logging, but you can do a lot more, see below
+      console.error('WTF. An error occurred: ', err.error);
+      console.log('trying to rerutn and empty');
+      return Observable.of(new HttpResponse({body: [{name: "Default value"}]}));
+      //return //Observable.empty<HttpEvent<any>>();
+    })
+    ;
 
 
   }

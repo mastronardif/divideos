@@ -11,17 +11,13 @@ import { UserService } from '../../shared/services/UserService';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { GoogleAuthService } from 'ng-gapi';
 import { GoogleApiService } from 'ng-gapi';
-//import { VideosdoclistComponent22 } from '../videos-doclist22/videos-doclist22.component';
-
-//import {SampleComponent} from '../sample/sample.component';
+// import { VideosdoclistComponent22 } from '../videos-doclist22/videos-doclist22.component';
+// import {SampleComponent} from '../sample/sample.component';
 import { Observable } from 'rxjs/Observable';
-
-//import 'rxjs/add/observable/forkJoin';
 import { forkJoin } from 'rxjs/observable/forkJoin';
-import { markDirtyIfOnPush } from '@angular/core/src/render3/instructions';
-//import 'rxjs/add/observable/from'; 
 
-//https://stackblitz.com/edit/ng-gapi-example?file=app%2Fapp.component.html
+// import 'rxjs/add/observable/from'; 
+// https://stackblitz.com/edit/ng-gapi-example?file=app%2Fapp.component.html
 
 @Component({
   selector: 'main-list',
@@ -106,6 +102,7 @@ export class MainComponent implements AfterViewInit {
       this.setUserInfo(); //      this.user = this.userService.getCurrentUserEmail(); 
       this.isLoggedIn = true;
     });
+    
     //   this.authService.getAuth().subscribe((auth) => {
     //     if (auth.isSignedIn.get()) {
     //       console.log(auth.currentUser.get().getBasicProfile());
@@ -349,10 +346,6 @@ export class MainComponent implements AfterViewInit {
     const token = this.userService.getToken();
     this.fuck$ =  this.getPlaylists('123', token); 
     this.fuck$.subscribe((response: any) => {
-        //this.videos = response;
-
-        //this.videoList =  response.items;
-
         const pls = response.items.map(obj => ({
           kind: obj.kind,
           id: obj.id,
@@ -364,29 +357,12 @@ export class MainComponent implements AfterViewInit {
           contentDetails: obj.contentDetails,
         }));
         console.log(pls);
-        //console.log(JSON.stringify(pls,  undefined, 4) );
-        //this.videoList = pls;
 
-      //   this. youtubeService.getPlaylistFor('Jake.Mastronardi', pls[1].id)
-      //   .subscribe(response => {
-      //     response.subscribe(res => {
-      //     const jsonRes = res;
-      //     let res22 = jsonRes['items'];
-    
-      //     // fix the videoID issue.
-      //     // i dont think you have to do this this.playlistSortbyService.fixPlaylist(res22);
-      //       this.videoList=res22;
-      //     //newlist = res22;
-      //     //this.data.changeMessage(newlist);
-      //   });
-      // });
-
-        // new shit da all return list begin
+        // new shit.  all return list begin
         console.log('new shit');
         const observableArray: any = [];
         //observableArray.push(this.youtubeService.getPlaylistFor('Jake.Mastronardi', pls[1].id); pls.length
         for (let ii = 0; ii < pls.length; ii++) {
-          
           observableArray.push(this.youtubeService.getPlaylistFor('TBDJake.Mastronardi', pls[ii].id));
           console.log(`ii(${ii})`);
         }
@@ -397,40 +373,23 @@ export class MainComponent implements AfterViewInit {
         this.videoList = [];
         forkJoin(observableArray)
           .subscribe(resp => {
-              //console.log(resp[0]);
-
-              //forkJoin(resp).subscribe(data => {console.log(`data= ${data}`); });              
-              //let fuck = forkJoin(resp).map(data => ({f: data.items } ));
-
               resp.forEach((obs: Observable<any>) => {
                   if (obs.subscribe) {
-                    
-                  obs.subscribe(res => {
-                  const jsonRes = res;
-                  const res22 = jsonRes['items'];
-                  console.log(res22);
-                  //
-                  //this.videoList = res22;
+                    obs.subscribe(res => {
+                    const jsonRes = res;
+                    const res22 = jsonRes['items'];
+                    console.log(res22);
+                    //
+                    // this.videoList = res22;
 
-                  res22.forEach(fu => {this.videoList.push(fu); });
-
-                  //myPush()
-                  // this.videoList.push(res22);
-                },
-                error => console.log('oops', error)
-                );                
-              } else {console.log('WTF obs.subscribe undefined!!!') }
-
-
+                    res22.forEach(fu => {this.videoList.push(fu); });
+                    // myPush()
+                    // this.videoList.push(res22);
+                    },
+                    error => console.log('oops', error)
+                    );
+                  } else {console.log('WTF obs.subscribe undefined!!!') }
               });
-              
-            //   resp[0].subscribe(res => {
-            //   const jsonRes = res;
-            //   const res22 = jsonRes['items'];
-            //   console.log(res22);
-            // });
-
-
           });
 
         //const getPostTwo$ = Rx.Observable.timer(2000).mapTo({id: 2});

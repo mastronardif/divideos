@@ -15,7 +15,9 @@
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_outline">Load Outline</div>
       <div id="videocount_tip">({{videoList.length}})</div>
       <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="videocount_tip">Number of videos</div>
-         <app-videos-tags></app-videos-tags>
+
+         <app-videos-tags text="Tag(s)" tip="sort by tags"  [videoList]="videoList"></app-videos-tags>
+
         <div  *ngIf= "!isLoggedIn">
           <button id="signin_tip"  (click)="signIn()">sign in</button>
           <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="signin_tip">Sign In to youtube</div>

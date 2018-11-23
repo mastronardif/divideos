@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import { ModalService } from '../../shared/services/modal.service';
 import {SampleComponent} from '../sample/sample.component';
@@ -8,9 +8,13 @@ import {SampleComponent} from '../sample/sample.component';
   templateUrl: './videos-tags.component.html',
   styleUrls: ['./videos-tags.component.css']
 })
-export class VideosTagsComponent implements OnInit {
 
-  constructor(private modal: ModalService, public dialog: MatDialog) { }
+export class VideosTagsComponent implements OnInit {
+  @Input() text;
+  @Input() tip;
+  @Input() videoList;
+
+  constructor(private modal: ModalService, public dialog: MatDialog) {console.log(`ssss\nsssss\n${this.fuck}sssss`);this.fuck='xxx'; }
 
   ngOnInit() {
   }
@@ -26,6 +30,8 @@ export class VideosTagsComponent implements OnInit {
 
   popupVideoTags(msg) {
     const tags = ['Angry', 'Funny', 'Planning'];
+    console.log(msg);
+    console.log(this.videoList);
 
     let inputs = {
       videoId: 0,

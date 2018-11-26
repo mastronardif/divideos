@@ -14,7 +14,7 @@ export class VideosTagsComponent implements OnInit {
   @Input() tip;
   @Input() videoList;
 
-  constructor(private modal: ModalService, public dialog: MatDialog) {console.log(`ssss\nsssss\n${this.fuck}sssss`);this.fuck='xxx'; }
+  constructor(private modal: ModalService, public dialog: MatDialog) {}
 
   ngOnInit() {
   }
@@ -28,18 +28,58 @@ export class VideosTagsComponent implements OnInit {
   }
 
 
+compare(b,a) {
+  if (a.count < b.count)
+    return -1;
+  if (a.count > b.count)
+    return 1;
+  return 0;
+}
+
+
   popupVideoTags(msg) {
-    const tags = ['Angry', 'Funny', 'Planning'];
+    //const tags = ['Angry', 'Funny', 'Planning'];
     console.log(msg);
     console.log(this.videoList);
+    let tags = [];
+    //var distinct = [];
 
-    let inputs = {
+    var allTags = this.videoList.map(function(obj) { return obj.snippet.tags; });
+    var dictionary = {};
+
+    for( var i in allTags ) {
+      for (var k in allTags[i]) {
+        if( typeof( dictionary[allTags[i][k]]) == "undefined") {
+          dictionary[allTags[i][k].toUpperCase()] = 1; //uniques[i][k]);
+        }
+        else {
+          dictionary[allTags[i][k].toUpperCase()] =  dictionary[allTags[i][k].toUpperCase()] + 1;
+        }
+      }
+     }
+
+      //console.log(dictionary);
+    var list = Object.keys(dictionary).map(function(key) { return {name: key, count: dictionary[key]}; });
+     console.log(list);
+     var list22 = list.sort(this.compare);
+     console.log(list22);
+
+     const maxTags  = 7;
+     tags = list22.slice(0, maxTags).map(item => item.name);
+// objs.sort((a,b) => (a.last_nom > b.last_nom) ? 1 : ((b.last_nom > a.last_nom) ? -1 : 0)); 
+    //uniques = uniques.filter(function(v,i) { return uniques(v) == i; });
+    
+  
+console.log(`allTags= ${allTags}`);
+console.log(`tags= ${tags}`);
+
+    const inputs = {
       videoId: 0,
       tags: tags // video.snippet.tags //['Angry', 'Funny', 'Planning']
     };
 
     this.modal.init(SampleComponent, inputs, {});
-}
+  }
 }
 
 @Component({

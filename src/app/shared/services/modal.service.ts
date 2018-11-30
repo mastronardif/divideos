@@ -9,11 +9,21 @@ export class ModalService {
   private modalElementId = 'modal-container';
   private overlayElementId = 'overlay';
 
-  init(component: any, inputs: object, outputs: object) {
+  //init(component: any, inputs: object, outputs: object) {
+  init(component: any, inputs: any, outputs: object) {    
     // alert(`modal.service.init: inputs= ${JSON.stringify(inputs)}`);
+    console.log(`inputs=${inputs}`);
+    var newArr = [];
+    while(inputs.tags.length) {
+      newArr.push(inputs.tags.splice(0,3));
+    }
+   // tags: any[];
+    //videoId: any[];
+  
+console.log(`newArr=${newArr}`);
 
     let componentConfig = {
-      inputs: inputs,
+      inputs: {tags: newArr, videoId: "n/a"},
       outputs: outputs
     }
     this.domService.appendComponentTo(this.modalElementId, component, componentConfig);

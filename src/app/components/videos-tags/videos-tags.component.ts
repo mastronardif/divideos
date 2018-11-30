@@ -64,7 +64,7 @@ compare(b,a) {
      var list22 = list.sort(this.compare);
      console.log(list22);
 
-     const maxTags  = 7;
+     const maxTags  = 12;
      tags = list22.slice(0, maxTags).map(item => item.name);
 // objs.sort((a,b) => (a.last_nom > b.last_nom) ? 1 : ((b.last_nom > a.last_nom) ? -1 : 0)); 
     //uniques = uniques.filter(function(v,i) { return uniques(v) == i; });

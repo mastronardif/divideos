@@ -66,10 +66,6 @@ compare(b,a) {
 
      const maxTags  = 12;
      tags = list22.slice(0, maxTags).map(item => item.name);
-// objs.sort((a,b) => (a.last_nom > b.last_nom) ? 1 : ((b.last_nom > a.last_nom) ? -1 : 0)); 
-    //uniques = uniques.filter(function(v,i) { return uniques(v) == i; });
-    
-  
 console.log(`allTags= ${allTags}`);
 console.log(`tags= ${tags}`);
 
@@ -77,8 +73,8 @@ console.log(`tags= ${tags}`);
       videoId: 0,
       tags: tags // video.snippet.tags //['Angry', 'Funny', 'Planning']
     };
-
-    this.modal.init(SampleComponent, inputs, {});
+    let myoutputs = {results: 'wtf input'};
+    this.modal.init(SampleComponent, inputs, myoutputs);
   }
 }
 

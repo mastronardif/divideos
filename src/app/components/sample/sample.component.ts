@@ -19,6 +19,10 @@ export class SampleComponent  {
   }
 
   public close() {
+
+    this.results = 'data set from popup!!!!!!!!!!!!!';
+    console.log(`this.tags= $tags`);
+    console.log(`this.results= $results`);
     console.log('sample.component.ts: ', this);
     this.modal.destroy();
   }

@@ -9,54 +9,17 @@
     <div class="sample-text">
        <!-- <div>tags {{tags}} </div>nnn -->
        <table>
-        <tr *ngFor="let item of tags; let i = index">
+        <tr *ngFor="let item of tags; let i = index;">
             
             <td *ngFor="let item2 of item; let ik = index">
-                    <input id ="{{ik}}" type="checkbox" [(ngModel)]="theCheckbox" />              
+                    <!-- <input id ="{{(i*tags.length)+ik}}" type="checkbox" [(ngModel)]="theCheckbox" />    -->
+                    <input type="checkbox" />
                     <span >{{item2}}</span>
+                    <!-- <span >{{(i*tags.length)+ik}}</span> -->
             </td>
         </tr>
     </table>
-        <!-- <label class="container"> 
-            <input type="checkbox" [(ngModel)]="theCheckbox"  data-md-icheck (change)="toggleVisibility($event)"/>              
-            <span class="checkmark"></span>
-        </label>  -->
-
-                <!-- <div *ngFor="let d of tags; let i = index" >
-                    <div  *ngIf="i % 3 === 0">
-                        <input id ="{{i}}" type="checkbox" [(ngModel)]="theCheckbox" />              
-                        <span >{{tags[i]}}</span>
-
-                        <input id ="{{i+1}}" type="checkbox" [(ngModel)]="theCheckbox" />              
-                        <span>{{tags[i+1]}}</span>
-                      
-                        <input id ="{{i+2}}" type="checkbox" [(ngModel)]="theCheckbox" />              
-                        <span >{{tags[i+2]}}</span>
-                    </div>
-                </div> -->
-
-
-
-          
-
-            <!-- <tr *ngFor="let item of tags; let i = index">
-                   zz {{i}} - {{item}}cc 
-                   <div *ngIf="(i+1)%3 == 0">Text to {{i}}</div>
-                   <td>zz {{i}} - {{item}}cc </td>
-                   <div *ngIf="(i+1)%3 == 0">Text to {{i}}</div>
-                   <br/>
-                   <span class="checkmark">{{item}}</span>
-            </tr> -->
-<!-- <table>
-        <tr *ngFor="let item of tags; let i = index">      
-<td>
-            <label class="container"> 
-                <input id ="{{i}}" type="checkbox" [(ngModel)]="theCheckbox" />              
-                <span class="checkmark">{{item}}</span>
-            </label> 
-</td>
-        </tr>       
-</table> -->
+        
       </div>
       <i>id: {{videoId}}</i>
     

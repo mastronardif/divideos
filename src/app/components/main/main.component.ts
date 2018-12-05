@@ -40,6 +40,7 @@ export class MainComponent implements AfterViewInit {
   public shuffle = false;
   public playlistElement: any;
   private pageLoadingFinished = false;
+  public tagsToggle = false;
 
   protected fuck$: Observable<any[]>;
   //protected videos$: Observable<any[]>;
@@ -331,7 +332,13 @@ export class MainComponent implements AfterViewInit {
     this.playlistService.importPlaylist(this.videoPlaylist);
   }
 
-  lpl(): void {
+  showTags(): void { 
+    this.tagsToggle = !this.tagsToggle;  
+  }
+
+  lpl(): void { 
+    //this.tagsToggle = !this.tagsToggle;
+console.log(`this.tagsToggle= ${this.tagsToggle}`);
     if (this.videoPlaylist.length > 0) {
       this.videoList = this.videoPlaylist;
     }

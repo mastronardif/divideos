@@ -1,0 +1,17 @@
+<div class="center">
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div >
+    <label formArrayName="orders" *ngFor="let order of form.controls.orders.controls; let i = index">
+      <input class="mycheckbox" type="checkbox" [formControlName]="i">
+      {{orders[i].name}}
+    </label>
+  </div>
+
+    <br/>
+    <div *ngIf="!form.valid">At least one order must be selected</div>
+    <br>
+    <button [disabled]="!form.valid">submit</button>
+  </form>
+</div>
+  <!-- {{videoList}} -->

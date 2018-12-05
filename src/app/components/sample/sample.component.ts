@@ -12,6 +12,7 @@ export class SampleComponent  {
   //public inputs = [];
   tags: any[];
   videoId: any[];
+  results: any;
 
   constructor(private modal: ModalService) { 
   //console.log(`sample._.ts: modal= ${JSON.stringify(modal)}`);

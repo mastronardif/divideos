@@ -12,15 +12,13 @@
         <tr *ngFor="let item of tags; let i = index;">
             
             <td *ngFor="let item2 of item; let ik = index">
-                    <!-- <input id ="{{(i*tags.length)+ik}}" type="checkbox" [(ngModel)]="theCheckbox" />    -->
                     <input type="checkbox" />
                     <span >{{item2}}</span>
-                    <!-- <span >{{(i*tags.length)+ik}}</span> -->
             </td>
         </tr>
     </table>
         
       </div>
-      <i>id: {{videoId}}</i>
+      <!-- <i>id: {{videoList}}</i> -->
     
 </div>

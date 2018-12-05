@@ -1,0 +1,24 @@
+p {
+  font-family: Lato;
+}
+
+label {
+  /*display: block;*/
+  display: inline-block;
+  width: 10%;2
+  font-size: 14px;
+}
+
+
+.mycheckbox
+{
+    position: relative; 
+    opacity: 10; 
+}
+
+.center {
+  margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}

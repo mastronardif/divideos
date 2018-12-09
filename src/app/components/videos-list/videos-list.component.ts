@@ -14,7 +14,8 @@ export class VideosListComponent {
   @Input() videoList;
   @Input() loadingInProgress;
   @Output() videoPlaylist = new EventEmitter();
-  
+  @Output() valueChange = new EventEmitter();
+
   constructor(private modal: ModalService, private youtubeService: YoutubeApiService,
     private youtubePlayer: YoutubePlayerService,
     private playlistService: PlaylistStoreService
@@ -30,19 +31,7 @@ export class VideosListComponent {
   }
 
   addTagsToVideo(video: any): void {
-    //alert(`ID: ${video.id} \n ${JSON.stringify(video)}` );
-    let tags = video.snippet.tags;
-    if (!tags) {
-      tags = ['Angry', 'Funny', 'Planning'];
-    }
-
-
-    let inputs = {
-      videoId: video.id,
-      tags: tags // video.snippet.tags //['Angry', 'Funny', 'Planning']
-    };
-    this.modal.init(SampleComponent, inputs, {});
+    console.log('addTagsToVideo(video: any): void {');
+    this.valueChange.emit(video);
   }
-
-
 }

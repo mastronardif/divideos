@@ -11,8 +11,9 @@ import {SampleComponent} from '../sample/sample.component';
 
 export class VideosTagsComponent implements OnInit {
   @Input() text;
-  @Input() tip;
+  //@Input() tip;
   @Input() videoList;
+  //@Input() selectedVideo;
 
   constructor(private modal: ModalService, public dialog: MatDialog) {}
 
@@ -44,6 +45,7 @@ compare(b,a) {
     let tags = [];
     //var distinct = [];
 
+    //var selectedVideo = this.selectedVideo.map(function(obj) { return obj.snippet.tags; });
     var allTags = this.videoList.map(function(obj) { return obj.snippet.tags; });
     var dictionary = {};
 

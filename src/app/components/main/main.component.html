@@ -54,7 +54,7 @@
         <!-- Custom modal setup begin -->
         <div id="modal-container" class="hidden"></div>
        
-        <div id="overlay" (click)="removeModal()" class="hidden"></div>
+        <!-- <div id="overlay" (click)="removeModal()" class="hidden"></div> -->
         <!-- Custom modal setup end -->
 <!--
        <div id="overlay" (click)="removeModal()" class="hidden"></div>
@@ -69,9 +69,9 @@
     <main class="mdl-layout__content" LazyScroll (OnScrollMethod)="searchMore()" ScrollDistance="3">
       <div class="page-content" [ngClass]="{'blur-main-playlist-opened': playlistToggle}">
 
-        <app-tags *ngIf="tagsToggle" [videoList]="videoList"></app-tags>
+        <app-tags *ngIf="tagsToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-tags>
 
-        <videos-list *ngIf="videoList.length" class="mdl-grid" (videoPlaylist)="checkAddToPlaylist($event)" [videoList]="videoList" [loadingInProgress]="loadingInProgress">
+        <videos-list *ngIf="videoList.length" class="mdl-grid" (valueChange)="displayTags($event)" (videoPlaylist)="checkAddToPlaylist($event)" [videoList]="videoList" [loadingInProgress]="loadingInProgress">
         </videos-list>
         
         <div class="loader" *ngIf="!videoList.length">

@@ -31,6 +31,7 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 
 export class MainComponent implements AfterViewInit {
   public videoList = [];
+  public selectedVideo = {};
   public videoPlaylist = [];
   public loadingInProgress = false;
   public playlistToggle = false;
@@ -103,44 +104,14 @@ export class MainComponent implements AfterViewInit {
       this.setUserInfo(); //      this.user = this.userService.getCurrentUserEmail(); 
       this.isLoggedIn = true;
     });
-    
-    //   this.authService.getAuth().subscribe((auth) => {
-    //     if (auth.isSignedIn.get()) {
-    //       console.log(auth.currentUser.get().getBasicProfile());
-    //       this.isLoggedIn = true;
-    //       this.getUserInfo();
-    //     } else {
-    //       auth.signIn().then((response) => {
-    //         console.log("signIn user profile");
-    //         console.log(response.getBasicProfile());
-    //         this.isLoggedIn = true;
-    //         this.getUserInfo();
-    //       });
-    //     }
-    //  });
-
   }
 
   ngAfterViewInit() {
     this.isLoggedIn = this.isLoggedin();
     if (this.isLoggedIn) { this.setUserInfo(); }
-    //let inputs = {
-    //  isMobile: false
-    //};
-    //this.modal.init(SampleComponent, inputs, {});
-
-
-    // setTimeout(() => {
-    //  this.data.currentMessage.subscribe(message => {
-    //    console.log("message", message);
-    //    this.videoList = message;
-    //   });
-    // });
 
     this.playlistElement = document.getElementById('playlist');
     //this.videos$ = this.youtubeService.searchVideos('The Doors'); 
-
-  //setTimeout(() => {
 
     this.youtubeService.searchVideos22('The Doors')
       .subscribe(response => {
@@ -149,8 +120,6 @@ export class MainComponent implements AfterViewInit {
           this.videoList = res.items;
         });
       });
-  //}
-
   }
 
   playFirstInPlaylist(): void {
@@ -161,7 +130,6 @@ export class MainComponent implements AfterViewInit {
   }
 
   handleSearchVideo(videos: Array<any>): void {
-    //alert('handleSearchVideo');
     this.videoList = videos;
   }
 
@@ -213,17 +181,6 @@ export class MainComponent implements AfterViewInit {
     console.log('searchMore 22 this = ', this);
     this.loadingInProgress = true;
 
-
-    // begin
-    // this.youtubeService.searchNext()
-    //   .subscribe(response => {
-    //     response.subscribe(res => {
-    //       this.videos = res;
-    //       console.log('\t ******* search more res.items=', res.items);
-    //       this.videoList = res.items;
-    //     });
-    //   });
-    // end
     this.youtubeService.searchNext()
       .subscribe(response => {
         console.log('******************* ', response);
@@ -336,6 +293,12 @@ export class MainComponent implements AfterViewInit {
     this.tagsToggle = !this.tagsToggle;  
   }
 
+  displayTags(video) {
+    console.log('an event emited, displayTags video= ', video);
+    this.selectedVideo = video;
+    this.showTags();
+}
+
   lpl(): void { 
     //this.tagsToggle = !this.tagsToggle;
 console.log(`this.tagsToggle= ${this.tagsToggle}`);
@@ -346,9 +309,6 @@ console.log(`this.tagsToggle= ${this.tagsToggle}`);
   
   lmypl(): void {
     console.log(this.userService.getCurrentUserEmail() ); 
-    
-    //videosdoclistComponent22.lpl('PLaaxGO6E_rXdc0IYBphYL3YNbaAOmv2iM');
-    //return;
 
     const token = this.userService.getToken();
     this.fuck$ =  this.getPlaylists('123', token); 
@@ -368,14 +328,11 @@ console.log(`this.tagsToggle= ${this.tagsToggle}`);
         // new shit.  all return list begin
         console.log('new shit');
         const observableArray: any = [];
-        //observableArray.push(this.youtubeService.getPlaylistFor('Jake.Mastronardi', pls[1].id); pls.length
+
         for (let ii = 0; ii < pls.length; ii++) {
           observableArray.push(this.youtubeService.getPlaylistFor('TBDJake.Mastronardi', pls[ii].id));
           console.log(`ii(${ii})`);
-        }
-        //pls.forEach(it => {
-          //observableArray.push(this.youtubeService.getPlaylistFor('Jake.Mastronardi', it.id);
-        //});
+        };
 
         this.videoList = [];
         forkJoin(observableArray)
@@ -386,58 +343,14 @@ console.log(`this.tagsToggle= ${this.tagsToggle}`);
                     const jsonRes = res;
                     const res22 = jsonRes['items'];
                     console.log(res22);
-                    //
-                    // this.videoList = res22;
 
                     res22.forEach(fu => {this.videoList.push(fu); });
-                    // myPush()
-                    // this.videoList.push(res22);
                     },
                     error => console.log('oops', error)
                     );
                   } else {console.log('WTF obs.subscribe undefined!!!') }
               });
           });
-
-        //const getPostTwo$ = Rx.Observable.timer(2000).mapTo({id: 2});
-        //Rx.Observable.forkJoin(getPostOne$, getPostTwo$).subscribe(res => console.log(res));
-        // forkJoin([this.youtubeService.getPlaylistFor('Jake.Mastronardi', pls[1].id),
-        //          , this.youtubeService.getPlaylistFor('Jake.Mastronardi', pls[2].id)]
-        // )
-        // .subscribe(resp => {
-        //   console.log(resp);
-
-        //   resp.map(rrr=> {
-        //     rrr.subscribe(res => {
-        //       const jsonRes = res;
-        //       let res22 = jsonRes['items'];
-        //       console.log(res);
-        //     });
-
-        //   });
-
-        //    resp[0].subscribe(res => {
-        //      const jsonRes = res;
-        //      let res22 = jsonRes['items'];
-        //      console.log(res);
-        //    });          
-
-        // });
-        // new shit da all return list end
-
-        // old one
-            //  this.playlistSortbyService.getPlaylistFor('Jake.Mastronardi', id)
-            // .subscribe(response => {
-            //   const jsonRes = response;
-            //   let res = jsonRes['items'];
-            //   // fix the videoID issue.
-            //   this.playlistSortbyService.fixPlaylist(res);
-        
-            //   newlist = res;
-            //   this.data.changeMessage(newlist);
-            // });
-        
-
         });
   }
 

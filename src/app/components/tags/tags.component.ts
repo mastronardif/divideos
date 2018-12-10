@@ -11,12 +11,14 @@ export class TagsComponent  {
   @Input() selectedVideo;
   @Output() valueChange = new EventEmitter();
   form: FormGroup;
-  orders = [
-    { id: 100, name: 'order 1' },
-    { id: 200, name: 'order 2' },
-    { id: 300, name: 'order 3' },
-    { id: 400, name: 'order 4' }
-  ];
+  
+    tags = [{id: 100, name: 'order 1' }];
+// orders = [    
+//     { id: 100, name: 'order 1' },
+//     { id: 200, name: 'order 2' },
+//     { id: 300, name: 'order 3' },
+//     { id: 400, name: 'order 4' }
+//   ];
 
   constructor(private formBuilder: FormBuilder) {
     //console.log(`@ this.videoList = ${this.videoList}`);
@@ -41,7 +43,7 @@ export class TagsComponent  {
     console.log('get formData() {');
     // return this.form.get('Data'); 
     // form.controls.orders.controls
-    return this.form.get('form.controls.orders.controls');
+    return this.form.get('form.controls.tags.controls');
   }
 
   ngOnInit() {
@@ -72,16 +74,16 @@ export class TagsComponent  {
 
     
     const maxTags  = 112;
-    this.orders = list22.slice(0, maxTags)
+    this.tags = list22.slice(0, maxTags)
     //this.attributeCheck();
-    console.log(this.orders);
+    console.log(this.tags);
 
-    const controls = this.orders.map(c => new FormControl(false));
+    const controls = this.tags.map(c => new FormControl(false));
     // controls[0].setValue(true);
     // set tags they have been selected for this video.
     let i = controls.length;
     while (i--) {
-      if (selectedTags.includes(this.orders[i].name)) {
+      if (selectedTags.includes(this.tags[i].name)) {
         controls[i].setValue(true);
       }
     }
@@ -89,8 +91,8 @@ export class TagsComponent  {
     console.log("controls= ", controls);
 
     this.form = this.formBuilder.group({
-      orders: new FormArray(controls, minSelectedCheckboxes(1)),
-      address: new FormGroup({
+      tags: new FormArray(controls, minSelectedCheckboxes(1)),
+      additionalTags: new FormGroup({
         //street: new FormControl(''),
         //city: new FormControl(''),
         //state: new FormControl(''),
@@ -101,13 +103,14 @@ export class TagsComponent  {
   }
 
   submit() {
-    const selectedOrderIds = this.form.value.orders
-      .map((v, i) => v ? this.orders[i].name : null)
+    const selectedOrderIds = this.form.value.tags
+      .map((v, i) => v ? this.tags[i].name : null)
       .filter(v => v !== null);
     
     // sort the list.
 
     console.log(selectedOrderIds);
+    console.log(this.form.value.additionalTags.newtags);
     //alert('NEWGUY= ' + this.form.value.address.newtags + 'for ' + '\n ' + selectedOrderIds );
     this.valueChange.emit({});
   }

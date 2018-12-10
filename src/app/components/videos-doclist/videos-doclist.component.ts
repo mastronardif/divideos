@@ -30,9 +30,6 @@ export class VideosdoclistComponent {
 
     lpl(id): void {
       let newlist: any  = [{}];
-      // newlist = this.playlistSortbyService.getPlayListFor('Jake.Mastronardi', id);
-      // console.log(newlist);
-      // this.data.changeMessage(newlist);
 
       this.playlistSortbyService.getPlaylistFor('Jake.Mastronardi', id)
       .subscribe(response => {

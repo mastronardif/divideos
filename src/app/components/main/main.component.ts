@@ -88,8 +88,7 @@ export class MainComponent implements AfterViewInit {
   }
 
   public setUserInfo() {
-    // this.userService.getCurrentUser().getBasicProfile().getEmail()
-    this.user = this.userService.getCurrentUserEmail(); //this.userService.getCurrentUser().getBasicProfile().getEmail();
+    this.user = this.userService.getCurrentUserEmail();
     console.log(this.userService.getCurrentUser());
   }
 
@@ -99,9 +98,8 @@ export class MainComponent implements AfterViewInit {
   }
 
   public signIn() {
-    // this.userService.signIn(this.setTheFuckers);
     this.userService.signIn(() => {
-      this.setUserInfo(); //      this.user = this.userService.getCurrentUserEmail(); 
+      this.setUserInfo();
       this.isLoggedIn = true;
     });
   }
@@ -289,8 +287,8 @@ export class MainComponent implements AfterViewInit {
     this.playlistService.importPlaylist(this.videoPlaylist);
   }
 
-  showTags(): void { 
-    this.tagsToggle = !this.tagsToggle;  
+  showTags(): void {
+    this.tagsToggle = !this.tagsToggle;
   }
 
   displayTags(video) {

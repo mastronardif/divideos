@@ -32,12 +32,14 @@ export class TagsComponent  {
     // });
   }
 
-  compare(b,a) {
-    if (a.count < b.count)
-      return -1;
-    if (a.count > b.count)
-      return 1;
-    return 0;
+  compare(b, a) {
+    //return (b.name - a.name);
+    return (a.id - b.id); //by count
+    // if (a.count < b.count)
+    //   return -1;
+    // if (a.count > b.count)
+    //   return 1;
+    // return 0;
   }
 
   get formData() {
@@ -49,29 +51,43 @@ export class TagsComponent  {
 
   ngOnInit() {
 
-    var selectedTags = (this.selectedVideo && this.selectedVideo.snippet && this.selectedVideo.snippet.tags) ? this.selectedVideo.snippet.tags.map(x => x) : [{}];
-    var allTags = this.videoList.map(function(obj: any) { return obj.snippet.tags; });
+    const selectedTags = (this.selectedVideo && this.selectedVideo.snippet && this.selectedVideo.snippet.tags)
+                       ? this.selectedVideo.snippet.tags.map(x => x) : [{}];
+    let allTags = this.videoList.map(function(obj: any) { return obj.snippet.tags ? obj.snippet.tags : []; });
     console.log(`selectedTags= ${selectedTags}`);
     console.log(selectedTags);
-    
-    var dictionary = {};
-    allTags = allTags ? allTags : ["WTF", "NO", "TAGS"];
-    for ( let i in allTags ) {
-      for (var k in allTags[i]) {
-        if( typeof( dictionary[allTags[i][k]]) == "undefined") {
-          dictionary[allTags[i][k]] = 1; //uniques[i][k]);
-        }
-        else {
-          dictionary[allTags[i][k]] =  dictionary[allTags[i][k]] + 1;
+
+    let dictionary = {};
+    allTags = allTags ? allTags : [];
+
+    for ( let ii = 0; ii < allTags.length; ii++ ) {
+      for (let k = 0; k < allTags[ii].length; k++) {
+        const fldName: string = allTags[ii][k];
+        console.log(`fldName = ${fldName}`);
+        if (typeof((<any>dictionary)[fldName]) === 'undefined') {
+          (<any>dictionary)[fldName] = 1;
+        } else {
+          (<any>dictionary)[fldName] =  (<any>dictionary)[fldName] + 1;
         }
       }
      }
+    // for ( let i in allTags ) {
+    //   for (var k in allTags[i]) {
+    //     if( typeof( dictionary[allTags[i][k]]) == "undefined") {
+    //       dictionary[allTags[i][k]] = 1; //uniques[i][k]);
+    //     }
+    //     else {
+    //       dictionary[allTags[i][k]] =  dictionary[allTags[i][k]] + 1;
+    //     }
+    //   }
+    //  }
 
-    //console.log(dictionary);
-    var list = Object.keys(dictionary).map(function(key) { return {name: key, id: dictionary[key]}; });
+    console.log('dictionary= ', dictionary);
+    const list = Object.keys(dictionary).map(function(key) { return {name: key, id: dictionary[key]}; });
     console.log(list);
-    var list22 = list.sort(this.compare);
-    //console.log(`list22= ${list22}`);
+    console.log('list= ', list);
+    const list22 = list.sort(this.compare);
+    console.log('list22=', list22);
 
     
     const maxTags  = 112;

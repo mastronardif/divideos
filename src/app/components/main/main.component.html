@@ -12,13 +12,15 @@
     <button id="lpl_tip" (click)="lpl()">lpl</button>
     <button id="lpl_outline" (click)="togglePlaylist()">*Outline For Jake</button>
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_tip">Load Play List</div>
+    
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="showTags_tip">Show tags</div>
+
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_outline">Load Outline</div>
       <div id="videocount_tip">({{videoList.length}})</div>
       <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="videocount_tip">Number of videos</div>
 
-         <app-videos-tags text="Tag(s)" tip="sort by tags"  [videoList]="videoList"></app-videos-tags>
-         <button id="showTags_tip" (click)="showTags()">Tags2</button>
+         <!-- <app-videos-tags text="Tag(s)" tip="sort by tags"  [videoList]="videoList"></app-videos-tags> -->
+         <button class="span-grad1" id="showTags_tip" (click)="showTags()">Tags2</button>
 
         <div  *ngIf= "!isLoggedIn">
           <button id="signin_tip"  (click)="signIn()">sign in</button>

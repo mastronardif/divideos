@@ -27,6 +27,12 @@ body {
     animation: spin 1s infinite linear;
   }
   
+  .span-grad1 {
+    height: 40px;
+    background-image: linear-gradient(red, yellow,green );
+  }
+  
+  
   @-webkit-keyframes spin {
     0% {
       -webkit-transform: rotate(0deg);

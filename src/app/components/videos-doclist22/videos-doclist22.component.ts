@@ -11,11 +11,8 @@ import { jaketoc } from '../../model/jake_toc';
 })
 
 export class VideosdoclistComponent22 {
-  @Input() playlistToggle;
-  @Input() videoPlaylist;
-  @Input() playlistNames;
-  @Input() repeat;
-  @Input() shuffle;
+  @Input() leftPaneToggle;
+
   //title = 'x';
   toc = jaketoc;
 
@@ -33,29 +30,17 @@ export class VideosdoclistComponent22 {
 
     // this.playlistSortbyService.getPlaylistFor('Jake.Mastronardi', id)
     this. youtubeService.getPlaylistFor('Jake.Mastronardi', id)
-    .subscribe(response => {
-      response.subscribe(res => {
-      const jsonRes = res;
-      let res22 = jsonRes['items'];
+      .subscribe(response => {
+        response.subscribe(res => {
+        const jsonRes = res;
+        let res22 = jsonRes['items'];
 
-      // fix the videoID issue.
-      // i dont think you have to do this this.playlistSortbyService.fixPlaylist(res22);
+        // fix the videoID issue.
+        // i dont think you have to do this this.playlistSortbyService.fixPlaylist(res22);
 
-      newlist = res22;
-      this.data.changeMessage(newlist);
-    });
-
-    // old one
-        //  this.playlistSortbyService.getPlaylistFor('Jake.Mastronardi', id)
-        // .subscribe(response => {
-        //   const jsonRes = response;
-        //   let res = jsonRes['items'];
-        //   // fix the videoID issue.
-        //   this.playlistSortbyService.fixPlaylist(res);
-    
-        //   newlist = res;
-        //   this.data.changeMessage(newlist);
-        // });
+        newlist = res22;
+        this.data.changeMessage(newlist);
+      });
     });
   }
 }

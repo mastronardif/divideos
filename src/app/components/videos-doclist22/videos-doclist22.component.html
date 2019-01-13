@@ -1,5 +1,4 @@
-<div class="playlist" [ngClass]="{'opened': playlistToggle}">
- 
+<div class="playlist" [ngClass]="{'opened': leftPaneToggle}">
 <ul>
     <ng-template #recursiveTree let-toc>
         <li class="wtf" *ngFor="let item of toc; let i = index">

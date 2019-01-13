@@ -85,7 +85,6 @@ let gapiClientConfig: NgGapiClientConfig = {
     DialogContentExampleDialog,
     VideosTagsComponent,
     TagsComponent,
-    
 
     // pipes
     PlaylistItemNamePipe,

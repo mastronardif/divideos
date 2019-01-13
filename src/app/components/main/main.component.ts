@@ -35,6 +35,7 @@ export class MainComponent implements AfterViewInit {
   public videoPlaylist = [];
   public loadingInProgress = false;
   public playlistToggle = false;
+  public leftPaneToggle = false;
   public doclistToggle = false;
   public playlistNames = false;
   public repeat = false;
@@ -48,9 +49,9 @@ export class MainComponent implements AfterViewInit {
   //protected videos22$: Observable<any[]>;
   protected videos: any;
   isLoggedIn:boolean = false;
-  public user = "wtf";
-  
-  //message:string;
+  public user = 'wtf';
+
+  // message:string;
 
   constructor(private data: DataService,
               //private modal: ModalService,
@@ -110,8 +111,8 @@ export class MainComponent implements AfterViewInit {
 
     this.playlistElement = document.getElementById('playlist');
     //this.videos$ = this.youtubeService.searchVideos('The Doors'); 
-
-    this.youtubeService.searchVideos22('The Doors')
+    // this.youtubeService.searchVideos22('The Doors')
+    this.youtubeService.searchVideos22('Cows')
       .subscribe(response => {
         response.subscribe(res => {
           this.videos = res;
@@ -160,6 +161,11 @@ export class MainComponent implements AfterViewInit {
     setTimeout(() => {
       this.playlistNames = !this.playlistNames;
     }, 200);
+  }
+
+  toggleLeftPane(): void {
+    this.leftPaneToggle = !this.leftPaneToggle;
+    console.log('toggleLeftPane ', this.leftPaneToggle);
   }
 
   toggleDoclist(): void {
@@ -292,19 +298,18 @@ export class MainComponent implements AfterViewInit {
   }
 
   displayTags(video) {
-    console.log('an event emited, displayTags video= ', video);
+    // console.log('an event emited, displayTags video= ', video);
     this.selectedVideo = video;
     this.showTags();
 }
 
   lpl(): void { 
-    //this.tagsToggle = !this.tagsToggle;
-console.log(`this.tagsToggle= ${this.tagsToggle}`);
+    console.log(`this.tagsToggle= ${this.tagsToggle}`);
     if (this.videoPlaylist.length > 0) {
       this.videoList = this.videoPlaylist;
     }
   }
-  
+
   lmypl(): void {
     console.log(this.userService.getCurrentUserEmail() ); 
 

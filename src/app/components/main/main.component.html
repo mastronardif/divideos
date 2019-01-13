@@ -10,7 +10,7 @@
           </videos-search>
                         
     <button id="lpl_tip" (click)="lpl()">lpl</button>
-    <button id="lpl_outline" (click)="togglePlaylist()">*Outline For Jake</button>
+    <button id="lpl_outline" (click)="toggleLeftPane()">*Outline For Jake</button>
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_tip">Load Play List</div>
     
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="showTags_tip">Show tags</div>
@@ -48,9 +48,7 @@
       </div>
     </header>
 
-
-
-    <videos-doclist22 [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist">
+    <videos-doclist22 *ngIf="leftPaneToggle"  [leftPaneToggle]="leftPaneToggle">
       </videos-doclist22>
 
         <!-- Custom modal setup begin -->

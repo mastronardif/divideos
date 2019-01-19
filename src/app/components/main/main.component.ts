@@ -36,6 +36,9 @@ export class MainComponent implements AfterViewInit {
   public loadingInProgress = false;
   public playlistToggle = false;
   public leftPaneToggle = false;
+  public leftPaneSHowTagsForVideo = false;
+
+//  public bSHowTagsForVideo = false;
   public doclistToggle = false;
   public playlistNames = false;
   public repeat = false;
@@ -297,11 +300,27 @@ export class MainComponent implements AfterViewInit {
     this.tagsToggle = !this.tagsToggle;
   }
 
-  displayTags(video) {
+  //displayTags(video) {
+    displayTags(eee) { 
+    console.log('an event emited, displayTags video= ', eee);
+    this.selectedVideo = eee.video;
+    if (eee.id === 'popup') {
+      this.showTags();
+    } else if (eee.id === 'leftsidelist') {
+      this.leftPaneSHowTagsForVideo = !this.leftPaneSHowTagsForVideo;
+      //this.leftPaneSHowTagsForVideo = true;
+      //alert(`leftPaneSHowTagsForVideo= ${this.leftPaneSHowTagsForVideo}`);
+      //this.toggleDoclist();
+      //this.showTags();
+    }
+  }
+
+  leftSideDisplayTagsFor(video) {
     // console.log('an event emited, displayTags video= ', video);
     this.selectedVideo = video;
-    this.showTags();
-}
+    this.toggleLeftPane();
+    //this.showTags();
+  }
 
   lpl(): void { 
     console.log(`this.tagsToggle= ${this.tagsToggle}`);

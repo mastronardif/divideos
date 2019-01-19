@@ -1,0 +1,25 @@
+<div class="playlist" [ngClass]="{'opened': leftPaneSHowTagsForVideo}">    
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <div >
+            <!-- <label formArrayName="orders" *ngFor="let order of form.controls.orders.controls; let i = index"> -->
+            <label formArrayName="tags" *ngFor="let tag of form['controls'].tags['controls']; let i = index">
+              <input class="mycheckbox22" type="checkbox" [formControlName]="i">
+              {{tags[i].name}}              
+              <br/>
+            </label>
+          </div>
+        
+          <div formGroupName="additionalTags">
+            <label> Add Tags:
+              <input style="width:264px;" type="text" formControlName="newtags" size="150" placeholder="coma seperated list">
+            </label>
+          </div>
+            
+            <br/>
+            <div *ngIf="!form.valid">At least one Tag must be selected</div>
+            <br>
+            <button [disabled]="!form.valid">submit</button>
+            <button type="button" (click)="cancel(); $event.preventDefault()">Cancel</button>
+          </form>
+</div>

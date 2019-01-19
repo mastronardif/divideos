@@ -1,13 +1,16 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import { DataService } from '../../shared/services/data.service';
+import { YoutubeApiService  } from '../../shared/services/youtube-api.service';
 
 @Component({
-  selector: 'app-tags',
-  templateUrl: './tags.component.html',
-  styleUrls: ['./tags.component.css']
+  selector: 'video-taglist',
+  templateUrl: './video-taglist.component.html',
+  styleUrls: ['./video-taglist.component.css'],
 })
-export class TagsComponent  {
+
+export class VideoTagListComponent {
+  @Input() leftPaneSHowTagsForVideo;
   @Input() videoList;
   @Input() selectedVideo;
   @Output() valueChange = new EventEmitter();
@@ -81,17 +84,16 @@ export class TagsComponent  {
 
     dynamicSortFI22(this.videoList, selectedOrderIds, 'asc');
 
-    this.valueChange.emit({id: 'popup'});
+    this.valueChange.emit({});
   }
 
   cancel() {
-    this.valueChange.emit({id: 'popup'});
+    this.valueChange.emit({id: 'leftsidelist'});
   }
 }
 
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
-
 function dynamicSortFI22(arr, query, direction) {
   arr.sort(function (a, b) {
     let achk = [];

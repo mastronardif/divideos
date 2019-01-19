@@ -48,8 +48,8 @@
       </div>
     </header>
 
-    <videos-doclist22 *ngIf="leftPaneToggle"  [leftPaneToggle]="leftPaneToggle">
-      </videos-doclist22>
+    <videos-doclist22 *ngIf="leftPaneToggle"  [leftPaneToggle]="leftPaneToggle"></videos-doclist22>
+    <video-taglist    *ngIf="leftPaneSHowTagsForVideo" (valueChange)="displayTags($event)"  [videoList] ="videoList" [selectedVideo]="selectedVideo" [leftPaneSHowTagsForVideo]="leftPaneSHowTagsForVideo"></video-taglist>
 
         <!-- Custom modal setup begin -->
         <div id="modal-container" class="hidden"></div>

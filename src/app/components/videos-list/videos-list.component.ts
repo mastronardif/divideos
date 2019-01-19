@@ -32,6 +32,10 @@ export class VideosListComponent {
 
   addTagsToVideo(video: any): void {
     console.log('addTagsToVideo(video: any): void {');
-    this.valueChange.emit(video);
+    this.valueChange.emit({video: video, id: 'popup'});
+  }
+  addTagsToVideo22(video: any): void {
+    //console.log('addTagsToVideo(video: any): void {');
+    this.valueChange.emit({video: video, id: 'leftsidelist'});
   }
 }

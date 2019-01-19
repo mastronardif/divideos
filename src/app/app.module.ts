@@ -21,10 +21,12 @@ import { VideosPlaylistComponent } from './components/videos-playlist/videos-pla
 import { VideosdoclistComponent} from './components/videos-doclist/videos-doclist.component';
 import { VideosdoclistComponent22 } from './components/videos-doclist22/videos-doclist22.component';
 import { VideoPlayerComponent } from './components/video-player/video-player.component';
-import { VideosTagsComponent } from './components/videos-tags/videos-tags.component';
 import { DialogContentExampleDialog } from './components/videos-tags/videos-tags.component';
 import { SampleComponent }             from './components/sample/sample.component';
 import { TagsComponent }             from './components/tags/tags.component';
+import { VideosTagsComponent } from './components/videos-tags/videos-tags.component';
+import { VideoTagListComponent }  from './components/video-taglist/video-taglist.component';
+
 // pipes
 import { VideoLikesPipe } from './shared/pipes/video-likes.pipe';
 import { VideoViewsPipe } from './shared/pipes/video-views.pipe';
@@ -85,6 +87,7 @@ let gapiClientConfig: NgGapiClientConfig = {
     DialogContentExampleDialog,
     VideosTagsComponent,
     TagsComponent,
+    VideoTagListComponent,
 
     // pipes
     PlaylistItemNamePipe,

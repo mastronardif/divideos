@@ -10,7 +10,7 @@
           </videos-search>
                         
     <button id="lpl_tip" (click)="lpl()">lpl</button>
-    <button id="lpl_outline" (click)="toggleLeftPane()">*Outline For Jake</button>
+    <button id="lpl_outline" (click)="toggleLeftPane()">*Jake Outline</button>
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_tip">Load Play List</div>
     
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="showTags_tip">Show tags</div>
@@ -19,8 +19,9 @@
       <div id="videocount_tip">({{videoList.length}})</div>
       <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="videocount_tip">Number of videos</div>
 
-         <!-- <app-videos-tags text="Tag(s)" tip="sort by tags"  [videoList]="videoList"></app-videos-tags> -->
-         <button class="span-grad1" id="showTags_tip" (click)="showTags()">Tags2</button>
+    <!-- <app-videos-tags text="Tag(s)" tip="sort by tags"  [videoList]="videoList"></app-videos-tags> -->
+    <button class="span-grad1" id="showTags_tip" (click)="showTags('default')">Tags2</button>
+    <button id="showTags_tip" (click)="showTags('TREEVIEW')">Tree</button>
 
         <div  *ngIf= "!isLoggedIn">
           <button id="signin_tip"  (click)="signIn()">sign in</button>
@@ -70,6 +71,7 @@
       <div class="page-content" [ngClass]="{'blur-main-playlist-opened': playlistToggle}">
 
         <app-tags *ngIf="tagsToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-tags>
+        <app-treetags *ngIf="tagsTreeViewToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-treetags>
 
         <videos-list *ngIf="videoList.length" class="mdl-grid" (valueChange)="displayTags($event)" (videoPlaylist)="checkAddToPlaylist($event)" [videoList]="videoList" [loadingInProgress]="loadingInProgress">
         </videos-list>

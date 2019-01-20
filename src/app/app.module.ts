@@ -7,7 +7,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 //import {MatTreeFlattener } from '@angular/material/tree';
 import {GoogleApiModule, GoogleApiService, GoogleAuthService, 
   NgGapiClientConfig, NG_GAPI_CONFIG, GoogleApiConfig} from 'ng-gapi';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 // Components
 import { AppComponent } from './app.component';
 import { MatCardModule } from '@angular/material/card';
@@ -24,6 +24,7 @@ import { VideoPlayerComponent } from './components/video-player/video-player.com
 import { DialogContentExampleDialog } from './components/videos-tags/videos-tags.component';
 import { SampleComponent }             from './components/sample/sample.component';
 import { TagsComponent }             from './components/tags/tags.component';
+import { TreeTagsComponent } from './components/apptreetags/treetags.component';
 import { VideosTagsComponent } from './components/videos-tags/videos-tags.component';
 import { VideoTagListComponent }  from './components/video-taglist/video-taglist.component';
 
@@ -87,6 +88,7 @@ let gapiClientConfig: NgGapiClientConfig = {
     DialogContentExampleDialog,
     VideosTagsComponent,
     TagsComponent,
+    TreeTagsComponent,
     VideoTagListComponent,
 
     // pipes
@@ -111,7 +113,8 @@ let gapiClientConfig: NgGapiClientConfig = {
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    NgxChartsModule
   ],
   providers: [HttpClientModule,
     ModalService,

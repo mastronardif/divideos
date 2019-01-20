@@ -46,6 +46,7 @@ export class MainComponent implements AfterViewInit {
   public playlistElement: any;
   private pageLoadingFinished = false;
   public tagsToggle = false;
+  public tagsTreeViewToggle = false;
 
   protected fuck$: Observable<any[]>;
   //protected videos$: Observable<any[]>;
@@ -296,7 +297,14 @@ export class MainComponent implements AfterViewInit {
     this.playlistService.importPlaylist(this.videoPlaylist);
   }
 
-  showTags(): void {
+  showTags(id): void {
+    console.log(`showTags(${id})`);
+    if (id === 'TREEVIEW') {
+      this.tagsTreeViewToggle = !this.tagsTreeViewToggle;
+      return;
+    }
+
+    // Default shw tags
     this.tagsToggle = !this.tagsToggle;
   }
 
@@ -305,7 +313,7 @@ export class MainComponent implements AfterViewInit {
     console.log('an event emited, displayTags video= ', eee);
     this.selectedVideo = eee.video;
     if (eee.id === 'popup') {
-      this.showTags();
+      this.showTags('tags');
     } else if (eee.id === 'leftsidelist') {
       this.leftPaneSHowTagsForVideo = !this.leftPaneSHowTagsForVideo;
       //this.leftPaneSHowTagsForVideo = true;

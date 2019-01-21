@@ -121,6 +121,34 @@ export class PlaylistSortbyService {
       return "this is a test from sort service";
     }
 
+    public dynamicSortFI22(arr: any[], query: any[], direction: string) {
+      arr.sort(function (a, b) {
+        let achk = [];
+        let bchk = [];
+    
+        if (a.snippet.tags) {
+          achk = a.snippet.tags.filter(ee => {
+            return query.indexOf(ee) > -1;
+          });
+        }
+    
+        if (b.snippet.tags) {
+          bchk = b.snippet.tags.filter(ee => {
+            return query.indexOf(ee) > -1;
+          });
+        }
+    
+        let bbb = 0;
+        if (direction === 'asc') {
+          bbb = bchk.length - achk.length;
+        } else {
+          bbb = achk.length - bchk.length
+        }
+    
+        return bbb;
+      });
+    }
+
   public exportSortlist(videoList: any): void {
       if (videoList.length < 1) {
         this.notificationService.showNotification('Nothing to export.');

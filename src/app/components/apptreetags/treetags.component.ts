@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
-import { DataService } from '../../shared/services/data.service';
+import { PlaylistSortbyService } from '../../shared/services/playlist-sortby.service';
 
 @Component({
   selector: 'app-treetags',
@@ -13,45 +12,25 @@ export class TreeTagsComponent implements OnInit {
   @Output() valueChange = new EventEmitter();
 
   view: any[] = [700, 400];
-  single: any[] = [
-    {
-      "name": "Angry",
-      "value": 8
-    },
-    {
-      "name": "USA",
-      "value": 5
-    },
-    {
-      "name": "US",
-      "value": 4
-    },
-    {
-      "name": "U",
-      "value": 1
-    },
-    {
-      "name": "a",
-      "value": 1
-    }
-  ];
+  single: any[] = [];
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor() {
+  constructor(private playlistSortbyService: PlaylistSortbyService) {
     //Object.assign(this, {single});
   }
 
   ngOnInit() {
-    //console.log(`TreeTagsComponent:ngOnInit() = ${this.videoList}`);
     this.single = makeTreeData(this.videoList);
-    //console.log('TreeTagsComponent:ngOnInit()', this.single);
   }
 
   onSelect(event) {
-    console.log(event);
+    //console.log(event);    
+    const selectedOrderIds = [event.name];
+    this.playlistSortbyService.dynamicSortFI22(this.videoList, selectedOrderIds, 'asc');
+    this.valueChange.emit({});
   }
 }
 function makeTreeData(videos) {

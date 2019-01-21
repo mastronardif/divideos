@@ -51,6 +51,7 @@
 
     <videos-doclist22 *ngIf="leftPaneToggle"  [leftPaneToggle]="leftPaneToggle"></videos-doclist22>
     <video-taglist    *ngIf="leftPaneSHowTagsForVideo" (valueChange)="displayTags($event)"  [videoList] ="videoList" [selectedVideo]="selectedVideo" [leftPaneSHowTagsForVideo]="leftPaneSHowTagsForVideo"></video-taglist>
+    <!-- <app-treetags    *ngIf="tagsTreeViewToggle" [videoList] ="videoList" [selectedVideo]="selectedVideo"></app-treetags> -->
 
         <!-- Custom modal setup begin -->
         <div id="modal-container" class="hidden"></div>

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from 'rxjs';
-import { map, finalize } from 'rxjs/operators';
 import { NotificationService } from '../services/notification.service';
 import { jakegoals } from '../../model/jake_goals';
 import { jakegoals1 } from '../../model/jake_goals1';

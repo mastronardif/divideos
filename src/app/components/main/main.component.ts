@@ -13,7 +13,7 @@ import { GoogleAuthService } from 'ng-gapi';
 import { GoogleApiService } from 'ng-gapi';
 // import { VideosdoclistComponent22 } from '../videos-doclist22/videos-doclist22.component';
 // import {SampleComponent} from '../sample/sample.component';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 
 // import 'rxjs/add/observable/from'; 

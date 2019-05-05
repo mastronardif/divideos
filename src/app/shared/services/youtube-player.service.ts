@@ -1,5 +1,4 @@
 import { Injectable, Output, EventEmitter } from '@angular/core';
-//import { Observable } from 'rxjs/Observable';
 import { NotificationService } from './notification.service';
 import { BrowserNotificationService } from './browser-notification.service';
 

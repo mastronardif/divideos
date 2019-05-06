@@ -1,7 +1,7 @@
 # Divideos
 An application that allows one to catagorize videos for later retrival.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+This project started as ng 2 now its ng7.
 
 ## Development server
 

@@ -9,8 +9,24 @@
           <videos-search (videosUpdated)="handleSearchVideo($event)" [loadingInProgress]="loadingInProgress">
           </videos-search>
                         
+<!-- new shit menu -->
+<div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="demo-menu-lower-left">new shit</div>
+<button id="demo-menu-lower-left"
+        class="mdl-button mdl-js-button mdl-button--icon">
+  <i class="material-icons">more_vert</i>
+</button>
+
+<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+    for="demo-menu-lower-left">
+  <li (click)="showTags('TREEVIEW')" class="mdl-menu__item">m1</li>
+  <li class="mdl-menu__item mdl-menu__item--full-bleed-divider">New outline</li>
+  <li disabled class="mdl-menu__item">tbd Action</li>
+  <li class="mdl-menu__item">Edit outline</li>
+</ul>
+                 
+
     <button id="lpl_tip" (click)="lpl()">lpl</button>
-    <button id="lpl_outline" (click)="toggleLeftPane()">*Jake Outline</button>
+    <button id="lpl_outline" (click)="toggleLeftPane()">*Jake Outlin</button>
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_tip">Load Play List</div>
     
     <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="showTags_tip">Show tags</div>
@@ -21,7 +37,7 @@
 
     <!-- <app-videos-tags text="Tag(s)" tip="sort by tags"  [videoList]="videoList"></app-videos-tags> -->
     <button class="span-grad1" id="showTags_tip" (click)="showTags('default')">Tags2</button>
-    <button id="showTags_tip" (click)="showTags('TREEVIEW')">Tree</button>
+    <button id="showTags_tip" (click)="showTags('TREEVIEW')">m1</button>
 
         <div  *ngIf= "!isLoggedIn">
           <button id="signin_tip"  (click)="signIn()">sign in</button>

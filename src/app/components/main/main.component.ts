@@ -47,6 +47,7 @@ export class MainComponent implements AfterViewInit {
   private pageLoadingFinished = false;
   public tagsToggle = false;
   public tagsTreeViewToggle = false;
+  public tagsEditorViewToggle = false;
 
   protected fuck$: Observable<any[]>;
   //protected videos$: Observable<any[]>;
@@ -295,6 +296,17 @@ export class MainComponent implements AfterViewInit {
   importPlaylist(playlist: any): void {
     this.videoPlaylist = playlist;
     this.playlistService.importPlaylist(this.videoPlaylist);
+  }
+
+  showEditor(id): void {
+    console.log(`showEditor(${id})`);
+    if (id === 'EDIT_NEW') {
+      this.tagsEditorViewToggle = !this.tagsEditorViewToggle;
+      return;
+    }
+
+    // Default shw tags
+    this.tagsToggle = !this.tagsToggle;
   }
 
   showTags(id): void {

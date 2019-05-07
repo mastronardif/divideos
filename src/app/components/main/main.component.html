@@ -67,6 +67,8 @@
 
     <videos-doclist22 *ngIf="leftPaneToggle"  [leftPaneToggle]="leftPaneToggle"></videos-doclist22>
     <video-taglist    *ngIf="leftPaneSHowTagsForVideo" (valueChange)="displayTags($event)"  [videoList] ="videoList" [selectedVideo]="selectedVideo" [leftPaneSHowTagsForVideo]="leftPaneSHowTagsForVideo"></video-taglist>
+    <app-test *ngIf="tagsEditorViewToggle"></app-test>
+
     <!-- <app-treetags    *ngIf="tagsTreeViewToggle" [videoList] ="videoList" [selectedVideo]="selectedVideo"></app-treetags> -->
 
         <!-- Custom modal setup begin -->
@@ -79,18 +81,17 @@
       <videos-doclist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist">
     </videos-doclist>
 -->
+ 
+    
+<!---->
+    <videos-playlist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist"></videos-playlist>   
 
-
-     <videos-playlist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist">
-    </videos-playlist>
-
-    <main class="mdl-layout__content" LazyScroll (OnScrollMethod)="searchMore()" ScrollDistance="3">
+    <main class="mdl-layout__content" LazyScroll (OnScrollMethod)="searchMore()" ScrollDistance="3" width="44px">
       <div class="page-content" [ngClass]="{'blur-main-playlist-opened': playlistToggle}">
 
         <app-tags *ngIf="tagsToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-tags>
         <app-treetags *ngIf="tagsTreeViewToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-treetags>
-        <app-test *ngIf="tagsEditorViewToggle"   (valueChange)="displayTags($event)"></app-test>
-
+       
         <videos-list *ngIf="videoList.length" class="mdl-grid" (valueChange)="displayTags($event)" (videoPlaylist)="checkAddToPlaylist($event)" [videoList]="videoList" [loadingInProgress]="loadingInProgress">
         </videos-list>
         
@@ -99,6 +100,8 @@
         </div>
       </div>
     </main>
+
+    <videos-playlist22 [repeat]="repeat" [shuffle]="shuffle" [playlistToggle22]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist"></videos-playlist22>  
   </div>
   
   <video-player (closePlaylist)="closePlaylist()" (importPlaylist)="importPlaylist($event)" (exportPlaylist)="exportPlaylist()" (clearPlaylist)="clearPlaylist()" (playFirstInPlaylist)="playFirstInPlaylist()" (repeatActive)="repeatActive($event)" (shuffleActive)="shuffleActive($event)"

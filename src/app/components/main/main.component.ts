@@ -304,6 +304,10 @@ export class MainComponent implements AfterViewInit {
       this.tagsEditorViewToggle = !this.tagsEditorViewToggle;
       return;
     }
+    if (id === 'rEDIT_NEW') {
+      this.tagsEditorViewToggle = !this.tagsEditorViewToggle;
+      return;
+    }
 
     // Default shw tags
     this.tagsToggle = !this.tagsToggle;

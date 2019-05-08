@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { NgModule } from '@angular/core';
+import {Router} from '@angular/router';
 import { YoutubeApiService } from '../../shared/services/youtube-api.service';
 import { YoutubePlayerService } from '../../shared/services/youtube-player.service';
 import { PlaylistStoreService } from '../../shared/services/playlist-store.service';
@@ -59,6 +60,7 @@ export class MainComponent implements AfterViewInit {
   // message:string;
 
   constructor(private data: DataService,
+              private router: Router,
               //private modal: ModalService,
               public youtubeService: YoutubeApiService,
               private youtubePlayer: YoutubePlayerService,
@@ -302,6 +304,11 @@ export class MainComponent implements AfterViewInit {
     console.log(`showEditor(${id})`);
     if (id === 'EDIT_NEW') {
       this.tagsEditorViewToggle = !this.tagsEditorViewToggle;
+      return;
+    }
+    if (id === 'rTest') {
+      this.router.navigateByUrl('/test');
+      
       return;
     }
     if (id === 'rEDIT_NEW') {

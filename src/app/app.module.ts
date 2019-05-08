@@ -48,6 +48,7 @@ import { DomService } from './shared/services/dom.service';
 import { UserService } from './shared/services/UserService';
 
 import { BrowserNotificationService } from './shared/services/browser-notification.service';
+import { AppRoutingModule } from './app-routing.module';
 //import { MatDialog, MatDialogModule } from '@angular/material';
 
 var OAUTH2_CLIENT_ID = '838458623675-29k9sdcckggqc5p1b07uh7r4ap0rmec7.apps.googleusercontent.com';
@@ -116,7 +117,8 @@ let gapiClientConfig: NgGapiClientConfig = {
     ReactiveFormsModule,
     MatDialogModule,
     MatCardModule,
-    NgxChartsModule
+    NgxChartsModule,
+    AppRoutingModule
   ],
   providers: [HttpClientModule,
     ModalService,

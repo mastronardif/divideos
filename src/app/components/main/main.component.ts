@@ -300,6 +300,13 @@ export class MainComponent implements AfterViewInit {
 
   showEditor(id): void {
     console.log(`showEditor(${id})`);
+
+    if (id === 'M1') {
+      // pass this.videoList
+      this.router.navigateByUrl('/map1');
+      return;
+    }
+
     if (id === 'EDIT_NEW') {
       this.router.navigateByUrl('/newoutline');
       return;

@@ -3,7 +3,15 @@
     <ng-template #recursiveTree let-toc>
         <li class="wtf" *ngFor="let item of toc; let i = index">
             <div *ngIf="item.plid; else titleonly">
+                <!-- 
+                    this causes the route to get get called and messes up the app.
                     <a href="#" (click)="lpl(item.plid)" >{{item.title}}</a>
+                -->
+                <!-- 
+                    <a [routerLink] (click)="lpl(item.plid)" >{{item.title}}</a>
+                    <button (click)="lpl(item.plid)" >{{item.title}}</button>
+                -->
+                    <button (click)="lpl(item.plid)" >{{item.title}}</button>
             </div>
             <ng-template #titleonly>
                     {{item.title}}

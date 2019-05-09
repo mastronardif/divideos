@@ -7,8 +7,6 @@ import { SampleComponent } from "./components/sample/sample.component";
 import { VideoTagListComponent } from "./components/video-taglist/video-taglist.component";
 
 const routes: Routes = [
-  //{ path: 'newoutline', component: VideosdoclistComponent22 },
-  //{ path: 'newoutline', component: VideosdoclistComponent22 },
   { path: 'newoutline', component: VideosDoclist33Component },
   //{ path: 'taglist', component: VideoTagListComponent },
   { path: 'sample', component: SampleComponent },

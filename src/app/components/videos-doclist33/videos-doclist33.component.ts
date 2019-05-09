@@ -10,7 +10,6 @@ import { jaketoc } from '../../model/jake_toc';
   styleUrls: ['./videos-doclist33.component.css']
 })
 export class VideosDoclist33Component {
-  @Input() leftPaneToggle;
 
   //title = 'x';
   toc = jaketoc;
@@ -25,17 +24,16 @@ export class VideosDoclist33Component {
     // newlist = this.playlistSortbyService.getPlayListFor('Jake.Mastronardi', id);
     // console.log(newlist);
     // this.data.changeMessage(newlist);
-    console.log(`\n\n******333*******toc\n this.toc`);
+    // id = id || "PLaaxGO6E_rXcejHAW3Rg2u6EWLv6GjZ9K";
+    console.log(`\n\n******333******* id(${id}) toc`);
 
     // this.playlistSortbyService.getPlaylistFor('Jake.Mastronardi', id)
+    
     this. youtubeService.getPlaylistFor('Jake.Mastronardi', id)
       .subscribe(response => {
         response.subscribe(res => {
         const jsonRes = res;
         let res22 = jsonRes['items'];
-
-        // fix the videoID issue.
-        // i dont think you have to do this this.playlistSortbyService.fixPlaylist(res22);
 
         newlist = res22;
         this.data.changeMessage(newlist);

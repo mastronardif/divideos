@@ -1,9 +1,13 @@
-<div id="playlist22" class="playlist22" [ngClass]="{'opened': playlistToggle22}">
+<div id="playlist33" class="playlist22">
     <ul>
         <ng-template #recursiveTree let-toc>
             <li class="wtf" *ngFor="let item of toc; let i = index">
                 <div *ngIf="item.plid; else titleonly">
-                        <a href="#" (click)="lpl(item.plid)" >{{item.title}}</a>
+                      <!-- 
+                          <a [routerLink]
+                          <span (click)="lpl(item.plid)" >{{item.title}}</span>
+                      --> &nbsp; &nbsp;&nbsp;
+                        <a [routerLink] (click)="lpl(item.plid)" >{{item.title}}</a>
                 </div>
                 <ng-template #titleonly>
                         {{item.title}}

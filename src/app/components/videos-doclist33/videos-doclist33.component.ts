@@ -5,11 +5,11 @@ import { DataService } from '../../shared/services/data.service';
 import { jaketoc } from '../../model/jake_toc';
 
 @Component({
-  selector: 'videos-playlist22',
-  templateUrl: './videos-playlist.component22.html',
-  styleUrls: ['./videos-playlist.component22.css']
+  selector: 'videos-doclist33',
+  templateUrl: './videos-doclist33.component.html',
+  styleUrls: ['./videos-doclist33.component.css']
 })
-export class VideosPlaylistComponent22 {
+export class VideosDoclist33Component {
   @Input() leftPaneToggle;
 
   //title = 'x';
@@ -25,7 +25,7 @@ export class VideosPlaylistComponent22 {
     // newlist = this.playlistSortbyService.getPlayListFor('Jake.Mastronardi', id);
     // console.log(newlist);
     // this.data.changeMessage(newlist);
-    console.log(`\n\n*************toc\n this.toc`);
+    console.log(`\n\n******333*******toc\n this.toc`);
 
     // this.playlistSortbyService.getPlaylistFor('Jake.Mastronardi', id)
     this. youtubeService.getPlaylistFor('Jake.Mastronardi', id)

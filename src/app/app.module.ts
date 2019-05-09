@@ -18,7 +18,7 @@ import { TestComponent } from './components/test/test.component';
 import { MainComponent } from './components/main/main.component';
 import { VideosListComponent } from './components/videos-list/videos-list.component';
 import { VideosSearchComponent } from './components/videos-search/videos-search.component';
-import { VideosPlaylistComponent22 } from './components/videos-playlist22/videos-playlist.component22';
+import { VideosDoclist33Component } from './components/videos-doclist33/videos-doclist33.component';
 import { VideosPlaylistComponent } from './components/videos-playlist/videos-playlist.component';
 import { VideosdoclistComponent} from './components/videos-doclist/videos-doclist.component';
 import { VideosdoclistComponent22 } from './components/videos-doclist22/videos-doclist22.component';
@@ -84,11 +84,13 @@ let gapiClientConfig: NgGapiClientConfig = {
     LeftPaneComponent,
     VideosListComponent,
     VideosSearchComponent,
-    VideoPlayerComponent,
-    VideosPlaylistComponent22,
+    VideoPlayerComponent,    
     VideosPlaylistComponent,
+
     VideosdoclistComponent,
     VideosdoclistComponent22,
+    VideosDoclist33Component,
+    
     SampleComponent,
     DialogContentExampleDialog,
     VideosTagsComponent,

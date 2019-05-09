@@ -26,7 +26,7 @@ export class VideosdoclistComponent22 {
     // newlist = this.playlistSortbyService.getPlayListFor('Jake.Mastronardi', id);
     // console.log(newlist);
     // this.data.changeMessage(newlist);
-    console.log(`\n\n*************toc\n this.toc`);
+    console.log(`\n\n******222*******toc\n this.toc`);    
 
     // this.playlistSortbyService.getPlaylistFor('Jake.Mastronardi', id)
     this. youtubeService.getPlaylistFor('Jake.Mastronardi', id)

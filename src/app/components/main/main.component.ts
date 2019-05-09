@@ -12,8 +12,6 @@ import { UserService } from '../../shared/services/UserService';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { GoogleAuthService } from 'ng-gapi';
 import { GoogleApiService } from 'ng-gapi';
-// import { VideosdoclistComponent22 } from '../videos-doclist22/videos-doclist22.component';
-// import {SampleComponent} from '../sample/sample.component';
 import { Observable } from 'rxjs';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 
@@ -303,16 +301,12 @@ export class MainComponent implements AfterViewInit {
   showEditor(id): void {
     console.log(`showEditor(${id})`);
     if (id === 'EDIT_NEW') {
-      this.tagsEditorViewToggle = !this.tagsEditorViewToggle;
+      this.router.navigateByUrl('/newoutline');
       return;
     }
+
     if (id === 'rTest') {
       this.router.navigateByUrl('/test');
-      
-      return;
-    }
-    if (id === 'rEDIT_NEW') {
-      this.tagsEditorViewToggle = !this.tagsEditorViewToggle;
       return;
     }
 

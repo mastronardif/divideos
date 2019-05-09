@@ -1,126 +1,130 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <div class="mdl-layout-title">
-          <img src="assets/logo.png">
-        </div>
-        <nav class="mdl-navigation">
-          <videos-search (videosUpdated)="handleSearchVideo($event)" [loadingInProgress]="loadingInProgress">
-          </videos-search>
-                        
-<!-- new shit menu BEGIN -->
-<div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="demo-menu-lower-left">new shit</div>
-<button id="demo-menu-lower-left"
-        class="mdl-button mdl-js-button mdl-button--icon">
-  <i class="material-icons">more_vert</i>
-</button>
- 
-<a routerLink="/newoutline" style="color: black"> newoutline</a>&nbsp;
-<!--
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <div class="mdl-layout-title">
+        <img src="assets/logo.png">
+      </div>
+      <nav class="mdl-navigation">
+        <videos-search (videosUpdated)="handleSearchVideo($event)" [loadingInProgress]="loadingInProgress">
+        </videos-search>
+
+        <!-- new shit menu BEGIN -->
+        <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="demo-menu-lower-left">new shit</div>
+        <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
+          <i class="material-icons">more_vert</i>
+        </button>
+
+        <a routerLink="/newoutline" style="color: black"> newoutline</a>&nbsp;
+        <!--
 <a routerLink="/taglist" style="color: black"> Taglist</a>&nbsp;
 -->
-<a routerLink="/sample" style="color: black"> Sample</a>&nbsp;
-<a routerLink="/test" style="color: black"> Test</a>&nbsp;
+        <a routerLink="/sample" style="color: black"> Sample</a>&nbsp;
+        <a routerLink="/test" style="color: black"> Test</a>&nbsp;
 
-<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-    for="demo-menu-lower-left">
-  <li (click)="showTags('TREEVIEW')" class="mdl-menu__item">m1</li>
-  <li (click)="showEditor('EDIT_NEW')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">New outline</li>
-  <li><a style="color: green" routerLink="test" routerLinkActive="active">Test</a></li>
-  <li (click)="showEditor('rTest')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">rTest</li>  
-  <li (click)="showEditor('rEDIT_NEW')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">rNew outline</li>
-  <li disabled class="mdl-menu__item">tbd Action</li>
-  <li class="mdl-menu__item">Edit outline</li>
-</ul>
-<!-- new shit menu END -->                 
+        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
+          <li (click)="showTags('TREEVIEW')" class="mdl-menu__item">m1</li>
+          <li (click)="showEditor('EDIT_NEW')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">New outline </li>
+          <li><a style="color: green" routerLink="test" routerLinkActive="active">Test</a></li>
+          <li (click)="showEditor('rTest')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">rTest</li>                 
+          <li disabled class="mdl-menu__item">tbd Action</li>
+          <li class="mdl-menu__item">Edit outline(tbd)</li>
+        </ul>
+        <!-- new shit menu END -->
 
-    <button id="lpl_tip" (click)="lpl()">lpl</button>
-    <button id="lpl_outline" (click)="toggleLeftPane()">*Jake Outlin</button>
-    <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_tip">Load Play List</div>
-    
-    <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="showTags_tip">Show tags</div>
+        <button id="lpl_tip" (click)="lpl()">lpl</button>
+        <button id="lpl_outline" (click)="toggleLeftPane()">*Jake Outlin</button>
+        <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_tip">Load Play List</div>
 
-    <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_outline">Load Outline</div>
-      <div id="videocount_tip">({{videoList.length}})</div>
-      <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="videocount_tip">Number of videos</div>
+        <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="showTags_tip">Show tags</div>
 
-    <!-- <app-videos-tags text="Tag(s)" tip="sort by tags"  [videoList]="videoList"></app-videos-tags> -->
-    <button class="span-grad1" id="showTags_tip" (click)="showTags('default')">Tags2</button>
-    <button id="showTags_tip" (click)="showTags('TREEVIEW')">m1</button>
+        <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lpl_outline">Load Outline</div>
+        <div id="videocount_tip">({{videoList.length}})</div>
+        <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="videocount_tip">Number of videos</div>
 
-        <div  *ngIf= "!isLoggedIn">
-          <button id="signin_tip"  (click)="signIn()">sign in</button>
+        <!-- <app-videos-tags text="Tag(s)" tip="sort by tags"  [videoList]="videoList"></app-videos-tags> -->
+        <button class="span-grad1" id="showTags_tip" (click)="showTags('default')">Tags2</button>
+        <button id="showTags_tip" (click)="showTags('TREEVIEW')">m1</button>
+
+        <div *ngIf="!isLoggedIn">
+          <button id="signin_tip" (click)="signIn()">sign in</button>
           <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="signin_tip">Sign In to youtube</div>
         </div>
-       
+
         <div *ngIf="isLoggedIn"> {{user}}
           <button id="signout_tip" (click)="signOut()">sign out</button>
           <button id="lmypl_tip" (click)="lmypl()">mypl</button>
           <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="lmypl_tip"> Load My Play List </div>
-      </div>
-      <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="signout_tip"> Sign Out of youtube</div>
-
-
-
-<!--       <button (click)="sort()">sort</button>      
-      <button (click)="decorate()">decorate</button> -->
-        </nav>
-
-        
-
-        <div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button toggle-playlist-icon" (click)="togglePlaylist()">
-          <i class="material-icons"></i>
         </div>
+        <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="signout_tip"> Sign Out of youtube</div>
+
+
+
+        <!--       <button (click)="sort()">sort</button>      
+      <button (click)="decorate()">decorate</button> -->
+      </nav>
+
+
+
+      <div aria-expanded="false" role="button" tabindex="0" class="mdl-layout__drawer-button toggle-playlist-icon"
+        (click)="togglePlaylist()">
+        <i class="material-icons"></i>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <videos-doclist22 *ngIf="leftPaneToggle"  [leftPaneToggle]="leftPaneToggle"></videos-doclist22>
-    <video-taglist    *ngIf="leftPaneSHowTagsForVideo" (valueChange)="displayTags($event)"  [videoList] ="videoList" [selectedVideo]="selectedVideo" [leftPaneSHowTagsForVideo]="leftPaneSHowTagsForVideo"></video-taglist>
-    <app-test *ngIf="tagsEditorViewToggle"></app-test>
+  <videos-doclist22 *ngIf="leftPaneToggle" [leftPaneToggle]="leftPaneToggle"></videos-doclist22>
+  <video-taglist *ngIf="leftPaneSHowTagsForVideo" (valueChange)="displayTags($event)" [videoList]="videoList"
+    [selectedVideo]="selectedVideo" [leftPaneSHowTagsForVideo]="leftPaneSHowTagsForVideo"></video-taglist>
+  <app-test *ngIf="tagsEditorViewToggle"></app-test>
 
-    <!-- <app-treetags    *ngIf="tagsTreeViewToggle" [videoList] ="videoList" [selectedVideo]="selectedVideo"></app-treetags> -->
+  <!-- <app-treetags    *ngIf="tagsTreeViewToggle" [videoList] ="videoList" [selectedVideo]="selectedVideo"></app-treetags> -->
 
-        <!-- Custom modal setup begin -->
-        <div id="modal-container" class="hidden"></div>
-       
-        <!-- <div id="overlay" (click)="removeModal()" class="hidden"></div> -->
-        <!-- Custom modal setup end -->
-<!--
+  <!-- Custom modal setup begin -->
+  <div id="modal-container" class="hidden"></div>
+
+  <!-- <div id="overlay" (click)="removeModal()" class="hidden"></div> -->
+  <!-- Custom modal setup end -->
+  <!--
        <div id="overlay" (click)="removeModal()" class="hidden"></div>
       <videos-doclist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist">
     </videos-doclist>
 -->
- 
-    
-<!---->
-    <videos-playlist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist"></videos-playlist>   
 
-    <main class="mdl-layout__content" LazyScroll (OnScrollMethod)="searchMore()" ScrollDistance="3" width="44px">
-      <div class="page-content" [ngClass]="{'blur-main-playlist-opened': playlistToggle}">
 
-        <app-tags *ngIf="tagsToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-tags>
-        <app-treetags *ngIf="tagsTreeViewToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-treetags>
-       
-        <videos-list *ngIf="videoList.length" class="mdl-grid" (valueChange)="displayTags($event)" (videoPlaylist)="checkAddToPlaylist($event)" [videoList]="videoList" [loadingInProgress]="loadingInProgress">
-        </videos-list>
-        
-        <div class="loader" *ngIf="!videoList.length">
-          <div class="loading"></div>
-        </div>
+  <!---->
+  <videos-playlist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle"
+    [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist"></videos-playlist>
+
+  <main class="mdl-layout__content" LazyScroll (OnScrollMethod)="searchMore()" ScrollDistance="3" width="44px">
+    <div class="page-content" [ngClass]="{'blur-main-playlist-opened': playlistToggle}">
+
+      <app-tags *ngIf="tagsToggle" [videoList]="videoList" [selectedVideo]="selectedVideo"
+        (valueChange)="displayTags($event)"></app-tags>
+      <app-treetags *ngIf="tagsTreeViewToggle" [videoList]="videoList" [selectedVideo]="selectedVideo"
+        (valueChange)="displayTags($event)"></app-treetags>
+
+      <videos-list *ngIf="videoList.length" class="mdl-grid" (valueChange)="displayTags($event)"
+        (videoPlaylist)="checkAddToPlaylist($event)" [videoList]="videoList" [loadingInProgress]="loadingInProgress">
+      </videos-list>
+
+      <div class="loader" *ngIf="!videoList.length">
+        <div class="loading"></div>
       </div>
-    </main>
- 
-    <left-pane>    router-outlet   </left-pane>
-    
-  </div>
-  
-  <video-player (closePlaylist)="closePlaylist()" (importPlaylist)="importPlaylist($event)" (exportPlaylist)="exportPlaylist()" (clearPlaylist)="clearPlaylist()" (playFirstInPlaylist)="playFirstInPlaylist()" (repeatActive)="repeatActive($event)" (shuffleActive)="shuffleActive($event)"
-    (nextVideoEvent)="nextVideo()" (prevVideoEvent)="prevVideo()">
-  </video-player>
-  
-  <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
-    <div class="mdl-snackbar__text"></div>
-    <button class="mdl-snackbar__action" type="button"></button>
-  </div>
-  
+    </div>
+  </main>
+
+  <left-pane> router-outlet </left-pane>
+
+</div>
+
+<video-player (closePlaylist)="closePlaylist()" (importPlaylist)="importPlaylist($event)"
+  (exportPlaylist)="exportPlaylist()" (clearPlaylist)="clearPlaylist()" (playFirstInPlaylist)="playFirstInPlaylist()"
+  (repeatActive)="repeatActive($event)" (shuffleActive)="shuffleActive($event)" (nextVideoEvent)="nextVideo()"
+  (prevVideoEvent)="prevVideo()">
+</video-player>
+
+<div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+  <div class="mdl-snackbar__text"></div>
+  <button class="mdl-snackbar__action" type="button"></button>
+</div>

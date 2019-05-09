@@ -16,11 +16,12 @@
   <i class="material-icons">more_vert</i>
 </button>
  
-<a routerLink="/newoutline" style="color: black"> newoutline</a>
-<a routerLink="/taglist" style="color: black"> Taglist</a>
-
-<a routerLink="/sample" style="color: black"> Sample</a>
-<a routerLink="/test" style="color: black"> Test</a>
+<a routerLink="/newoutline" style="color: black"> newoutline</a>&nbsp;
+<!--
+<a routerLink="/taglist" style="color: black"> Taglist</a>&nbsp;
+-->
+<a routerLink="/sample" style="color: black"> Sample</a>&nbsp;
+<a routerLink="/test" style="color: black"> Test</a>&nbsp;
 
 <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
     for="demo-menu-lower-left">
@@ -97,7 +98,7 @@
 
     <main class="mdl-layout__content" LazyScroll (OnScrollMethod)="searchMore()" ScrollDistance="3" width="44px">
       <div class="page-content" [ngClass]="{'blur-main-playlist-opened': playlistToggle}">
-        <router-outlet></router-outlet>
+
         <app-tags *ngIf="tagsToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-tags>
         <app-treetags *ngIf="tagsTreeViewToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-treetags>
        
@@ -110,7 +111,8 @@
       </div>
     </main>
  
-    <videos-playlist22></videos-playlist22>  
+    <left-pane>    router-outlet   </left-pane>
+    
   </div>
   
   <video-player (closePlaylist)="closePlaylist()" (importPlaylist)="importPlaylist($event)" (exportPlaylist)="exportPlaylist()" (clearPlaylist)="clearPlaylist()" (playFirstInPlaylist)="playFirstInPlaylist()" (repeatActive)="repeatActive($event)" (shuffleActive)="shuffleActive($event)"

@@ -23,6 +23,7 @@ export class TreeTagsComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(`TreeTagsComponent:ngOnInit(), this= ${this} `);
     this.single = makeTreeData(this.videoList);
   }
 
@@ -35,7 +36,7 @@ export class TreeTagsComponent implements OnInit {
 }
 function makeTreeData(videos) {
   let list: any[] = [];
-  let allTags = videos.map(function(obj: any) { return obj.snippet.tags ? obj.snippet.tags : []; });
+  let allTags = videos ? videos.map(function(obj: any) { return obj.snippet.tags ? obj.snippet.tags : []; } ) :  [] ;
   
   let dictionary = {};
   allTags = allTags ? allTags : [];

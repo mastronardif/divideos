@@ -315,9 +315,9 @@ export class MainComponent implements AfterViewInit {
       return;
     }
 
-    if (id === 'rTest') {
+    if (id === 'AllTags') {
       //this.router.navigateByUrl('/test');
-      this.router.navigateByUrl('/test', { state: { hello: 'world' } });
+      this.router.navigateByUrl('/alltags', { state: { hello: 'AllTags' } });
       return;
     }
     if (id === 'rTest2') {

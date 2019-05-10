@@ -16,7 +16,7 @@ export class VideoTagListComponent {
   @Output() valueChange = new EventEmitter();
   form: FormGroup;
 
-  tags = [{id: 100, name: 'order 1' }];
+  tags = [{ id: 100, name: 'order 1' }];
 
   constructor(private data: DataService, private formBuilder: FormBuilder) {
   }
@@ -31,29 +31,31 @@ export class VideoTagListComponent {
   }
 
   ngOnInit() {
+    console.log(`VideoTagListComponent:  BBBBBBBBBBBBBBBBBBBBBBBBBBBBB`);
     const selectedTags = (this.selectedVideo && this.selectedVideo.snippet && this.selectedVideo.snippet.tags)
-                       ? this.selectedVideo.snippet.tags.map(x => x) : [{}];
+      ? this.selectedVideo.snippet.tags.map(x => x) : [{}];
 
-    let allTags = this.videoList.map(function(obj: any) { return obj.snippet.tags ? obj.snippet.tags : []; });
+    // let allTags = this.videoList.map(function(obj: any) { return obj.snippet.tags ? obj.snippet.tags : []; });
+    let allTags = this.videoList ? this.videoList.map(function (obj: any) { return obj.snippet.tags ? obj.snippet.tags : []; }) : [{}];
 
     let dictionary = {};
     allTags = allTags ? allTags : [];
 
-    for ( let ii = 0; ii < allTags.length; ii++ ) {
+    for (let ii = 0; ii < allTags.length; ii++) {
       for (let k = 0; k < allTags[ii].length; k++) {
         const fldName: string = allTags[ii][k];
-      //  console.log(`fldName = ${fldName}`);
-        if (typeof((<any>dictionary)[fldName]) === 'undefined') {
+        //  console.log(`fldName = ${fldName}`);
+        if (typeof ((<any>dictionary)[fldName]) === 'undefined') {
           (<any>dictionary)[fldName] = 1;
         } else {
-          (<any>dictionary)[fldName] =  (<any>dictionary)[fldName] + 1;
+          (<any>dictionary)[fldName] = (<any>dictionary)[fldName] + 1;
         }
       }
-     }
+    }
 
-    const list = Object.keys(dictionary).map(function(key) { return {name: key, id: dictionary[key]}; });
+    const list = Object.keys(dictionary).map(function (key) { return { name: key, id: dictionary[key] }; });
     const list22 = list.sort(this.compare);
-    const maxTags  = 112;
+    const maxTags = 112;
     this.tags = list22.slice(0, maxTags);
 
     const controls = this.tags.map(c => new FormControl(false));
@@ -88,7 +90,7 @@ export class VideoTagListComponent {
   }
 
   cancel() {
-    this.valueChange.emit({id: 'leftsidelist'});
+    this.valueChange.emit({ id: 'leftsidelist' });
   }
 }
 
@@ -148,9 +150,9 @@ function filterItems(arr, query) {
 }
 
 function dynamicSort22(tags, order = 'asc') {
-  return function(a, b) {
+  return function (a, b) {
     const ba = a.snippet.tags ? tags.filter(element => a.snippet.tags.includes(element)) : false;
-    return  ba;
+    return ba;
   }
 }
 
@@ -161,7 +163,7 @@ function dynamicSort(property) {
     const bb = b.snippet.tags ? b.snippet.tags.includes(property) : false;
     console.log(`ba= ${ba}`);
     console.log(`(ba && bb)= ${(ba && bb)}`);
-    return (ba);  
+    return (ba);
     //return (ba ? ba.length : false);      
   }
 }

@@ -11,7 +11,7 @@ export class TreeTagsComponent implements OnInit {
   @Input() selectedVideo;
   @Output() valueChange = new EventEmitter();
 
-  view: any[] = [700, 400];
+  view: any[] = undefined; //Fits the container. //[700, 400];
   single: any[] = [];
 
   colorScheme = {

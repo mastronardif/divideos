@@ -18,17 +18,17 @@
         <a routerLink="/newoutline" style="color: black"> newoutline</a>&nbsp;
         <!--
 <a routerLink="/taglist" style="color: black"> Taglist</a>&nbsp;
+<li (click)="showTags('TREEVIEW')" class="mdl-menu__item">Tree</li>          
+<li (click)="showEditor('Map1')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">Map 1 </li>
 -->
         <a routerLink="/sample" style="color: black"> Sample</a>&nbsp;
         <a routerLink="/test" style="color: black"> Test</a>&nbsp;
 
-        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
-          <li (click)="showTags('TREEVIEW')" class="mdl-menu__item">m1</li>
-          <li (click)="showEditor('M1')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">Map 1 </li>
-
+        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">                    
           <li (click)="showEditor('EDIT_NEW')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">New outline </li>
-          <li><a style="color: green" routerLink="test" routerLinkActive="active">Test</a></li>
-          <li (click)="showEditor('rTest')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">rTest</li>                 
+
+          <li (click)="showEditor('rTest2')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">rTest2</li>
+          <li (click)="showEditor('rTest')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">rTest</li>
           <li disabled class="mdl-menu__item">tbd Action</li>
           <li class="mdl-menu__item">Edit outline(tbd)</li>
         </ul>

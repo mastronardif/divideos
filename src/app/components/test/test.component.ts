@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-test',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
+  state$: Observable<object>;
 
-  constructor() { }
+  constructor(public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.state$ = this.activatedRoute.paramMap
+      .pipe(map(() => window.history.state))
   }
 
 }

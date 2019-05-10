@@ -301,9 +301,12 @@ export class MainComponent implements AfterViewInit {
   showEditor(id): void {
     console.log(`showEditor(${id})`);
 
-    if (id === 'M1') {
+    if (id === 'Map1') {
       // pass this.videoList
-      this.router.navigateByUrl('/map1');
+      //this.router.navigateByUrl('/map1');      
+      //this.router.navigateByUrl('/map1', { state: { hello: 'world' } });
+      //this.router.navigateByUrl('/map1', { state: { hello: this.videoList } });
+      this.router.navigateByUrl('/map1', { state: { hello: this.videoList } });
       return;
     }
 
@@ -313,7 +316,13 @@ export class MainComponent implements AfterViewInit {
     }
 
     if (id === 'rTest') {
-      this.router.navigateByUrl('/test');
+      //this.router.navigateByUrl('/test');
+      this.router.navigateByUrl('/test', { state: { hello: 'world' } });
+      return;
+    }
+    if (id === 'rTest2') {
+      //this.router.navigateByUrl('/test');
+      this.router.navigateByUrl('/test', { state: { hello: this.videoList } });
       return;
     }
 

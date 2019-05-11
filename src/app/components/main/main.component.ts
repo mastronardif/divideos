@@ -29,7 +29,7 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 })
 
 export class MainComponent implements AfterViewInit {
-  public videoList = [];
+  public videoList: any[] | {}[] = [];
   public selectedVideo = {};
   public videoPlaylist = [];
   public loadingInProgress = false;
@@ -135,6 +135,11 @@ export class MainComponent implements AfterViewInit {
 
   handleSearchVideo(videos: Array<any>): void {
     this.videoList = videos;
+
+    // fm 5/11/19 begin
+    console.log(`fm 5/11/19  handleSearchVideo ${videos.length}`);
+    this.data.changeMessage(this.videoList);
+    // fm 5/11/19 end
   }
 
   checkAddToPlaylist(video: any): void {
@@ -301,6 +306,14 @@ export class MainComponent implements AfterViewInit {
   showEditor(id): void {
     console.log(`showEditor(${id})`);
 
+    if (id === 'TestRx') {
+      // pass this.videoList
+      //this.router.navigateByUrl('/map1');      
+      //this.router.navigateByUrl('/map1', { state: { hello: 'world' } });
+      //this.router.navigateByUrl('/map1', { state: { hello: this.videoList } });
+      this.router.navigateByUrl('/testrx');
+      return;
+    }
     if (id === 'Map1') {
       // pass this.videoList
       //this.router.navigateByUrl('/map1');      
@@ -364,9 +377,13 @@ export class MainComponent implements AfterViewInit {
   }
 
   lpl(): void { 
-    console.log(`this.tagsToggle= ${this.tagsToggle}`);
+    console.log(`lpl(): void this.tagsToggle= ${this.tagsToggle}`);
     if (this.videoPlaylist.length > 0) {
       this.videoList = this.videoPlaylist;
+
+    // fm 5/11/19 begin
+    this.data.changeMessage(this.videoList);
+    // fm 5/11/19 end
     }
   }
 

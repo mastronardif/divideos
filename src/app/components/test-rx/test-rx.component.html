@@ -1,0 +1,23 @@
+<div class="test">   
+  <p>
+  Test RX !<br/>
+
+  {{message.length}}
+<br/>
+  <button (click)="newMessage()">New Message</button>
+  How bout with data passed?
+  </p>
+
+  <br/>
+   
+  <div *ngFor="let item of message | keyvalue">
+      <b>{{item.value.id}}</b><br/>
+  </div>
+  <hr style="color: red">
+
+  <p>
+  <b>{{ message | json }}</b>
+  </p>
+
+ 
+</div>

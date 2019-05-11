@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material';
 
 import { LeftPaneComponent } from './components/left-pane/left-pane.component';
 import { TestComponent } from './components/test/test.component';
+import { TestRxComponent } from './components/test-rx/test-rx.component';
 import { MainComponent } from './components/main/main.component';
 import { VideosListComponent } from './components/videos-list/videos-list.component';
 import { VideosSearchComponent } from './components/videos-search/videos-search.component';
@@ -81,6 +82,7 @@ let gapiClientConfig: NgGapiClientConfig = {
     MainComponent,
 
     TestComponent,
+    TestRxComponent,
     LeftPaneComponent,
     VideosListComponent,
     VideosSearchComponent,

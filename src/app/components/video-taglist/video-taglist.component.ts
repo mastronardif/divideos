@@ -1,7 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
-import { DataService } from '../../shared/services/data.service';
-//import { YoutubeApiService  } from '../../shared/services/youtube-api.service';
 
 @Component({
   selector: 'video-taglist',
@@ -18,7 +16,7 @@ export class VideoTagListComponent {
 
   tags = [{ id: 100, name: 'order 1' }];
 
-  constructor(private data: DataService, private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder) {
   }
 
   compare(b, a) {

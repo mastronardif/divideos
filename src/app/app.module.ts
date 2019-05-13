@@ -8,12 +8,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import {GoogleApiModule, GoogleApiService, GoogleAuthService, 
   NgGapiClientConfig, NG_GAPI_CONFIG, GoogleApiConfig} from 'ng-gapi';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 // Components
 import { AppComponent } from './app.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material';
 
 import { LeftPaneComponent } from './components/left-pane/left-pane.component';
+import { EditorComponent } from './components/editor/editor.component';
 import { TestComponent } from './components/test/test.component';
 import { TestRxComponent } from './components/test-rx/test-rx.component';
 import { MainComponent } from './components/main/main.component';
@@ -82,6 +84,7 @@ let gapiClientConfig: NgGapiClientConfig = {
     MainComponent,
 
     TestComponent,
+    EditorComponent,
     TestRxComponent,
     LeftPaneComponent,
     VideosListComponent,
@@ -124,6 +127,7 @@ let gapiClientConfig: NgGapiClientConfig = {
     MatDialogModule,
     MatCardModule,
     NgxChartsModule,
+    CKEditorModule,
     AppRoutingModule
   ],
   providers: [HttpClientModule,

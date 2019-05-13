@@ -39,13 +39,14 @@ export class MainComponent implements AfterViewInit {
   public leftPaneSHowTagsForVideo = false;
 
 //  public bSHowTagsForVideo = false;
-  private defaultSearch = 'Autism';
+  public defaultSearch = 'Autism';
   public doclistToggle = false;
   public playlistNames = false;
   public repeat = false;
   public shuffle = false;
   public playlistElement: any;
   private pageLoadingFinished = false;
+  public editorToggle = false;
   public tagsToggle = false;
   public tagsTreeViewToggle = false;
   public tagsEditorViewToggle = false;
@@ -323,8 +324,8 @@ export class MainComponent implements AfterViewInit {
 
     if (id === 'EDIT_NEW') {
       //this.router.navigateByUrl('/newoutline');
-      console.log(`if (id === 'EDIT_NEW') {`);
-      alert("if (id === 'EDIT_NEW') {");
+      console.log(`if (id === 'EDIT_NEW') {`);      
+      this.editorToggle = !this.editorToggle;
       return;
     }
 

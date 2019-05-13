@@ -103,6 +103,8 @@
 
   <main class="mdl-layout__content" LazyScroll (OnScrollMethod)="searchMore()" ScrollDistance="3" width="44px">
     <div class="page-content" [ngClass]="{'blur-main-playlist-opened': playlistToggle}">
+      
+      <app-editor *ngIf="editorToggle"></app-editor>
 
       <app-tags *ngIf="tagsToggle" [videoList]="videoList" [selectedVideo]="selectedVideo"
         (valueChange)="displayTags($event)"></app-tags>

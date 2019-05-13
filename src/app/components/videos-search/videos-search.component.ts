@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { YoutubeApiService } from '../../shared/services/youtube-api.service';
 import { YoutubePlayerService } from '../../shared/services/youtube-player.service';
@@ -9,9 +9,11 @@ import { NotificationService } from '../../shared/services/notification.service'
   templateUrl: './videos-search.component.html',
   styleUrls: ['./videos-search.component.css']
 })
-export class VideosSearchComponent {
+
+export class VideosSearchComponent implements OnInit {
   @Output() videosUpdated = new EventEmitter();
   @Input() loadingInProgress;
+  @Input() defquery: string;
 
   private last_search: string;
 
@@ -28,6 +30,10 @@ export class VideosSearchComponent {
     //   .then(data => {
     //     this.videosUpdated.emit(data);
     //   })
+  }
+
+  ngOnInit(): void {
+    this.searchForm.setValue({  query: this.defquery });
   }
 
   doSearch(event): void {

@@ -29,15 +29,17 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 })
 
 export class MainComponent implements AfterViewInit {
-  public videoList: any[] | {}[] = [];
+  public videoList:     any[] = []; // | {}[] = [];
+  public videoPlaylist: any[] = [];
+
   public selectedVideo = {};
-  public videoPlaylist = [];
   public loadingInProgress = false;
   public playlistToggle = false;
   public leftPaneToggle = false;
   public leftPaneSHowTagsForVideo = false;
 
 //  public bSHowTagsForVideo = false;
+  private defaultSearch = 'Autism';
   public doclistToggle = false;
   public playlistNames = false;
   public repeat = false;
@@ -117,7 +119,7 @@ export class MainComponent implements AfterViewInit {
     this.playlistElement = document.getElementById('playlist');
     //this.videos$ = this.youtubeService.searchVideos('The Doors'); 
     // this.youtubeService.searchVideos22('The Doors')
-    this.youtubeService.searchVideos22('Cows')
+    this.youtubeService.searchVideos22(this.defaultSearch)
       .subscribe(response => {
         response.subscribe(res => {
           this.videos = res;
@@ -143,7 +145,7 @@ export class MainComponent implements AfterViewInit {
   }
 
   checkAddToPlaylist(video: any): void {
-    if (!this.videoPlaylist.some((e) => e.id === video.id)) {
+    if (!this.videoPlaylist.some((e: any) => e.id === video.id))  {
       this.videoPlaylist.push(video);
       this.playlistService.addToPlaylist(video);
 
@@ -343,7 +345,7 @@ export class MainComponent implements AfterViewInit {
     this.tagsToggle = !this.tagsToggle;
   }
 
-  showTags(id): void {
+  showTags(id: string): void {
     console.log(`showTags(${id})`);
     if (id === 'TREEVIEW') {
       this.tagsTreeViewToggle = !this.tagsTreeViewToggle;
@@ -355,7 +357,7 @@ export class MainComponent implements AfterViewInit {
   }
 
   //displayTags(video) {
-    displayTags(eee) { 
+    displayTags(eee) {
     console.log('an event emited, displayTags video= ', eee);
     this.selectedVideo = eee.video;
     if (eee.id === 'popup') {

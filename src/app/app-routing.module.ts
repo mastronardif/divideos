@@ -11,6 +11,7 @@ import { VideoTagListComponent } from "./components/video-taglist/video-taglist.
 
 const routes: Routes = [
   { path: 'newoutline', component: VideosDoclist33Component },
+  { path: 'aldooutline', component: VideosDoclist33Component },  
   { path: 'alltags', component: VideoTagListComponent },
   { path: 'map1', component: TreeTagsComponent },
   { path: 'sample', component: SampleComponent },

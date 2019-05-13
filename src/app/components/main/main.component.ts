@@ -309,10 +309,6 @@ export class MainComponent implements AfterViewInit {
     console.log(`showEditor(${id})`);
 
     if (id === 'TestRx') {
-      // pass this.videoList
-      //this.router.navigateByUrl('/map1');      
-      //this.router.navigateByUrl('/map1', { state: { hello: 'world' } });
-      //this.router.navigateByUrl('/map1', { state: { hello: this.videoList } });
       this.router.navigateByUrl('/testrx');
       return;
     }
@@ -326,7 +322,14 @@ export class MainComponent implements AfterViewInit {
     }
 
     if (id === 'EDIT_NEW') {
-      this.router.navigateByUrl('/newoutline');
+      //this.router.navigateByUrl('/newoutline');
+      console.log(`if (id === 'EDIT_NEW') {`);
+      alert("if (id === 'EDIT_NEW') {");
+      return;
+    }
+
+    if (id === 'EDIT_ALDO') {
+      this.router.navigateByUrl('/aldooutline');
       return;
     }
 

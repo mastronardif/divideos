@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { NotificationService } from '../../shared/services/notification.service';
+import { PlaylistStoreService } from '../../shared/services/playlist-store.service';
 
 @Component({
   selector: 'app-editor',
@@ -8,16 +10,19 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 })
 
 export class EditorComponent implements OnInit {
-  
+  @Output() importPlaylist2 = new EventEmitter();
+    
   public Editor = ClassicEditor;
   public thedoc: string;
+  public videoPlaylist: any[] = [];
+
 // [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic' ] }"
 // data="{{thedoc}}" 
 public model = {
   editorData: '<p>Hello, world!</p>'
 };
 
-  constructor() { 
+  constructor(private playlistService: PlaylistStoreService, private notificationService: NotificationService) { 
     this.model.editorData = this.dummy;
   }
 
@@ -30,12 +35,78 @@ public model = {
 
   ngOnInit () {
     this.thedoc = this.dummy; //'"Now is the <b>time for all </b> men to come to the aide of there country.';
-
   }
 
-  saveDocument () {
-    console.log(`saveDocument () ${this.model.editorData}`);
+   openDocument(playlist: any): void {
+    this.videoPlaylist = playlist;
+    this.playlistService.importPlaylist(this.videoPlaylist);
+  }
 
+
+  saveDocument () {
+    this.notificationService.showNotification('saveDocument () {');
+    console.log(`saveDocument () ${this.model.editorData}`);
+    this.exportDocument();
+  }
+
+  public importPlaylist(videos: any): void {
+    let playlist: any = {};
+    this.playlistService.importPlaylist(playlist);
+    //let store = this.parse();
+    //store.playlists = videos;
+    //localStorage.setItem('this.ngxYTPlayer', JSON.stringify(store));
+  }
+
+  handleInputChange(e: any): void {
+    let file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+
+    if (file.name.split('.').pop() !== 'json') {
+      this.notificationService.showNotification('File not supported.');
+      return;
+    }
+
+    let reader = new FileReader();
+    let me = this;
+
+    reader.readAsText(file);
+    reader.onload = function (ev) {
+      let list;
+      try {
+        console.log('ev= ', ev.target);
+        //list = JSON.parse(ev.target['result']);
+        list = ev.target['result'];        
+      } catch (exc) {
+        list = null;
+      }
+      if (!list || list.length < 1) {
+        me.notificationService.showNotification('Playlist not valid.');
+        return;
+      }
+
+      //
+      console.log('\n\t**** * * * * ******** handleInputChange()');
+      console.log('list= ', list);
+
+      console.log('\n\t**** * * * * ******** handleInputChange()');
+      //
+      me.importPlaylist2.emit(list);
+      me.notificationService.showNotification('Playlist imported.');
+    }
+  }
+
+  exportDocument(): void {
+    if (this.model.editorData.length < 1) {
+      this.notificationService.showNotification('Nothing(Empty Document) to export.');
+      //alert(`this.notificationService.showNotification('Nothing to export.');`);
+      return;
+    }
+    let data = this.model.editorData; //JSON.stringify(this.model.editorData);
+    let a = document.createElement('a');
+    let file = new Blob([data], { type: 'text/json' });
+    a.href = URL.createObjectURL(file);
+    a.download = 'myoutline.json';
+    a.click();
+    this.notificationService.showNotification('Playlist exported.');
   }
 
   private dummy: string = `

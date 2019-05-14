@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { CKEditor5, CKEditorComponent } from '@ckeditor/ckeditor5-angular';
-//import * as from '@ckeditor/ckeditor5-utils';
 
 @Component({
   selector: 'app-editor',
@@ -13,15 +11,21 @@ export class EditorComponent implements OnInit {
   
   public Editor = ClassicEditor;
   public thedoc: string;
+// [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic' ] }"
+// data="{{thedoc}}" 
+public model = {
+  editorData: '<p>Hello, world!</p>'
+};
 
-
-  constructor() { }
+  constructor() { 
+    this.model.editorData = this.dummy;
+  }
 
   // public onChange( event: any ) { // npm install --save @types/ckeditor
   //public onChange( event: CKEditor5.EventInfo ) {
   //public onChange( event: CKEditor5.EventInfo<CKEditorComponent> ) {    
   public onChange( event: any ) {     
-      console.log( `ZZZZZZZZZZZZZZZ= ${event.editor.getData()}` );
+      ;//console.log( `ZZZZZZZZZZZZZZZ= ${event.editor.getData()}` );
   }
 
   ngOnInit () {
@@ -29,29 +33,43 @@ export class EditorComponent implements OnInit {
 
   }
 
+  saveDocument () {
+    console.log(`saveDocument () ${this.model.editorData}`);
+
+  }
+
   private dummy: string = `
-  <p>
-    "Now is the <strong>time f</strong>or all me<i>n to come </i>to the aide of there<strong>
- </strong>ddd<strong>ddddd</strong> ccccccountry.<strong>ddddd</strong></p>
-<p>asdfas</p>
-<h2>fasfadfasfdasf</h2>
-<figure class="table">
-    <table>
-        <tbody>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-        </tbody>
-    </table>
+  <figure class="table">
+  <table>
+      <tbody>
+          <tr>
+              <td>adsf</td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr>
+              <td>&nbsp;</td>
+              <td>asdf</td>
+          </tr>
+      </tbody>
+  </table>
 </figure>
-<p><strong>asdf</strong></p>
-<p>asdf</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<p>bucket II</p>
+<figure class="table">
+  <table>
+      <tbody>
+          <tr>
+              <td>asdf</td>
+              <td>f</td>
+              <td>
+                  <figure class="image"><img src="https://i.ytimg.com/vi/3kh6K_-a0c4/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&amp;rs=AOn4CLBQ31busH6BTfDNI1Z6nkTe21jzIw" alt=""></figure>
+                  <p>f</p>
+                  <figure class="image"><img src="https://i.ytimg.com/vi/hUvcWXTIjcU/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&amp;rs=AOn4CLBRqnyz9x7_EBJcmGyA2GKDmhAhCQ" alt=""></figure>
+              </td>
+              <td>f</td>
+              <td>f</td>
+          </tr>
+      </tbody>
+  </table>
+</figure>
   `;
 }

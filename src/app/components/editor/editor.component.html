@@ -1,9 +1,17 @@
 <div class="editor">   
   <p>
   editor works!
-  How bout with data passed?
+  Add Save, Load
 </p>
+<button id="save" (click)="saveDocument()">SAVE</button>
+  
+<ckeditor [editor]="Editor" 
+[(ngModel)]="model.editorData"
 
-<ckeditor [editor]="Editor" data="{{thedoc}}" (change)="onChange($event)"></ckeditor>
+
+(change)="onChange($event)"></ckeditor>
 
 </div>
+
+
+

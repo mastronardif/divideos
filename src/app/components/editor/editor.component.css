@@ -3,8 +3,8 @@
   z-index: 1999;
  
 }
-/*
+
 :host ::ng-deep .ck-editor__editable {
-  min-height: 500px;
+  max-width: 200px;
+  min-height: 200px;
 }
-*/

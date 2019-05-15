@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { NotificationService } from '../../shared/services/notification.service';
 import { PlaylistStoreService } from '../../shared/services/playlist-store.service';
+import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 
 @Component({
   selector: 'app-editor',
@@ -23,7 +24,7 @@ public model = {
 };
 
   constructor(private playlistService: PlaylistStoreService, private notificationService: NotificationService) { 
-    this.model.editorData = this.dummy;
+    this.model.editorData = 'this.dummy';
   }
 
   // public onChange( event: any ) { // npm install --save @types/ckeditor
@@ -35,12 +36,13 @@ public model = {
 
   ngOnInit () {
     this.thedoc = this.dummy; //'"Now is the <b>time for all </b> men to come to the aide of there country.';
+    //this.Editor.ui.view.editable.editableElement.style.height = '300px';
   }
 
-   openDocument(playlist: any): void {
-    this.videoPlaylist = playlist;
-    this.playlistService.importPlaylist(this.videoPlaylist);
-  }
+  // openDocument(playlist: any): void {
+  //   this.videoPlaylist = playlist;
+  //   this.playlistService.importPlaylist(this.videoPlaylist);
+  // }
 
 
   saveDocument () {

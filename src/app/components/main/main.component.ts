@@ -364,7 +364,9 @@ export class MainComponent implements AfterViewInit {
     displayTags(eee) {
     console.log('an event emited, displayTags video= ', eee);
     this.selectedVideo = eee.video;
-    if (eee.id === 'popup') {
+    if (eee.id === 'editorToggleClose') {
+      this.editorToggle = false;
+    } else if (eee.id === 'popup') {
       this.showTags('tags');
     } else if (eee.id === 'leftsidelist') {
       this.leftPaneSHowTagsForVideo = !this.leftPaneSHowTagsForVideo;

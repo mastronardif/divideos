@@ -32,7 +32,7 @@
           <li (click)="showEditor('rTest2')"  class="mdl-menu__item mdl-menu__item--full-bleed-divider">rTest2</li>
           <li (click)="showEditor('AllTags')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">All Tags</li>
           <li disabled class="mdl-menu__item">tbd Action</li>
-          <li class="mdl-menu__item">Edit outline(tbd)</li>
+          
           <li (click)="showEditor('TestRx')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">TestRx</li>          
         </ul>
         <!-- new shit menu END -->
@@ -98,18 +98,14 @@
 
 
   <!---->
-  <videos-playlist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle"
-    [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist"></videos-playlist>
+  <videos-playlist [repeat]="repeat" [shuffle]="shuffle" [playlistToggle]="playlistToggle" [playlistNames]="playlistNames" [videoPlaylist]="videoPlaylist"></videos-playlist>
 
-  <main class="mdl-layout__content" LazyScroll (OnScrollMethod)="searchMore()" ScrollDistance="3" width="44px">
-    <div class="page-content" [ngClass]="{'blur-main-playlist-opened': playlistToggle}">
+  <main class="mdl-layout__content" LazyScroll (OnScrollMethod)="searchMore()" ScrollDistance="3" width="44px"> <div class="page-content" [ngClass]="{'blur-main-playlist-opened': playlistToggle}">
       
-      <app-editor *ngIf="editorToggle"></app-editor>
+      <app-editor *ngIf="editorToggle" (valueChange)="displayTags($event)"></app-editor>
 
-      <app-tags *ngIf="tagsToggle" [videoList]="videoList" [selectedVideo]="selectedVideo"
-        (valueChange)="displayTags($event)"></app-tags>
-      <app-treetags *ngIf="tagsTreeViewToggle" [videoList]="videoList" [selectedVideo]="selectedVideo"
-        (valueChange)="displayTags($event)"></app-treetags>
+      <app-tags *ngIf="tagsToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-tags>
+      <app-treetags *ngIf="tagsTreeViewToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-treetags>
 
       <videos-list *ngIf="videoList.length" class="mdl-grid" (valueChange)="displayTags($event)"
         (videoPlaylist)="checkAddToPlaylist($event)" [videoList]="videoList" [loadingInProgress]="loadingInProgress">

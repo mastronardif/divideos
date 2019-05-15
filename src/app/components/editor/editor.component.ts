@@ -12,6 +12,7 @@ import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 
 export class EditorComponent implements OnInit {
 @Output() importPlaylist2 = new EventEmitter();
+@Output() valueChange = new EventEmitter();
     
   public Editor = ClassicEditor;
   public thedoc: string;
@@ -36,14 +37,11 @@ public model = {
 
   ngOnInit () {
     this.thedoc = this.dummy; //'"Now is the <b>time for all </b> men to come to the aide of there country.';
-    //this.Editor.ui.view.editable.editableElement.style.height = '300px';
   }
 
-  // openDocument(playlist: any): void {
-  //   this.videoPlaylist = playlist;
-  //   this.playlistService.importPlaylist(this.videoPlaylist);
-  // }
-
+  closeDocument () {
+    this.valueChange.emit({id: 'editorToggleClose'});
+  }
 
   saveDocument () {
     this.notificationService.showNotification('saveDocument () {');
@@ -63,6 +61,7 @@ public model = {
 
   handleInputChange(e: any): void {
     let file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+    if (!file) {return};
 
     if (file.name.split('.').pop() !== 'json') {
       this.notificationService.showNotification('File not supported.');
@@ -88,11 +87,10 @@ public model = {
       }
 
       //
-      console.log('\n\t**** * * * * ******** handleInputChange()');
+      console.log('\n\t**** * * * * ******** handleInputChange() 1');
       console.log('list= ', list);
       me.model.editorData = list;
 
-      console.log('\n\t**** * * * * ******** handleInputChange()');
       //
       //me.importPlaylist2.emit(list);
       me.notificationService.showNotification('Playlist imported.');
@@ -111,7 +109,7 @@ public model = {
     a.href = URL.createObjectURL(file);
     a.download = 'myoutline.json';
     a.click();
-    this.notificationService.showNotification('Playlist exported.');
+    this.notificationService.showNotification('Document exported.');
   }
 
   private dummy: string = `

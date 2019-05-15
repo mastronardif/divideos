@@ -10,7 +10,7 @@ import { PlaylistStoreService } from '../../shared/services/playlist-store.servi
 })
 
 export class EditorComponent implements OnInit {
-  @Output() importPlaylist2 = new EventEmitter();
+@Output() importPlaylist2 = new EventEmitter();
     
   public Editor = ClassicEditor;
   public thedoc: string;
@@ -50,8 +50,10 @@ public model = {
   }
 
   public importPlaylist(videos: any): void {
-    let playlist: any = {};
-    this.playlistService.importPlaylist(playlist);
+    //let playlist: any = {};
+    alert(': importPlaylist');
+    //this.playlistService.importPlaylist(playlist);
+    console.log(`editor:importPlaylist= ${videos}`)
     //let store = this.parse();
     //store.playlists = videos;
     //localStorage.setItem('this.ngxYTPlayer', JSON.stringify(store));
@@ -86,10 +88,11 @@ public model = {
       //
       console.log('\n\t**** * * * * ******** handleInputChange()');
       console.log('list= ', list);
+      me.model.editorData = list;
 
       console.log('\n\t**** * * * * ******** handleInputChange()');
       //
-      me.importPlaylist2.emit(list);
+      //me.importPlaylist2.emit(list);
       me.notificationService.showNotification('Playlist imported.');
     }
   }

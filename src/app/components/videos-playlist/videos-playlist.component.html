@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <div class="playist-item-empty" *ngIf="!videoPlaylist.length">
+  <div class="playist-item-empty" *ngIf="videoPlaylist && !videoPlaylist.length">
     <div class="playlist-thumbnail" [ngStyle]="{'background': '#000'}">
       <i class="material-icons">block</i>
     </div>

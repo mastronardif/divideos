@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { YoutubeApiService } from '../../shared/services/youtube-api.service';
 import { YoutubePlayerService } from '../../shared/services/youtube-player.service';
 import { PlaylistStoreService } from '../../shared/services/playlist-store.service';

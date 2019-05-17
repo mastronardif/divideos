@@ -2,7 +2,6 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { NotificationService } from '../../shared/services/notification.service';
 import { PlaylistStoreService } from '../../shared/services/playlist-store.service';
-import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
 
 @Component({
   selector: 'app-editor',
@@ -36,7 +35,7 @@ public model = {
   }
 
   ngOnInit () {
-    this.thedoc = this.dummy; //'"Now is the <b>time for all </b> men to come to the aide of there country.';
+    this.thedoc = this.dummy;
   }
 
   closeDocument () {

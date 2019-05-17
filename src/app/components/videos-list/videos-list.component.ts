@@ -38,4 +38,18 @@ export class VideosListComponent {
     //console.log('addTagsToVideo(video: any): void {');
     this.valueChange.emit({video: video, id: 'leftsidelist'});
   }
+
+  //////////////////////////
+  // dragable shit BEGIN.
+  dragstart_handler(ev: any) {
+    console.log("dragStart");
+    console.log(ev);
+    // Change the source element's background color to signify drag has started
+    ev.currentTarget.style.border = "dashed";
+    // Set the drag's format and data. Use the event target's id for the data 
+    ev.dataTransfer.setData("text/plain", ev.target.id);
+   }
+   
+  // dragable shit END.
+  /////////////////////////
 }

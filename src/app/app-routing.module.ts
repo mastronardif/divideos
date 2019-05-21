@@ -8,10 +8,11 @@ import { TreeTagsComponent } from "./components/apptreetags/treetags.component";
 import { TestRxComponent } from "./components/test-rx/test-rx.component";
 
 import { VideoTagListComponent } from "./components/video-taglist/video-taglist.component";
+import { EditorComponent } from './components/editor/editor.component';
 
 const routes: Routes = [
-  { path: 'newoutline', component: VideosDoclist33Component },
-  { path: 'aldooutline', component: VideosDoclist33Component },  
+  { path: 'newoutline', component: EditorComponent },
+  { path: 'aldooutline', component: VideosDoclist33Component },
   { path: 'alltags', component: VideoTagListComponent },
   { path: 'map1', component: TreeTagsComponent },
   { path: 'sample', component: SampleComponent },
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'test', component: TestComponent }
 ];
 
-@NgModule({ 
+@NgModule({
   exports: [ RouterModule ],
   imports: [ RouterModule.forRoot(routes) ]
 })

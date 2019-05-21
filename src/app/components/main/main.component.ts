@@ -323,24 +323,25 @@ export class MainComponent implements AfterViewInit {
     }
 
     if (id === 'EDIT_NEW') {
-      //this.router.navigateByUrl('/newoutline');
-      console.log(`if (id === 'EDIT_NEW') {`);      
-      this.editorToggle = !this.editorToggle;
+      this.router.navigateByUrl('/newoutline');
       return;
     }
 
-    if (id === 'EDIT_ALDO') {
+    if (id === 'ALDOS_OUTLINE') {
       this.router.navigateByUrl('/aldooutline');
       return;
     }
 
+    if (id === 'EDIT_OUTLINE') {
+      this.editorToggle = !this.editorToggle;
+      return;
+    }
+
     if (id === 'AllTags') {
-      //this.router.navigateByUrl('/test');
       this.router.navigateByUrl('/alltags', { state: { hello: 'AllTags' } });
       return;
     }
     if (id === 'rTest2') {
-      //this.router.navigateByUrl('/test');
       this.router.navigateByUrl('/test', { state: { hello: this.videoList } });
       return;
     }

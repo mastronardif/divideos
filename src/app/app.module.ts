@@ -40,6 +40,7 @@ import { VideoDurationPipe } from './shared/pipes/video-duration.pipe';
 import { PlaylistItemNamePipe } from './shared/pipes/playlist-item-name.pipe';
 import { NowPlayingNamePipe } from './shared/pipes/now-playing-name.pipe';
 import { LazyScrollDirective } from './shared/directives/lazy-scroll/lazy-scroll.directive';
+import { DraggableDirective } from './shared/directives/draggable/draggable.directive';
 
 // Services
 import { YoutubePlayerService } from './shared/services/youtube-player.service';
@@ -50,6 +51,7 @@ import { DataService } from './shared/services/data.service';
 import { ModalService } from './shared/services/modal.service';
 import { DomService } from './shared/services/dom.service';
 import { UserService } from './shared/services/UserService';
+import { DragService } from './shared/services/drag.service';
 
 import { BrowserNotificationService } from './shared/services/browser-notification.service';
 import { AppRoutingModule } from './app-routing.module';
@@ -110,7 +112,8 @@ let gapiClientConfig: NgGapiClientConfig = {
     VideoDurationPipe,
     NowPlayingNamePipe,
 
-    LazyScrollDirective
+    LazyScrollDirective,
+    DraggableDirective
   ],
   imports: [
     GoogleApiModule.forRoot({
@@ -139,7 +142,8 @@ let gapiClientConfig: NgGapiClientConfig = {
     YoutubePlayerService,
     NotificationService,
     UserService,
-    BrowserNotificationService
+    BrowserNotificationService,
+    DragService
   ],
   entryComponents: [
     SampleComponent

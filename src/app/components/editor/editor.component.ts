@@ -2,6 +2,9 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { NotificationService } from '../../shared/services/notification.service';
 import { PlaylistStoreService } from '../../shared/services/playlist-store.service';
+import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-editor',
@@ -12,6 +15,7 @@ import { PlaylistStoreService } from '../../shared/services/playlist-store.servi
 export class EditorComponent implements OnInit {
 @Output() importPlaylist2 = new EventEmitter();
 @Output() valueChange = new EventEmitter();
+config = { toolbar: [ 'heading', '|', 'bold', 'italic' ] };
     
   public Editor = ClassicEditor;
   public thedoc: string;
@@ -19,12 +23,13 @@ export class EditorComponent implements OnInit {
 
 // [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic' ] }"
 // data="{{thedoc}}" 
-public model = {
-  editorData: '<p>Hello, world!</p>'
-};
+  public model = {
+    editorData: '<p>Hello, world!</p>'
+  };
+  state$: Observable<object>;
 
-  constructor(private playlistService: PlaylistStoreService, private notificationService: NotificationService) { 
-    this.model.editorData = 'this.dummy';
+  constructor(public activatedRoute: ActivatedRoute, private playlistService: PlaylistStoreService, private notificationService: NotificationService) { 
+    this.model.editorData = ''; //'this.dummy';
   }
 
   // public onChange( event: any ) { // npm install --save @types/ckeditor
@@ -33,9 +38,18 @@ public model = {
   public onChange( event: any ) {     
       ;//console.log( `ZZZZZZZZZZZZZZZ= ${event.editor.getData()}` );
   }
-
+//[config]="{ toolbar: [ 'heading', '|', 'bold', 'italic' ] }"
   ngOnInit () {
     this.thedoc = this.dummy;
+    console.log('ngOnInit () {');
+
+    this.state$ = this.activatedRoute.paramMap
+      .pipe(map(() => window.history.state));
+      let bbb = this.state$.subscribe((res: any) => {
+        console.log(res);
+        this.config = res.config;
+        console.log(this.config);
+      });
   }
 
   closeDocument () {

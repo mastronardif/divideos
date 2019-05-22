@@ -323,7 +323,8 @@ export class MainComponent implements AfterViewInit {
     }
 
     if (id === 'EDIT_NEW') {
-      this.router.navigateByUrl('/newoutline');
+      this.router.navigateByUrl('/newoutline',  { state: { config: { toolbar: [ '|'] } }});
+      //[config]="{ toolbar: [ 'heading', '|', 'bold', 'italic' ] }"
       return;
     }
 

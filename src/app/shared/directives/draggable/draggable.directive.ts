@@ -95,7 +95,7 @@ export class DraggableDirective implements OnInit, OnDestroy {
       this.elementRef.nativeElement
       , 'dragend'
       , (event: DragEvent): void => {
-        this.dragService.removeHighLightedAvailableZones();
+        console.log(`this.onDragEnd event=  ${event}`); //this.dragService.removeHighLightedAvailableZones();
       });
   }
 }

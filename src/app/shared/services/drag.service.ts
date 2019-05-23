@@ -28,11 +28,11 @@ export class DragService {
    * @desc responsible for removing highlighted available zones
    * that a draggable element can be added too.
    */
-  public removeHighLightedAvailableZones(): void {
-    this.zoneIDs.forEach((zone: string) => {
-      this.availableZones[zone].end();
-    });
-  }
+  // public removeHighLightedAvailableZones(): void {
+  //   this.zoneIDs.forEach((zone: string) => {
+  //     this.availableZones[zone].end();
+  //   });
+  // }
 
   /**
    * @desc responsible for adding an available zone

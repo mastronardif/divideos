@@ -20,11 +20,9 @@ export class PlaylistItemDragDataPipe implements PipeTransform {
         payload: `<figure class="image">
         <img src="${value.snippet.thumbnails.default.url}" alt="">
         </figure>
-//video.snippet?.title | playlistItemName
-        <p>
-        <a href="https://www.youtube.com/watch?v=${i}}">${value.snippet.title}</a></p>
-         ${i}`,
-        name: 'My Draggable - ' + i + 200,
+        <a href="https://www.youtube.com/watch?v=${i}}">${value.snippet.title}</a>        
+        `,
+        name: 'My Draggable - ' + i,
         currentColumn: i,
         payloadType: 'Free Wille'
       }

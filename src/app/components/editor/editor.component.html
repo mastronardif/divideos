@@ -5,11 +5,11 @@
 <!-- <button id="open" (click)="openDocument()">OPEN</button> -->
 <input id="importDocument"  type="file" name="file2" accept=".json, .txt" (change)="handleInputChange($event)">
 
-<ckeditor [editor]="Editor" [config]="config|| {}"
+<ckeditor [editor]="Editor" [config]="config|| { toolbar: [ '|'] }"
 [(ngModel)]="model.editorData"
 
 (change)="onChange($event)"></ckeditor>
-<p>ZZ {{ state$ | async | json }} AA</p>
+<!--<p>ZZ {{ state$ | async | json }} AA</p>-->
 </div>
 
 

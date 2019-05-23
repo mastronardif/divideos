@@ -10,6 +10,7 @@ import { ModalService } from '../../shared/services/modal.service';
   templateUrl: './videos-list.component.html',
   styleUrls: ['./videos-list.component.css']
 })
+
 export class VideosListComponent {
   @Input() videoList;
   @Input() loadingInProgress;
@@ -45,7 +46,7 @@ export class VideosListComponent {
     };
    }
 
-  private generateZones(zone: number): Array<string> {
+   private generateZones(zone: number): Array<string> {
     // Generate all available zones
     const zones: Array<string> = [];
     for (let i = 0; i < this.draggableElements; i++) {
@@ -73,18 +74,4 @@ export class VideosListComponent {
     //console.log('addTagsToVideo(video: any): void {');
     this.valueChange.emit({video: video, id: 'leftsidelist'});
   }
-
-  //////////////////////////
-  // dragable shit BEGIN.
-  dragstart_handler(ev: any) {
-    console.log("dragStart");
-    console.log(ev);
-    // Change the source element's background color to signify drag has started
-    ev.currentTarget.style.border = "dashed";
-    // Set the drag's format and data. Use the event target's id for the data 
-    ev.dataTransfer.setData("text/plain", 'ev.target.id');
-   }
-   
-  // dragable shit END.
-  /////////////////////////
 }

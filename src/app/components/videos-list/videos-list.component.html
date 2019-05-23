@@ -1,12 +1,12 @@
 <div class="mdl-cell custom-cell mdl-cell--2-col" id="{{i + video.id}}" *ngFor="let video of videoList; let i = index;" [ngClass]="{'last-item': i === videoList.length-1}">
 <!--     <table border="1">
-    <td> -->
+    <td> [appDraggable]="myDragableObjects33"  -->
       <div class="demo-card-square mdl-card mdl-shadow--2dp">
       
-        <div *ngIf="1===1"  [appDraggable]="myDragableObjects33" style="background-color:salmon">
-            <textarea [(ngModel)] = "myDragableObjects33.data.payload"></textarea> 
+        <div *ngIf="1===1"  style="background-color:salmon">
+            <textarea [(ngModel)] = "video.id">  </textarea> 
+            <span [appDraggable]="video | playlistItemDragData">{{ video | playlistItemDragData }} </span>
         </div>
-        <p draggable="true" (ondragstart)="dragstart_handler(event)">Drag me!!</p>
 
         <div class="mdl-card__title mdl-card--expand" (click)="play(video)" 
       [ngStyle]="{'background': '#000 url(' + video.snippet?.thumbnails.high.url + ') center center no-repeat', 'background-size': '125%'}">

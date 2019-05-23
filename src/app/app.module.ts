@@ -39,6 +39,7 @@ import { VideoViewsPipe } from './shared/pipes/video-views.pipe';
 import { VideoDurationPipe } from './shared/pipes/video-duration.pipe';
 import { PlaylistItemNamePipe } from './shared/pipes/playlist-item-name.pipe';
 import { NowPlayingNamePipe } from './shared/pipes/now-playing-name.pipe';
+import { PlaylistItemDragDataPipe } from './shared/pipes/playlist-item-dragdata.pipe';
 import { LazyScrollDirective } from './shared/directives/lazy-scroll/lazy-scroll.directive';
 import { DraggableDirective } from './shared/directives/draggable/draggable.directive';
 
@@ -111,6 +112,7 @@ let gapiClientConfig: NgGapiClientConfig = {
     VideoViewsPipe,
     VideoDurationPipe,
     NowPlayingNamePipe,
+    PlaylistItemDragDataPipe,
 
     LazyScrollDirective,
     DraggableDirective

@@ -6,6 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class PlaylistItemDragDataPipe implements PipeTransform {
   transform(value: any, args?: any[]): any {
+    if (!value.id) { return ''; }
+
     const i = value.id;
     let myDragableObjects33  = {
       data: {

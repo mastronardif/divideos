@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { YoutubeApiService } from '../../shared/services/youtube-api.service';
 import { YoutubePlayerService } from '../../shared/services/youtube-player.service';
 import { PlaylistStoreService } from '../../shared/services/playlist-store.service';
-import { ModalService } from '../../shared/services/modal.service';
 // import {SampleComponent} from '../sample/sample.component';
 //https://stackoverflow.com/questions/54181363/ckeditor-drag-and-drop-with-angular-7#
 @Component({
@@ -21,41 +20,10 @@ export class VideosListComponent {
   private zonePrefix = 'zone-';
   // public myDragableObjects22: {data: DragData}[] = [];
   public myDragableObjects22: Array<any> =  [[]];
-  public myDragableObjects33: any = {};
-  constructor(private modal: ModalService, private youtubeService: YoutubeApiService,
+  constructor(private youtubeService: YoutubeApiService,
     private youtubePlayer: YoutubePlayerService,
-    private playlistService: PlaylistStoreService
-  ) {
-
-    const i = 1;
-    //this.myDragableObjects22.push({
-      this.myDragableObjects33  ={
-      data: {
-        id: i + 200,
-        payload: `<figure class="image">
-        <img src="https://i.ytimg.com/vi/bjJSA8hx35E/hqdefault.jpg" alt="">
-        </figure>
-        
-        <p>
-        <a href="https://www.youtube.com/watch?v=bjJSA8hx35E">play</a></p>
-         ${i}`,
-        name: 'My Draggable - ' + i + 200,
-        currentColumn: i,
-        payloadType: 'Free Wille'
-      }
-    };
+    private playlistService: PlaylistStoreService) {
    }
-
-   private generateZones(zone: number): Array<string> {
-    // Generate all available zones
-    const zones: Array<string> = [];
-    for (let i = 0; i < this.draggableElements; i++) {
-      zones.push(this.zonePrefix + i);
-    }
-    // Remove the current zone
-    zones.splice(zone, 1);
-    return zones;  
-  }
 
   play(video: any): void {
     this.youtubePlayer.playVideo(video.id, video.snippet.title);

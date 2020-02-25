@@ -15,8 +15,8 @@ const routes: Routes = [
   { path: 'aldooutline', component: VideosDoclist33Component },
   { path: 'alltags', component: VideoTagListComponent },
   { path: 'map1', component: TreeTagsComponent },
-  { path: 'sample', component: SampleComponent },
-  { path: 'testrx', component: TestRxComponent },
+  //{ path: 'sample', component: SampleComponent },
+  //{ path: 'testrx', component: TestRxComponent },
   { path: 'test', component: TestComponent }
 ];
 

@@ -23,18 +23,20 @@
 <li (click)="showTags('TREEVIEW')" class="mdl-menu__item">Tree</li>          
 <li (click)="showEditor('Map1')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">Map 1 </li>
 -->
+<!--
         <a routerLink="/sample" style="color: black"> Sample</a>&nbsp;
         <a routerLink="/test" style="color: black"> Test</a>&nbsp;
+        -->
 
         <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">                    
           <li (click)="showEditor('EDIT_NEW')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">New Outline </li>
           <li (click)="showEditor('ALDOS_OUTLINE')"  class="mdl-menu__item mdl-menu__item--full-bleed-divider">Aldo's Outline </li>
 
-          <li (click)="showEditor('rTest2')"  class="mdl-menu__item mdl-menu__item--full-bleed-divider">rTest2</li>
-          <li (click)="showEditor('AllTags')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">All Tags</li>
+          <!-- <li (click)="showEditor('rTest2')"  class="mdl-menu__item mdl-menu__item--full-bleed-divider">rTest2</li>
+           <li (click)="showEditor('AllTags')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">All Tags</li> -->
           <li disabled class="mdl-menu__item">tbd Action</li>
           
-          <li (click)="showEditor('TestRx')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">TestRx</li>          
+          <!-- <li (click)="showEditor('TestRx')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">TestRx</li> -->         
         </ul>
         <!-- new shit menu END -->
 
@@ -49,7 +51,7 @@
         <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="videocount_tip">Number of videos</div>
 
         <!-- <app-videos-tags text="Tag(s)" tip="sort by tags"  [videoList]="videoList"></app-videos-tags> -->
-        <button class="span-grad1" id="showTags_tip" (click)="showTags('default')">Tags2</button>
+        <!-- <button class="span-grad1" id="showTags_tip" (click)="showTags('default')">Tags2</button> -->
         <button id="showTags_tip" (click)="showTags('TREEVIEW')">m1</button>
 
         <div *ngIf="!isLoggedIn">

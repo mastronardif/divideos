@@ -1,5 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
+import { count } from '@swimlane/ngx-charts';
+import { DataService } from '../../shared/services/data.service';
 
 @Component({
   selector: 'app-tags',
@@ -7,14 +9,17 @@ import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@an
   styleUrls: ['./tags.component.css']
 })
 export class TagsComponent  {
+  @Input() videoPlaylist;
+  @Input() originalVideoList;
   @Input() videoList;
   @Input() selectedVideo;
-  @Output() valueChange = new EventEmitter();
+  @Output() valueChange = new EventEmitter(); 
+
   form: FormGroup;
 
   tags = [{id: 100, name: 'order 1' }];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private data: DataService, private formBuilder: FormBuilder) {
   }
 
   compare(b, a) {
@@ -27,10 +32,26 @@ export class TagsComponent  {
   }
 
   ngOnInit() {
+
+    // FM case.  Set/use this in the global data service.
+    //this.originalVideoList = this.videoPlaylist.slice(0);
+    // test case
+
+    console.log('\t FM tags.: ngOnInit videoList',         this.videoList);
+    console.log('\t FM tags.: ngOnInit originalVideoList', this.originalVideoList);
+
+    // copy
+    //this.originalVideoList = this.videoList.slice(0, this.videoList.length);
+    //console.log('\t FM tags.: ngOnInit originalVideoList sliced!', this.originalVideoList);
+    console.log('\t FM tags.: ngOnInit videoPlaylist =', this.videoPlaylist);
+
+    
     const selectedTags = (this.selectedVideo && this.selectedVideo.snippet && this.selectedVideo.snippet.tags)
                        ? this.selectedVideo.snippet.tags.map(x => x) : [{}];
 
-    let allTags = this.videoList.map(function(obj: any) { return obj.snippet.tags ? obj.snippet.tags : []; });
+    //let allTags = this.videoList.map(function(obj: any) { return obj.snippet.tags ? obj.snippet.tags : []; });
+    let allTags = this.originalVideoList.map(function(obj: any) { return obj.snippet.tags ? obj.snippet.tags : []; });
+    console.log('\t FM allTags.: ngOnInit allTags =', allTags);
 
     let dictionary = {};
     allTags = allTags ? allTags : [];
@@ -51,7 +72,7 @@ export class TagsComponent  {
     const list22 = list.sort(this.compare);
     const maxTags  = 112;
     this.tags = list22.slice(0, maxTags);
-
+    console.log('\t FM TAGS.: ngOnInit allTags =', list22.length);
     const controls = this.tags.map(c => new FormControl(false));
 
     // set tags they have been selected for this video.
@@ -74,6 +95,8 @@ export class TagsComponent  {
   }
 
   submit() {
+    console.log('FMDebug: submit() line 76; tags.com.ts');
+
     const selectedOrderIds = this.form.value.tags
       .map((v, i) => v ? this.tags[i].name : null)
       .filter(v => v !== null);
@@ -86,10 +109,78 @@ export class TagsComponent  {
   cancel() {
     this.valueChange.emit({id: 'popup'});
   }
+
+  filter() {
+    
+    console.log('filter:');
+    console.log('originalVideoList= ', this.originalVideoList);
+    console.log(this.videoList);
+    const selectedOrderIds = this.form.value.tags
+      .map((v, i) => v ? this.tags[i].name : null)
+      .filter(v => v !== null);
+
+    //dynamicSortFI22(this.videoList, selectedOrderIds, 'asc');
+    //var newArray = dynamicFilterFI22(this.videoList, selectedOrderIds, 'asc');
+    var newArray = dynamicFilterFI22(this.originalVideoList, selectedOrderIds, 'asc');    
+
+    //this.videoList = this.videoList.slice(0, 5);
+
+    console.log('newArray', newArray);
+    console.log('videoList', this.videoList);
+    console.log('originalVideoLis', this.originalVideoList);
+
+
+
+    //this.videoList = this.videoList[1];
+    //this.videoList.length = 4;
+    
+    //this.data.changeMessage(this.videoList);
+    this.data.changeMessage(newArray);
+
+    this.valueChange.emit({id: 'popup'});
+  }
 }
 
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
+function dynamicFilterFI22(arr, query, direction) {
+  console.log(`query = ${query}`);
+  if (!query.length) {
+    return arr;
+  }
+  var wtf = arr.filter(function (a, b) {
+    let achk = [];
+    let bchk = [];
+    
+    if (a.snippet && a.snippet.tags) {
+      achk = a.snippet.tags.filter(ee => {
+        return query.indexOf(ee) > -1;
+      });
+    }
+
+    if (b.snippet && b.snippet.tags) {
+      bchk = b.snippet.tags.filter(ee => {
+        return query.indexOf(ee) > -1;
+      });
+    }
+
+    let bbb = 0;
+    if (direction === 'asc') {
+      bbb = bchk.length - achk.length;
+    } else {
+      bbb = achk.length - bchk.length;
+    }
+
+    return bbb;
+    
+  });
+
+  if (wtf.length === 0) {
+    wtf = [{}]
+  }
+  console.log('wtf', wtf);
+  return wtf;
+}
 
 function dynamicSortFI22(arr, query, direction) {
   arr.sort(function (a, b) {

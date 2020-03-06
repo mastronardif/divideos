@@ -78,6 +78,7 @@ export class VideoTagListComponent {
   }
 
   submit() {
+    console.log('FMDebug: submit() line 76; video-taglist.component.ts');
     const selectedOrderIds = this.form.value.tags
       .map((v, i) => v ? this.tags[i].name : null)
       .filter(v => v !== null);

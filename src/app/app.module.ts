@@ -64,7 +64,7 @@ var OAUTH2_SCOPES = [
  // "https://www.googleapis.com/auth/contacts.readonly"
 ];
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/people/v1/rest"];
-var apiKey = 'AIzaSyBGbbhHE02G2YC1Uvopww3JNa_6PKVIn8w';
+var apiKeyFUCK = 'AIzaSyBGbbhHE02G2YC1Uvopww3JNa_6PKVIn8w';
 
 let gapiClientConfig: NgGapiClientConfig = {
   client_id: OAUTH2_CLIENT_ID,

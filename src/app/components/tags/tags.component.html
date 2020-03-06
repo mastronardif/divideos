@@ -20,6 +20,8 @@
     <br>
     <button [disabled]="!form.valid">submit</button>
     <button type="button" (click)="cancel(); $event.preventDefault()">Cancel</button>
+
+    <button type="button" (click)="filter(); $event.preventDefault()">FILTER</button>
   </form>
 </div>
   

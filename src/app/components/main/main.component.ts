@@ -29,6 +29,9 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 })
 
 export class MainComponent implements AfterViewInit {
+  public originalVideoList:     any[] = [];
+  public tags: any [] = [['aa', 'aa'], ['cc', 'dd']];
+
   public videoList:     any[] = []; // | {}[] = [];
   public videoPlaylist: any[] = [];
 
@@ -82,11 +85,25 @@ export class MainComponent implements AfterViewInit {
       this.videoPlaylist = this.playlistService.retrieveStorage().playlists;
 
 //setTimeout(() => {
-      this.data.currentMessage.subscribe(message => {
-        console.log("message", message);
-        this.videoList = message;
+      this.data.currentMessage.subscribe((message) => {
+        console.log("this.data.currentMessage.subscribe, message= ", message);
+        if (message['setOriginal']) {
+          this.videoList = message['message'];
+        }
+        else {
+          this.videoList = message;
+        }        
+
+        if (message['setOriginal'] && message['setOriginal'] === true) {
+          this.originalVideoList = message['message'];
+        }
+        //console.log("\t fm 1 SETTING originalVideoList");
+        this.tags.push([["F", "you"]]);
+        //this.originalVideoList = message; // test staic data
        });
-//});
+
+       
+       console.log('\t***FM THE TAGS tags = ', this.tags);
   }
 
   public isLoggedin(): boolean {
@@ -125,6 +142,9 @@ export class MainComponent implements AfterViewInit {
         response.subscribe(res => {
           this.videos = res;
           this.videoList = res.items;
+          //
+          console.log("\t fm 2 SETTING originalVideoList");
+          this.originalVideoList = res.items;
         });
       });
   }
@@ -140,9 +160,13 @@ export class MainComponent implements AfterViewInit {
     this.videoList = videos;
 
     // fm 5/11/19 begin
-    console.log(`fm 5/11/19  handleSearchVideo ${videos.length}`);
-    this.data.changeMessage(this.videoList);
+    console.log(`fm 5/11/19  handleSearchVideo ${videos.length} ${this.videoList.length}`);
+    // this.data.changeMessage(this.videoList);
     // fm 5/11/19 end
+    // test 3/5/20
+    const fu = {setOriginal: true, message: this.videoList};
+    this.data.changeMessage(fu);
+
   }
 
   checkAddToPlaylist(video: any): void {
@@ -362,7 +386,6 @@ export class MainComponent implements AfterViewInit {
     this.tagsToggle = !this.tagsToggle;
   }
 
-  //displayTags(video) {
     displayTags(eee) {
     console.log('an event emited, displayTags video= ', eee);
     this.selectedVideo = eee.video;
@@ -387,19 +410,24 @@ export class MainComponent implements AfterViewInit {
   }
 
   lpl(): void { 
-    console.log(`lpl(): void this.tagsToggle= ${this.tagsToggle}`);
+    console.log(`\t *FM lpl(): void this.tagsToggle= ${this.tagsToggle}`);
     if (this.videoPlaylist.length > 0) {
       this.videoList = this.videoPlaylist;
 
     // fm 5/11/19 begin
-    this.data.changeMessage(this.videoList);
+    //this.data.changeMessage(this.videoList);
     // fm 5/11/19 end
+
+    // test 3/5/20
+    var fu = {setOriginal: true, message: this.videoList};
+    this.data.changeMessage(fu);
+
     }
   }
 
   lmypl(): void {
     console.log(this.userService.getCurrentUserEmail() ); 
-
+    console.log("\t fm 3 SETTING originalVideoList");
     const token = this.userService.getToken();
     this.fuck$ =  this.getPlaylists('123', token); 
     this.fuck$.subscribe((response: any) => {
@@ -425,6 +453,7 @@ export class MainComponent implements AfterViewInit {
         };
 
         this.videoList = [];
+        this.originalVideoList = [];
         forkJoin(observableArray)
           .subscribe(resp => {
               resp.forEach((obs: Observable<any>) => {
@@ -434,7 +463,7 @@ export class MainComponent implements AfterViewInit {
                     const res22 = jsonRes['items'];
                     console.log(res22);
 
-                    res22.forEach(fu => {this.videoList.push(fu); });
+                    res22.forEach(fu => {this.originalVideoList.push(fu); this.videoList.push(fu); });
                     },
                     error => console.log('oops', error)
                     );
@@ -448,6 +477,8 @@ export class MainComponent implements AfterViewInit {
   public getPlaylists(spreadsheetId: string, authtoken: string): Observable<any> {
     const API_URL = 'https://www.googleapis.com/youtube/v3/playlists';
     // return this.httpClient.get(API_URL + '/' + spreadsheetId, {
+      let url = API_URL + '' + '?maxResults=22&mine=true&part=snippet,contentDetails';
+      console.log('FMDEBUG url= ', url);
       return this.httpClient.get(API_URL + '' + '?maxResults=22&mine=true&part=snippet,contentDetails', {
         headers: new HttpHeaders({
         Authorization: `Bearer ${authtoken}`

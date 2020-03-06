@@ -41,7 +41,7 @@ export class VideosSearchComponent implements OnInit {
       (this.last_search && this.last_search === this.searchForm.value.query)) {
       return;
     }
-
+    console.log('\t FM doSearch', event);
     this.videosUpdated.emit([]);
     this.last_search = this.searchForm.value.query;
     //alert('this.last_search= ' +  this.last_search);
@@ -50,7 +50,7 @@ export class VideosSearchComponent implements OnInit {
       .subscribe(response => {
         response.subscribe(res => {
           console.log('res.items=', res.items);
-          console.log(response)
+          console.log(response);
           this.videosUpdated.emit(res.items);
         });
       });

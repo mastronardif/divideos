@@ -32,8 +32,8 @@
           <li (click)="showEditor('EDIT_NEW')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">New Outline </li>
           <li (click)="showEditor('ALDOS_OUTLINE')"  class="mdl-menu__item mdl-menu__item--full-bleed-divider">Aldo's Outline </li>
 
-          <!-- <li (click)="showEditor('rTest2')"  class="mdl-menu__item mdl-menu__item--full-bleed-divider">rTest2</li>
-           <li (click)="showEditor('AllTags')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">All Tags</li> -->
+          <!-- <li (click)="showEditor('rTest2')"  class="mdl-menu__item mdl-menu__item--full-bleed-divider">rTest2</li> -->
+           <li (click)="showEditor('AllTags')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">All Tags</li> 
           <li disabled class="mdl-menu__item">tbd Action</li>
           
           <!-- <li (click)="showEditor('TestRx')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">TestRx</li> -->         
@@ -50,8 +50,8 @@
         <div id="videocount_tip">({{videoList.length}})</div>
         <div class="mdl-tooltip mdl-tooltip--bottom" data-mdl-for="videocount_tip">Number of videos</div>
 
-        <!-- <app-videos-tags text="Tag(s)" tip="sort by tags"  [videoList]="videoList"></app-videos-tags> -->
-        <!-- <button class="span-grad1" id="showTags_tip" (click)="showTags('default')">Tags2</button> -->
+       <!-- <app-videos-tags text="Tag(s)" tip="sort by tags"  [videoList]="videoList"></app-videos-tags> -->
+        <button class="span-grad1" id="showTags_tip" (click)="showTags('default')">Tags({{tags.length}})</button> 
         <button id="showTags_tip" (click)="showTags('TREEVIEW')">m1</button>
 
         <div *ngIf="!isLoggedIn">
@@ -107,7 +107,7 @@
       
       <app-editor *ngIf="editorToggle" (valueChange)="displayTags($event)"></app-editor>
 
-      <app-tags *ngIf="tagsToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-tags>
+      <app-tags *ngIf="tagsToggle" [videoPlaylist]="videoPlaylist" [originalVideoList]="originalVideoList" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-tags>
       <app-treetags *ngIf="tagsTreeViewToggle" [videoList]="videoList" [selectedVideo]="selectedVideo" (valueChange)="displayTags($event)"></app-treetags>
 
       <videos-list *ngIf="videoList.length" class="mdl-grid" (valueChange)="displayTags($event)"

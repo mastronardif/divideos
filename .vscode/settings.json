@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/cb9fbe1b-7f5f-494d-a087-7694d3c46668/resourceGroups/DiVideos/providers/Microsoft.Web/sites/DiVideos",
+    "appService.deploySubpath": "dist\\divideos"
+}

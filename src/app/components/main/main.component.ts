@@ -30,7 +30,7 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 
 export class MainComponent implements AfterViewInit {
   public originalVideoList:     any[] = [];
-  public tags: any [] = [['aa', 'aa'], ['cc', 'dd']];
+  public tags: any;  //any [] = [['aa', 'aa'], ['cc', 'dd']];
 
   public videoList:     any[] = []; // | {}[] = [];
   public videoPlaylist: any[] = [];
@@ -98,12 +98,10 @@ export class MainComponent implements AfterViewInit {
           this.originalVideoList = message['message'];
         }
         //console.log("\t fm 1 SETTING originalVideoList");
-        this.tags.push([["F", "you"]]);
         //this.originalVideoList = message; // test staic data
+        this.tags = data.countTags(this.originalVideoList);
+        console.log('\t***FM THE TAGS tags = ', this.tags);
        });
-
-       
-       console.log('\t***FM THE TAGS tags = ', this.tags);
   }
 
   public isLoggedin(): boolean {
@@ -426,8 +424,8 @@ export class MainComponent implements AfterViewInit {
   }
 
   lmypl(): void {
-    console.log(this.userService.getCurrentUserEmail() ); 
-    console.log("\t fm 3 SETTING originalVideoList");
+    console.log('lmypl():', this.userService.getCurrentUserEmail() ); 
+    //console.log("\t fm 3 SETTING originalVideoList");
     const token = this.userService.getToken();
     this.fuck$ =  this.getPlaylists('123', token); 
     this.fuck$.subscribe((response: any) => {
@@ -441,10 +439,12 @@ export class MainComponent implements AfterViewInit {
           },
           contentDetails: obj.contentDetails,
         }));
-        console.log(pls);
+        console.log('pls= ', pls);
+        this.data.setOption('size', pls);  
+        this.data.setOption('square', 'N pleaswe square');  
 
         // new shit.  all return list begin
-        console.log('new shit');
+        console.log('line(445) new shit');
         const observableArray: any = [];
 
         for (let ii = 0; ii < pls.length; ii++) {

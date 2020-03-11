@@ -1,0 +1,19 @@
+<div class="test">   
+
+  <!--
+  <pre>{{gData | json}}</pre>
+  -->
+  
+  <b style="color:red">gData</b>
+  
+
+<ul>  
+ <li *ngFor="let tag of gData.myPlaylists">
+ <a [routerLink] (click)="lpl(tag.id)" >{{tag.snippet.title}}</a> 
+ </li>
+</ul>
+  
+  <!-- 
+  <pre>{{gData.myPlaylists  | json}}</pre>
+  -->
+</div>

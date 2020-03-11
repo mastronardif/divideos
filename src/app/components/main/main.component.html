@@ -35,8 +35,8 @@
           <!-- <li (click)="showEditor('rTest2')"  class="mdl-menu__item mdl-menu__item--full-bleed-divider">rTest2</li> -->
            <li (click)="showEditor('AllTags')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">All Tags</li> 
           <li disabled class="mdl-menu__item">tbd Action</li>          
-          <li routerLink="/test"  class="mdl-menu__item mdl-menu__item--full-bleed-divider">  My Playlists</li>
-
+          <li routerLink="/myplaylists"  class="mdl-menu__item mdl-menu__item--full-bleed-divider">  l My Playlists</li>          
+          <li id="showTags_tip" class="mdl-menu__item mdl-menu__item--full-bleed-divider" (click)="showTags('MYPLAYLISTS')" (valueChange)="displayTags($event)">TEST Playlists</li>
           <!-- <li (click)="showEditor('TestRx')" class="mdl-menu__item mdl-menu__item--full-bleed-divider">TestRx</li> -->         
         </ul>
         <!-- new shit menu END -->
@@ -114,6 +114,7 @@
       <videos-list *ngIf="videoList.length" class="mdl-grid" (valueChange)="displayTags($event)"
         (videoPlaylist)="checkAddToPlaylist($event)" [videoList]="videoList" [loadingInProgress]="loadingInProgress">
       </videos-list>
+      <app-test *ngIf="myplaylistsViewToggle" (valueChange)="displayTags($event)"> </app-test>
 
       <div class="loader" *ngIf="!videoList.length">
         <div class="loading"></div>

@@ -1,13 +1,15 @@
 <div class="test">   
 
-  
+  <b style="color:red">gData</b>
   <pre>{{gData | json}}</pre>
   
+  <button type="button" (click)="cancel('MYPLAYLISTS'); $event.preventDefault()">Cancel</button>
+
   <p>
   Test works!
   How bout with data passed?
 
-  $1 Cinnamon Rolls Friday As Westfield Cinnaholic Opens
+  $1 bbbbbb Rolls Friday As Westfield Cinnaholic Opens
 The vegan bakery offers 'build your own' items that are 100 percent vegan, dairy and lactose-free, egg-free and cholesterol-free.
   </p>
   <p>{{ state$ | async | json }}</p>

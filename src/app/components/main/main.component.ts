@@ -52,6 +52,7 @@ export class MainComponent implements AfterViewInit {
   public editorToggle = false;
   public tagsToggle = false;
   public tagsTreeViewToggle = false;
+  public myplaylistsViewToggle = false;
   public tagsEditorViewToggle = false;
 
   protected fuck$: Observable<any[]>;
@@ -379,6 +380,14 @@ export class MainComponent implements AfterViewInit {
       this.tagsTreeViewToggle = !this.tagsTreeViewToggle;
       return;
     }
+    //
+    if (id === 'MYPLAYLISTS') {
+      console.log('myplaylistsViewToggle= ', this.myplaylistsViewToggle);
+      this.myplaylistsViewToggle = !this.myplaylistsViewToggle;
+      return;
+    }
+
+    //
 
     // Default shw tags
     this.tagsToggle = !this.tagsToggle;
@@ -397,7 +406,12 @@ export class MainComponent implements AfterViewInit {
       //alert(`leftPaneSHowTagsForVideo= ${this.leftPaneSHowTagsForVideo}`);
       //this.toggleDoclist();
       //this.showTags();
+    } else if (eee.id === 'MYPLAYLISTS') {
+      console.log('myplaylistsViewToggle= ', this.myplaylistsViewToggle);
+      this.myplaylistsViewToggle = !this.myplaylistsViewToggle;
+      return;
     }
+
   }
 
   leftSideDisplayTagsFor(video) {
@@ -440,8 +454,21 @@ export class MainComponent implements AfterViewInit {
           contentDetails: obj.contentDetails,
         }));
         console.log('pls= ', pls);
-        this.data.setOption('size', pls);  
-        this.data.setOption('square', 'N pleaswe square');  
+         
+
+        const pls22 = response.items.map(obj => ({
+          //kind: obj.kind,
+          //id: obj.id,
+          snippet: {
+            //publishedAt: obj.snippet.publishedAt,
+            //channelId: obj.snippet.channelId,
+            title: obj.snippet.title
+          },
+          contentDetails: obj.contentDetails,
+        }));
+        this.data.setOption('myPlaylists22', pls22);
+        this.data.setOption('myPlaylists', pls); 
+        this.data.setOption('square', 'N please square');  
 
         // new shit.  all return list begin
         console.log('line(445) new shit');

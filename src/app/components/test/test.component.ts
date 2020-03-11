@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { DataService } from '../../shared/services/data.service';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
+  @Output() valueChange = new EventEmitter(); 
   state$: Observable<object>;
   public gData: any; 
 
@@ -24,6 +25,11 @@ export class TestComponent implements OnInit {
     this.state$ = this.activatedRoute.paramMap
       .pipe(map(() => window.history.state))
 
+  }
+
+  cancel(val) {
+    console.log('tes.comp cancel, val= ', val);
+    this.valueChange.emit({id: val});
   }
 
 }

@@ -38,16 +38,21 @@ export class MyPlaylistComponent implements OnInit {
     console.log(`\n\n******333******* id(${id}) toc`);
 
     // this.playlistSortbyService.getPlaylistFor('Jake.Mastronardi', id)
-    
+
     this. youtubeService.getPlaylistFor('Jake.Mastronardi', id)
-      .subscribe(response => {
+    .subscribe(response => {
+      if (response.subscribe) {
         response.subscribe(res => {
         const jsonRes = res;
         let res22 = jsonRes['items'];
 
         newlist = res22;
+        this.data.changeMessage(newlist);    
+        });
+      }
+      else {
         this.data.changeMessage(newlist);
-      });
+      }
     });
   }
 }

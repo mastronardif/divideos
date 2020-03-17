@@ -61,17 +61,12 @@ export class YoutubeApiService {
         //console.log(`ids= ${ids}`);                    
         return this.getVideos(ids);
       })
-    )
-    .catch((err: HttpErrorResponse) => {
+    ).catch((err: HttpErrorResponse) => {
       // simple logging, but you can do a lot more, see below
       console.error('WTF. An error occurred: ', err.error);
       console.log('trying to rerutn and empty');
       return Observable.of(new HttpResponse({body: [{name: "Default value"}]}));
-      //return //Observable.empty<HttpEvent<any>>();
-    })
-    ;
-
-
+      });
   }
   // end 10/1/18
 

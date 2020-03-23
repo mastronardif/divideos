@@ -35,7 +35,7 @@ export class YoutubeApiService {
 
   // begin 0//1/18
   getPlaylistFor(user: string, id: string): Observable<any> {
-    console.log('app\shared\services\youtube-api.service.ts: getPlaylistFor', id);
+    console.log(' getPlaylistFor: ', 'app\shared\services\youtube-api.service.ts: getPlaylistFor', id);
     const maxResults = 20;
 
     const url = this.base_url + 'playlistItems?playlistId=' + id + '&maxResults=' + maxResults +
@@ -130,7 +130,7 @@ export class YoutubeApiService {
   getVideos(ids): Observable<any> {
     const url = this.base_url + 'videos?id=' + ids.join(',') + '&maxResults=' + this.max_results +
       '&type=video&part=snippet,contentDetails,statistics&key=' + YOUTUBE_API_KEY;
-    console.log(`getVideos(ids): url= ${url}`);
+    console.log(`getVideos(${ids.join(',')}): url= ${url}`);
     return this
       .http
       //.get(`${this.path}/api/courses`)

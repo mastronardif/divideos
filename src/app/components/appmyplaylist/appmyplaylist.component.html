@@ -8,8 +8,8 @@
   
 
 <ul>  
- <li *ngFor="let tag of gData.myPlaylists">
- <a [routerLink] (click)="lpl(tag.id)" >{{tag.snippet.title}}</a> 
+ <li class="leftlink" *ngFor="let tag of gData.myPlaylists">
+ <a class="leftlink" [routerLink] (click)="lpl(tag.id)" >{{tag.snippet.title}}</a> 
  </li>
 </ul>
   

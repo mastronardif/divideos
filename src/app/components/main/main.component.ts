@@ -476,7 +476,7 @@ export class MainComponent implements AfterViewInit {
 
         for (let ii = 0; ii < pls.length; ii++) {
           observableArray.push(this.youtubeService.getPlaylistFor('TBDJake.Mastronardi', pls[ii].id));
-          console.log(`ii(${ii})`);
+          // console.log(`ii(${ii})`);
         };
 
         this.videoList = [];
@@ -486,13 +486,31 @@ export class MainComponent implements AfterViewInit {
               resp.forEach((obs: Observable<any>) => {
                   if (obs.subscribe) {
                     obs.subscribe(res => {
-                    const jsonRes = res;
-                    const res22 = jsonRes['items'];
-                    console.log(res22);
+                      const jsonRes = res;
+                      const res22 = jsonRes['items'];
+                      console.log('*** \t res22= ', res22);
 
-                    res22.forEach(fu => {this.originalVideoList.push(fu); this.videoList.push(fu); });
+                      res22.forEach(fu => {
+                        // this.originalVideoList.push(fu); 
+                        //this.videoList.push(fu); 
+
+                        // unique
+                        //console.log('*** \t fu.id= ', fu.id);
+                        const index = this.videoList.findIndex((e) => e.id === fu.id);
+                        
+                        if(index === -1) {
+                          this.originalVideoList.push(fu);
+                          //console.log('originalVideoList= ', this.originalVideoList);
+                          this.videoList.push(fu);
+                          //console.log('videoList= ', this.videoList);
+                        }
+                    }
+                    
+                    );
+                    
+
                     },
-                    error => console.log('oops', error)
+                    error => console.log('\t *** oops', error)
                     );
                   } else {console.log('WTF obs.subscribe undefined!!!') }
               });

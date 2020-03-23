@@ -1,3 +1,8 @@
+.leftlink {
+  color: aqua;
+  line-height:200%;
+}
+
 .playlist22 {
     height: calc(100% - 113px);
     width: 25%;
